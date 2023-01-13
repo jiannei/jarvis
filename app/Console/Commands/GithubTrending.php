@@ -13,7 +13,7 @@ class GithubTrending extends Command
      *
      * @var string
      */
-    protected $signature = 'github:trending {--language} {--spoken_language_code=zh} {--since=daily}';
+    protected $signature = 'github:trending {--language=} {--spoken_language_code=zh} {--since=daily}';
 
     /**
      * The console command description.
@@ -32,7 +32,6 @@ class GithubTrending extends Command
         $language = $this->option('language');
         $spokenLanguageCode = $this->option('spoken_language_code');
         $since = $this->option('since');
-
 
         $trendings = $crawlerService->handleGithubTrending($language, [
             'spoken_language_code' => $spokenLanguageCode,
