@@ -39,7 +39,12 @@ class GithubTrending extends Command
         ]);
 
         foreach ($trendings as $trending) {
-            GithubTrendingDaily::updateOrCreate(['repo' => $trending['repo']], $trending);
+            $trending['day'] = now()->format('Y-m-d');
+
+            GithubTrendingDaily::updateOrCreate([
+                'day' =>$trending['day'],
+                'repo' => $trending['repo']
+            ], $trending);
         }
 
         return self::SUCCESS;
