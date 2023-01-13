@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\CrawlerController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\GithubController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +18,8 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::post('crawler',[CrawlerController::class,'fetch']);
+Route::prefix('github')->group(function () {
+    Route::get('trending/{language?}',[GithubController::class,'trending'])->whereAlpha('language');
+});
+
+
