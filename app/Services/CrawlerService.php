@@ -6,9 +6,11 @@ use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class CrawlerService extends Service
 {
+    private $trendingUrl = "https://github.com/trending";
+
     public function handleGithubTrending(?string $language = null,?array $query = [])
     {
-        $url = $language ? "https://github.com/trending/{$language}" : "https://github.com/trending";
+        $url = $language ? "{$this->trendingUrl}/{$language}" : $this->trendingUrl;
         $crawler = Crawler::fetch($url, $query);
 
         $rules = [
@@ -21,5 +23,30 @@ class CrawlerService extends Service
         ];
 
         return $crawler->filter('article')->rules($rules);
+    }
+
+    public function handleGithubTrendingLanguages()
+    {
+        $crawler = Crawler::fetch($this->trendingUrl);
+
+        $rules = [
+            "code" => ["", "href"],
+            "name" => ["span", "text"]
+        ];
+
+        return $crawler->filter("#languages-menuitems a[role='menuitemradio']")->rules($rules);
+    }
+
+
+    public function handleGithubTrendingSpokenLanguages()
+    {
+        $crawler = Crawler::fetch($this->trendingUrl);
+
+        $rules = [
+            "code" => ["", "href"],
+            "name" => ["span", "text"]
+        ];
+
+        return $crawler->filter("div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']")->rules($rules);
     }
 }

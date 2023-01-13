@@ -25,4 +25,18 @@ class GithubController extends Controller
 
         return Response::success($result);
     }
+
+    public function languages()
+    {
+        $result = $this->crawlerService->handleGithubTrendingLanguages();
+
+        return Response::success($result);
+    }
+
+    public function spokenLanguages()
+    {
+        $result = $this->crawlerService->handleGithubTrendingSpokenLanguages();
+
+        return Response::success($result);
+    }
 }
