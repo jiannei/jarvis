@@ -17,11 +17,11 @@ class GithubController extends Controller
     public function trending(Request $request,?string $language = null)
     {
         $this->validate($request, [
-            'spoken_language' => 'nullable|string',
+            'spoken_language_code' => 'nullable|string',
             'since' => 'nullable|string|in:daily,weekly,monthly'
         ]);
 
-        $result = $this->crawlerService->handleGithubTrending($language,$request->only('spoken_language','since'));
+        $result = $this->crawlerService->handleGithubTrending($language,$request->only('spoken_language_code','since'));
 
         return Response::success($result);
     }
