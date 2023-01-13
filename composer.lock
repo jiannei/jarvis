@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "035555c6080ad23eced5291bb76d5271",
+    "content-hash": "6c95559bf3a25fb5cec5debfc61aeed9",
     "packages": [
         {
             "name": "brick/math",
@@ -712,6 +712,121 @@
                 "url"
             ],
             "time": "2022-10-26T14:07:24+00:00"
+        },
+        {
+            "name": "jiannei/helpers",
+            "version": "v0.2.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://mirrors.cloud.tencent.com/repository/composer/jiannei/helpers/v0.2.1/jiannei-helpers-v0.2.1.zip",
+                "reference": "1fa669201e3c4f9b384ffdb5ab3ea4caabc594f3",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jiannei",
+                    "email": "longjian.huang@foxmail.com"
+                }
+            ],
+            "description": "Some helper functions.",
+            "time": "2021-06-16T03:01:10+00:00"
+        },
+        {
+            "name": "jiannei/laravel-enum",
+            "version": "v3.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://mirrors.cloud.tencent.com/repository/composer/jiannei/laravel-enum/v3.0.0/jiannei-laravel-enum-v3.0.0.zip",
+                "reference": "a3686fda3cf6c51942d13a50bdcd5f41622907b2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "jiannei/helpers": "^0.2.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jiannei\\Enum\\Laravel\\Providers\\LaravelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jiannei\\Enum\\Laravel\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jiannei",
+                    "email": "longjian.huang@foxmail.com"
+                }
+            ],
+            "description": "A simple and easy-to-use enumeration extension package to help you manage enumerations in your project more conveniently, supporting Laravel and Lumen",
+            "time": "2021-09-19T14:27:22+00:00"
+        },
+        {
+            "name": "jiannei/laravel-response",
+            "version": "v5.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://mirrors.cloud.tencent.com/repository/composer/jiannei/laravel-response/v5.1.1/jiannei-laravel-response-v5.1.1.zip",
+                "reference": "827b19e22c1eaa07b5234e5927b7bab8e8a3fd9c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2.5|^8.0"
+            },
+            "require-dev": {
+                "jiannei/laravel-enum": "^3.0",
+                "orchestra/testbench": "^7.0",
+                "phpunit/phpunit": "^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jiannei\\Response\\Laravel\\Providers\\LaravelServiceProvider"
+                    ],
+                    "aliases": {
+                        "Response": "Jiannei\\Response\\Laravel\\Support\\Facades\\Response"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jiannei\\Response\\Laravel\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jiannei",
+                    "email": "longjian.huang@foxmail.com"
+                }
+            ],
+            "description": "Laravel api response data format.",
+            "time": "2023-01-03T03:44:08+00:00"
         },
         {
             "name": "laravel/framework",

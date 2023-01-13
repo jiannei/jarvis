@@ -7,6 +7,8 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
+        "jiannei/laravel-enum": "^3.0",
+        "jiannei/laravel-response": "^5.1",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7"
