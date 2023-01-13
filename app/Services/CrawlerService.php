@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Mongodb\GithubTrendingDaily;
+use App\Models\Mongodb\GithubTrendingLanguage;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class CrawlerService extends Service
@@ -22,7 +24,16 @@ class CrawlerService extends Service
             'added_stars' => ['div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right', 'text'],
         ];
 
-        return $crawler->filter('article')->rules($rules);
+        $trendings =  $crawler->filter('article')->rules($rules);
+
+        foreach ($trendings as $trending) {
+            GithubTrendingDaily::updateOrCreate([
+                'day' => now()->format('Y-m-d'),
+                'repo' => $trending['repo']
+            ],$trending);
+        }
+
+        return $trendings;
     }
 
     public function handleGithubTrendingLanguages()
@@ -34,7 +45,12 @@ class CrawlerService extends Service
             "name" => ["span", "text"]
         ];
 
-        return $crawler->filter("#languages-menuitems a[role='menuitemradio']")->rules($rules);
+        $trendings = $crawler->filter("#languages-menuitems a[role='menuitemradio']")->rules($rules);
+        foreach ($trendings as $trending) {
+            GithubTrendingLanguage::updateOrCreate(['code' => $trending['code']],$trending);
+        }
+
+        return $trendings;
     }
 
 
@@ -47,6 +63,12 @@ class CrawlerService extends Service
             "name" => ["span", "text"]
         ];
 
-        return $crawler->filter("div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']")->rules($rules);
+        $trendings = $crawler->filter("div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']")->rules($rules);
+
+        foreach ($trendings as $trending) {
+            GithubTrendingLanguage::updateOrCreate(['code' => $trending['code']],$trending);
+        }
+
+        return $trendings;
     }
 }

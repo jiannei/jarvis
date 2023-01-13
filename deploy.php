@@ -7,9 +7,7 @@ require 'recipe/laravel.php';
 
 set('repository', 'https://github.com/jiannei/jarvis.git');
 
-add('shared_files', [
-    'database/database.sqlite'
-]);
+add('shared_files', []);
 add('shared_dirs', []);
 add('writable_dirs', []);
 
@@ -20,7 +18,7 @@ host('jarvis.coderplanets.cn')
     ->setidentityFile('~/.ssh/deploykey')
     ->setForwardAgent(true)
     ->setSshMultiplexing(true)
-    ->setSshArguments(['-o UserKnownHostsFile=/dev/null'])
+//    ->setSshArguments(['-o UserKnownHostsFile=/dev/null'])
     ->set('http_user', 'www')
     ->set('branch', 'main')
     ->set('deploy_path', '/www/wwwroot/jarvis');
