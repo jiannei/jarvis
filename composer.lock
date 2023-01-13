@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccbd816a07b206f971042295b899d1ba",
+    "content-hash": "035555c6080ad23eced5291bb76d5271",
     "packages": [
         {
             "name": "brick/math",
@@ -4049,6 +4049,32 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "deployer/deployer",
+            "version": "v7.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://mirrors.cloud.tencent.com/repository/composer/deployer/deployer/v7.1.1/deployer-deployer-v7.1.1.zip",
+                "reference": "28934ad0af2b70dbd9cc60b33c5454778b3dd6c1",
+                "shasum": ""
+            },
+            "bin": [
+                "dep"
+            ],
+            "type": "library",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Medvedev",
+                    "email": "anton@medv.io"
+                }
+            ],
+            "description": "Deployment Tool",
+            "homepage": "https://deployer.org",
+            "time": "2023-01-09T10:14:17+00:00"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.5.0",
