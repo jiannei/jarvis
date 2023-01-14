@@ -50,7 +50,7 @@ class CrawlGithubTrending implements ShouldQueue
             $item['spoken_language_code'] = $this->spokenLanguageCode;
             $item['stars'] = Str::remove(',', $item['stars']);
             $item['forks'] = Str::remove(',', $item['forks']);
-            $item['added_stars'] = Str::remove([' star today', ' stars today'], $item['forks']);
+            $item['added_stars'] = Str::remove([' star today', ' stars today'], $item['added_stars']);
 
             TrendingDaily::updateOrCreate([
                 'day' => $item['day'],
