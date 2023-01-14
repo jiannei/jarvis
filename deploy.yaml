@@ -1,0 +1,20 @@
+import:
+  - recipe/laravel.php
+
+config:
+  repository: 'https://github.com/jiannei/jarvis.git'
+
+hosts:
+  'jarvis.coderplanets.cn':
+    remote_user: deployer
+    port: 22
+    identity_file: '~/.ssh/deploykey'
+    forward_agent: true
+    ssh_multiplexing: true
+    http_user: www
+    branch: main
+    deploy_path: '/www/wwwroot/jarvis'
+
+after:
+  deploy: artisan:queue:restart
+  deploy:failed: deploy:unlock
