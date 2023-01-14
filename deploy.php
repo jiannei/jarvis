@@ -23,6 +23,12 @@ host('jarvis.coderplanets.cn')
     ->set('branch', 'main')
     ->set('deploy_path', '/www/wwwroot/jarvis');
 
+// Tasks
+task('opcache:reset', function () {
+    run('{{bin/php}} -r \'opcache_reset();\'');
+});
+
 // Hooks
 
+after('deploy', 'opcache:reset');
 after('deploy:failed', 'deploy:unlock');
