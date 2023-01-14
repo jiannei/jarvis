@@ -10,7 +10,7 @@
  */
 
 return [
-    'debug' => false, // guzzle debug
+    'debug' => true, // guzzle debug
 
     'log' => [
         'driver' => 'daily',
