@@ -13,7 +13,7 @@
 </head>
 <body class="antialiased">
 <div class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-    <h1 class="text-lg">{{ config('app.name') }}</h1>
+    <h1 class="text-lg">{{ $token ?? config('app.name') }}</h1>
 </div>
 </body>
 </html>
