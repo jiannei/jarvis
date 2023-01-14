@@ -2,13 +2,14 @@
 
 namespace App\Jobs;
 
-use App\Models\Mongodb\GithubTrendingDaily;
+use App\Models\Github\TrendingDaily;
 use App\Services\CrawlerService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Str;
 
 class CrawlGithubTrending implements ShouldQueue
 {
@@ -46,8 +47,12 @@ class CrawlGithubTrending implements ShouldQueue
 
         foreach ($trending as $item) {
             $item['day'] = now()->format('Y-m-d');
+            $item['spoken_language_code'] = $this->spokenLanguageCode;
+            $item['stars'] = Str::remove(',', $item['stars']);
+            $item['forks'] = Str::remove(',', $item['forks']);
+            $item['added_stars'] = Str::remove([' star today', ' stars today'], $item['forks']);
 
-            GithubTrendingDaily::updateOrCreate([
+            TrendingDaily::updateOrCreate([
                 'day' => $item['day'],
                 'repo' => $item['repo'],
             ], $item);

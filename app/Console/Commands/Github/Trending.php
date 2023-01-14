@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Github;
 
 use App\Jobs\CrawlGithubTrending;
 use Illuminate\Console\Command;
 
-class GithubTrending extends Command
+class Trending extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'github:trending {mode=all} {--language=} {--spoken_language_code=zh} {--since=daily}';
+    protected $signature = 'github:trending {mode=default} {--language=} {--spoken_language_code=zh} {--since=daily}';
 
     /**
      * The console command description.
@@ -33,22 +33,22 @@ class GithubTrending extends Command
         $since = $this->option('since');
 
         $this->info("[{$this->description}]:执行开始");
-        if ($this->argument('mode') === 'all') {
+        if ($this->argument('mode') === 'default') {
+            CrawlGithubTrending::dispatch($language, $spokenLanguageCode, $since);
+        } else {
             $bar = $this->output->createProgressBar(count($this->params()));
             $bar->start();
 
             foreach ($this->params() as $param) {
                 [$language, $spokenLanguageCode, $since] = array_values($param);
 
-                dispatch(new CrawlGithubTrending($language, $spokenLanguageCode, $since));
+                CrawlGithubTrending::dispatch($language, $spokenLanguageCode, $since);
 
                 $bar->advance();
             }
 
             $bar->finish();
             $this->newLine();
-        } else {
-            dispatch(new CrawlGithubTrending($language, $spokenLanguageCode, $since));
         }
 
         $this->info("[{$this->description}]:执行结束");

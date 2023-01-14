@@ -3,6 +3,9 @@ import:
 
 config:
   repository: 'https://github.com/jiannei/jarvis.git'
+  shared_files:
+    - '.env'
+    - 'database/database.sqlite'
 
 hosts:
   'jarvis.coderplanets.cn':

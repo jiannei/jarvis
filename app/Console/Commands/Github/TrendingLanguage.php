@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Console\Commands\Github;
+
+use App\Jobs\CrawlGithubTrendingLanguage;
+use Illuminate\Console\Command;
+
+class TrendingLanguage extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'github:trending:language';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = '爬取 Github Trending Language';
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        CrawlGithubTrendingLanguage::dispatch();
+
+        return self::SUCCESS;
+    }
+}

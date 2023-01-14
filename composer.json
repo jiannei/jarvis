@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.5",
-        "jenssegers/mongodb": "^3.9",
         "jiannei/laravel-crawler": "^2.0",
         "jiannei/laravel-enum": "^3.0",
         "jiannei/laravel-response": "^5.1.1",
