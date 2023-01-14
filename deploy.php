@@ -31,4 +31,5 @@ task('opcache:reset', function () {
 // Hooks
 
 after('deploy', 'opcache:reset');
+after('deploy', 'artisan:queue:restart');
 after('deploy:failed', 'deploy:unlock');
