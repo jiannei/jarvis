@@ -18,7 +18,7 @@ class AuthService extends Service
 
         return User::updateOrCreate([
             'github_id' => $githubUser->id,
-        ],[
+        ], [
             'name' => $githubUser->nickname,
             'nickname' => $githubUser->name,
             'bio' => $githubUser['bio'],

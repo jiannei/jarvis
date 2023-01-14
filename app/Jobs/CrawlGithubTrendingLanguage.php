@@ -34,7 +34,7 @@ class CrawlGithubTrendingLanguage implements ShouldQueue
         $languages = $service->handleGithubTrendingLanguages();
 
         foreach ($languages as $language) {
-            TrendingLanguage::updateOrCreate(['code' => $language['code']],$language);
+            TrendingLanguage::updateOrCreate(['code' => $language['code']], $language);
         }
     }
 }
