@@ -42,7 +42,7 @@ return [
         \Illuminate\Auth\AuthenticationException::class => [
 
         ],
-        \Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class =>[
+        \Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class => [
             'message' => '',
         ],
         \Illuminate\Database\Eloquent\ModelNotFoundException::class => [

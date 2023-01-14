@@ -6,9 +6,9 @@ use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class CrawlerService extends Service
 {
-    private $trendingUrl = "https://github.com/trending";
+    private $trendingUrl = 'https://github.com/trending';
 
-    public function handleGithubTrending(?string $language = null,?array $query = [])
+    public function handleGithubTrending(?string $language = null, ?array $query = [])
     {
         $url = $language ? "{$this->trendingUrl}/{$language}" : $this->trendingUrl;
         $crawler = Crawler::fetch($url, $query);
@@ -30,21 +30,20 @@ class CrawlerService extends Service
         $crawler = Crawler::fetch($this->trendingUrl);
 
         $rules = [
-            "code" => ["", "href"],
-            "name" => ["span", "text"]
+            'code' => ['', 'href'],
+            'name' => ['span', 'text'],
         ];
 
-       return $crawler->filter("#languages-menuitems a[role='menuitemradio']")->rules($rules);
+        return $crawler->filter("#languages-menuitems a[role='menuitemradio']")->rules($rules);
     }
-
 
     public function handleGithubTrendingSpokenLanguages()
     {
         $crawler = Crawler::fetch($this->trendingUrl);
 
         $rules = [
-            "code" => ["", "href"],
-            "name" => ["span", "text"]
+            'code' => ['', 'href'],
+            'name' => ['span', 'text'],
         ];
 
         return $crawler->filter("div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']")->rules($rules);

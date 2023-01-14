@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::prefix('github')->group(function () {
-    Route::get('languages',[GithubController::class,'languages']);
-    Route::get('spoken-languages',[GithubController::class,'spokenLanguages']);
-    Route::get('trending/{language?}',[GithubController::class,'trending'])->whereAlpha('language');
+    Route::get('languages', [GithubController::class, 'languages']);
+    Route::get('spoken-languages', [GithubController::class, 'spokenLanguages']);
+    Route::get('trending/{language?}', [GithubController::class, 'trending'])->whereAlpha('language');
 });
-
-

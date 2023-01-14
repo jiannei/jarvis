@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Models\Mongodb\GithubTrendingDaily;
 use App\Services\CrawlerService;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,7 +15,9 @@ class CrawlGithubTrending implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private ?string $language;
+
     private ?string $spokenLanguageCode;
+
     private string $since;
 
     /**
@@ -24,7 +25,7 @@ class CrawlGithubTrending implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(?string $language = null,?string $spokenLanguageCode = null,string $since = 'daily')
+    public function __construct(?string $language = null, ?string $spokenLanguageCode = null, string $since = 'daily')
     {
         $this->language = $language;
         $this->spokenLanguageCode = $spokenLanguageCode;
@@ -47,8 +48,8 @@ class CrawlGithubTrending implements ShouldQueue
             $item['day'] = now()->format('Y-m-d');
 
             GithubTrendingDaily::updateOrCreate([
-                'day' =>$item['day'],
-                'repo' => $item['repo']
+                'day' => $item['day'],
+                'repo' => $item['repo'],
             ], $item);
         }
     }
