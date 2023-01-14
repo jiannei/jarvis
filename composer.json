@@ -10,6 +10,7 @@
         "jiannei/laravel-crawler": "^2.0",
         "jiannei/laravel-enum": "^3.0",
         "jiannei/laravel-response": "^5.1.1",
+        "jiannei/laravel-schedule": "^1.0",
         "laravel/framework": "^9.47",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8"

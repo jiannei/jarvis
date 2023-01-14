@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72cab7a293f67b4338a0c7448a763104",
+    "content-hash": "61ba00cc3718ce917f6f3e7b5691c457",
     "packages": [
         {
             "name": "brick/math",
@@ -1146,6 +1146,61 @@
                 "source": "https://github.com/jiannei/laravel-response/tree/v5.1.1"
             },
             "time": "2023-01-03T03:44:08+00:00"
+        },
+        {
+            "name": "jiannei/laravel-schedule",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jiannei/laravel-schedule.git",
+                "reference": "e57b5313a24f3a8076452b6bb6379903a5ff4563"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jiannei/laravel-schedule/zipball/e57b5313a24f3a8076452b6bb6379903a5ff4563",
+                "reference": "e57b5313a24f3a8076452b6bb6379903a5ff4563",
+                "shasum": ""
+            },
+            "require": {
+                "jiannei/laravel-enum": "^3.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.5",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jiannei\\Schedule\\Laravel\\Providers\\LaravelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jiannei\\Schedule\\Laravel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jiannei",
+                    "email": "longjian.huang@foxmail.com"
+                }
+            ],
+            "description": "More flexible way to manage your Laravel schedule tasks.",
+            "keywords": [
+                "laravel",
+                "schedule"
+            ],
+            "support": {
+                "issues": "https://github.com/jiannei/laravel-schedule/issues",
+                "source": "https://github.com/jiannei/laravel-schedule/tree/v1.0.1"
+            },
+            "time": "2021-09-20T02:05:06+00:00"
         },
         {
             "name": "laravel/framework",
