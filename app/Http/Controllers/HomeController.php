@@ -9,7 +9,6 @@ class HomeController extends Controller
 {
     public function __construct(private AuthService $service)
     {
-
     }
 
     public function home()
