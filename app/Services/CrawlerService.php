@@ -56,9 +56,10 @@ class CrawlerService extends Service
         $rules = [
             'link' => ['a', 'href'],
             'title' => ['h4 > span', 'text'],
+            'summary' => ['h4 + p', 'text'],
             'published_at' => ['p', 'text'],
         ];
 
-        return $crawler->filter('main > div:last-child > ul > li')->rules($rules);
+        return $crawler->filter('main > div:last-child > ul > li:nth-of-type(n+2)')->rules($rules);
     }
 }
