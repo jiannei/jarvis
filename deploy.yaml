@@ -1,6 +1,5 @@
 import:
   - recipe/laravel.php
-  - contrib/yarn.php
 
 config:
   repository: 'https://github.com/jiannei/jarvis.git'
@@ -19,10 +18,9 @@ hosts:
 tasks:
   yarn:build:
     - cd: "{{release_path}}"
-    - run: "yarn build"
+    - run: "yarn install && yarn build"
 
 after:
   deploy: artisan:queue:restart
-  deploy:update_code: yarn:install
-  yarn:install: yarn:build
+  deploy:update_code: yarn:build
   deploy:failed: deploy:unlock
