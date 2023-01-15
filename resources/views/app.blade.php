@@ -12,7 +12,7 @@
 <div class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
     @auth
         <p class="px-6 py-3 bg-white rounded-md shadow">
-            <span class="text-lg text-gray-500">{{ $token }}</span>
+            <code class="text-lg text-gray-500">{{ $token }}</code>
         </p>
     @endauth
 
