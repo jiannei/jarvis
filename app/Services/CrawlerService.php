@@ -48,4 +48,17 @@ class CrawlerService extends Service
 
         return $crawler->filter("div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']")->rules($rules);
     }
+
+    public function handleLaravelNewsBlog()
+    {
+        $crawler = Crawler::fetch('https://laravel-news.com/blog');
+
+        $rules = [
+            'link' => ['a', 'href'],
+            'title' => ['h4 > span', 'text'],
+            'published_at' => ['p', 'text'],
+        ];
+
+        return $crawler->filter('main > div:last-child > ul > li')->rules($rules);
+    }
 }

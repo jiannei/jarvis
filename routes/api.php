@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\GithubController;
+use App\Http\Controllers\Api\LaravelNewsController;
 use App\Http\Controllers\JarvisController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,10 +25,13 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('trending/{language?}', [GithubController::class, 'trending'])->whereAlpha('language');
         });
 
-
+        // laravel-news
+        Route::prefix('laravel-news')->group(function () {
+            Route::get('blog', [LaravelNewsController::class, 'blog']);
+        });
     });
 
     Route::middleware('abilities:*')->group(function () {
-        Route::get('database',[JarvisController::class,'database']);
+        Route::get('database', [JarvisController::class, 'database']);
     });
 });
