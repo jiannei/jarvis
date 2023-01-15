@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\GithubController;
+use App\Http\Controllers\JarvisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::prefix('github')->group(function () {
-        Route::get('languages', [GithubController::class, 'languages']);
-        Route::get('spoken-languages', [GithubController::class, 'spokenLanguages']);
-        Route::get('trending/{language?}', [GithubController::class, 'trending'])->whereAlpha('language');
+    Route::middleware('abilities:service:api')->group(function () {
+        // github api
+        Route::prefix('github')->group(function () {
+            Route::get('languages', [GithubController::class, 'languages']);
+            Route::get('spoken-languages', [GithubController::class, 'spokenLanguages']);
+            Route::get('trending/{language?}', [GithubController::class, 'trending'])->whereAlpha('language');
+        });
+
+
+    });
+
+    Route::middleware('abilities:*')->group(function () {
+        Route::get('database',[JarvisController::class,'database']);
     });
 });

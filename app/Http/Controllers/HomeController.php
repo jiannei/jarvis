@@ -12,7 +12,7 @@ class HomeController extends Controller
         $token = null;
         if (Auth::check()) {
             $token = Cache::remember('auth:user:'.Auth::id(), now()->addSeconds(config('sanctum.expiration')), function () {
-                return Auth::user()->createToken(config('app.name'))->plainTextToken;
+                return Auth::user()->createToken(config('app.name'),['service:api'])->plainTextToken;
             });
         }
 
