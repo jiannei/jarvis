@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
+use App\Enums\AbilityEnum;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthService extends Service
@@ -26,5 +29,12 @@ class AuthService extends Service
             'github_token' => $githubUser->token,
             'github_refresh_token' => $githubUser->refreshToken,
         ]);
+    }
+
+    public function issueToken()
+    {
+        return Cache::remember('auth:user:'.Auth::id(), now()->addSeconds(config('sanctum.expiration')), function () {
+            return Auth::user()->createToken(config('app.name'),[AbilityEnum::SERVICE_API])->plainTextToken;
+        });
     }
 }
