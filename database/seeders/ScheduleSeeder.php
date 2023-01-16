@@ -29,7 +29,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取 laravel-news blog',
-                'command' => 'crawl:laravel-news:blog all',
+                'command' => 'crawl:laravel-news:blog',
                 'parameters' => 'all',
                 'expression' => '0 3 * * *',
                 'active' => true,
