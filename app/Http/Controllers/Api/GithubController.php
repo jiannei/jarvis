@@ -39,6 +39,13 @@ class GithubController extends Controller
         return Response::success($result);
     }
 
+    public function ruanyfWeeklyLatest(?int $period = null)
+    {
+        $result = $this->crawlerService->handleRuanyfWeeklyLatest($period);
+
+        return Response::success($result);
+    }
+
     public function ruanyfWeekly()
     {
         $result = $this->crawlerService->handleRuanyfWeekly();

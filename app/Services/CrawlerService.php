@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\CrawlEnum;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
@@ -100,26 +101,28 @@ class CrawlerService extends Service
         ];
     }
 
-    public function handleRuanyfWeekly()
+    public function handleRuanyfWeeklyLatest(?int $period = null)
     {
-        $readme = Http::withHeaders([
-            'Accept' => 'application/vnd.github.html+json',
-        ])->get('https://api.github.com/repos/ruanyf/weekly/readme');
+        $issues = $this->handleRuanyfWeekly();
 
-        $crawler = Crawler::new($readme->body());
+        $issues = array_reverse($issues);
 
-        $weekly = $crawler->filter('article ul:nth-of-type(1) li:first-child')->rules([
-            'path' => ['a', 'href'],
-            'title' => ['a', 'text'],
-        ]);
+        $period = $period ?: count($issues);
+
+        try {
+            $path = $issues[$period - 1]['path'];
+            $title = $issues[$period - 1]['title'];
+        } catch (\Exception $exception) {
+            abort(404);
+        }
 
         // latest
         $content = Http::withHeaders([
             'Accept' => 'application/vnd.github.raw+json',
-        ])->get('https://api.github.com/repos/ruanyf/weekly/contents/'.$weekly[0]['path']);
+        ])->withToken(Auth::user()->github_token)->get('https://api.github.com/repos/ruanyf/weekly/contents/'.$path);
 
         return [
-            'title' => $weekly[0]['title'],
+            'title' => $title,
             'category' => [
                 'name' => 'weekly',
                 'link' => 'https://www.ruanyifeng.com/blog',
@@ -129,8 +132,26 @@ class CrawlerService extends Service
             ],
             'content' => $content->body(),
             'published_at' => Carbon::now()->format('Y-m-d'),
-            'images' => [],
-            'link' => 'https://github.com/ruanyf/weekly/blob/master/'.$weekly[0]['path'],
+            'images' => [], // todo
+            'link' => 'https://github.com/ruanyf/weekly/blob/master/'.$path,
         ];
+    }
+
+    public function handleRuanyfWeekly()
+    {
+        $response = Http::withHeaders([
+            'Accept' => 'application/vnd.github.html+json',
+        ])->withToken(Auth::user()->github_token)->get('https://api.github.com/repos/ruanyf/weekly/readme');
+
+        if ($response->failed()) {
+            abort(500, $response->json()['message']);
+        }
+
+        $crawler = Crawler::new($response->body());
+
+        return $crawler->filter('article ul li')->rules([
+            'path' => ['a', 'href'],
+            'title' => ['a', 'text'],
+        ]);
     }
 }

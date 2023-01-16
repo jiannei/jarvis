@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('trending/{language?}', [GithubController::class, 'trending'])->whereAlpha('language');
 
             Route::get('ruanyf/weekly', [GithubController::class, 'ruanyfWeekly']);
+            Route::get('ruanyf/weekly/{period?}', [GithubController::class, 'ruanyfWeeklyLatest'])->whereNumber('period');
         });
 
         // laravel-news
