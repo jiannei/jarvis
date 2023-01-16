@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Enums\CrawlEnum;
-use App\Events\CrawlFinished;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class CrawlerService extends Service
@@ -88,7 +87,7 @@ class CrawlerService extends Service
 
         $images = $crawler->filter('article p img')->attrs('src');
 
-        $post = [
+        return [
             'title' => $title,
             'category' => $category,
             'author' => $author,
@@ -97,9 +96,5 @@ class CrawlerService extends Service
             'images' => $images,
             'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
         ];
-
-        CrawlFinished::dispatch($post, 'laravel-news');
-
-        return $post;
     }
 }

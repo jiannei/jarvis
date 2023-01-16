@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Crawl;
 
 use App\Enums\CrawlEnum;
+use App\Events\CrawlFinished;
 use App\Services\CrawlerService;
 use Illuminate\Console\Command;
 
@@ -33,7 +34,7 @@ class LaravelNewsBlog extends Command
 
         if ($this->argument('mode') === 'all') {
             $blogs = $service->handleLaravelNewsBlogs();
-            $links = array_column($blogs,'link');
+            $links = array_column($blogs, 'link');
 
             $bar = $this->output->createProgressBar(count($links));
             $bar->start();
@@ -41,18 +42,23 @@ class LaravelNewsBlog extends Command
             foreach ($links as $link) {
                 $this->newLine();
                 $this->comment('正在爬取:'.CrawlEnum::LARAVEL_NEWS.$link);
-                $service->handleLaravelNewsBlog(trim($link,'/'));
+
+                $post = $service->handleLaravelNewsBlog(trim($link, '/'));
+                CrawlFinished::dispatch($post, 'laravel-news');// todo job or event?
+
                 $bar->advance();
             }
 
             $bar->finish();
             $this->newLine();
-        }else{
+        } else {
             $link = $this->option('link') ?: '';
 
             if ($link) {
                 $this->comment('正在爬取:'.CrawlEnum::LARAVEL_NEWS.$link);
-                $service->handleLaravelNewsBlog(trim($this->option('link'),'/'));
+
+                $post = $service->handleLaravelNewsBlog(trim($this->option('link'), '/'));
+                CrawlFinished::dispatch($post, 'laravel-news');
             }
         }
 
