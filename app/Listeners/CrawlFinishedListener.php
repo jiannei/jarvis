@@ -3,11 +3,20 @@
 namespace App\Listeners;
 
 use App\Events\CrawlFinished;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Post;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Str;
 use League\HTMLToMarkdown\HtmlConverter;
 
-class CrawlFinishedListener
+class CrawlFinishedListener implements ShouldQueue
 {
+    /**
+     * The name of the queue the job should be sent to.
+     *
+     * @var string|null
+     */
+    public $queue = 'listeners';
+
     /**
      * Create the event listener.
      *
@@ -28,10 +37,25 @@ class CrawlFinishedListener
     {
         $converter = new HtmlConverter();
 
-        $markdown = $converter->convert($event->post['content']);
+        $data = [
+            'title' => $event->post['title'],
+            'author' => $event->post['author']['name'],
+            'content' => $converter->convert($event->post['content']),
+            'channel' => $event->channel,
+            'link' => $event->post['link'],
+            'category' => $event->post['category']['name'],
+            'published_at' => $event->post['published_at'],
+        ];
 
-        // 存 markdown
-        $path = parse_url($event->post['link'])['path'];
-        Storage::put($event->channel.$path.'.md', $markdown);
+        $post = Post::query()->updateOrCreate(['link' => $event->post['link']], $data);
+
+        $content = $post->content;
+        foreach ($event->post['images'] as $image) {
+            $media = $post->addMediaFromUrl($image)->toMediaCollection();
+            $content = Str::replace($image, $media->getUrl(), $content);
+        }
+
+        $post->content = $content;
+        $post->save();
     }
 }

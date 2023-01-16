@@ -86,12 +86,15 @@ class CrawlerService extends Service
             'intro' => $authorDom->matches('p:last-child') ? $authorDom->filter('p:last-child')->text() : null,
         ];
 
+        $images = $crawler->filter('article p img')->attrs('src');
+
         $post = [
             'title' => $title,
             'category' => $category,
             'author' => $author,
             'content' => $article,
             'published_at' => $publishedAt,
+            'images' => $images,
             'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
         ];
 
