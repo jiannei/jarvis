@@ -5,6 +5,7 @@ namespace App\Console\Commands\Crawl;
 use App\Events\CrawlFinished;
 use App\Services\CrawlerService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Auth;
 
 class RuanyfWeekly extends Command
 {
@@ -29,9 +30,15 @@ class RuanyfWeekly extends Command
      */
     public function handle(CrawlerService $service)
     {
-        $latest = $service->handleRuanyfWeekly();
+        $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
+
+        Auth::loginUsingId(1);
+
+        $latest = $service->handleRuanyfWeeklyLatest();
 
         CrawlFinished::dispatch($latest, 'laravel-news', 'markdown');
+
+        $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
 
         return self::SUCCESS;
     }

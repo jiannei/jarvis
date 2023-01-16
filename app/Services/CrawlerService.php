@@ -85,10 +85,8 @@ class CrawlerService extends Service
         $author = [
             'name' => $authorDom->filter("a[rel='author']")->text(),
             'homepage' => CrawlEnum::LARAVEL_NEWS.$authorDom->filter("a[rel='author']")->attr('href'),
-            'intro' => $authorDom->matches('p:last-child') ? $authorDom->filter('p:last-child')->text() : null,
+            'intro' => $authorDom->filter('p:last-child')->count() ? $authorDom->filter('p:last-child')->text() : null,
         ];
-
-        $images = $crawler->filter('article p img')->attrs('src');
 
         return [
             'title' => $title,
@@ -96,7 +94,6 @@ class CrawlerService extends Service
             'author' => $author,
             'content' => $article,
             'published_at' => $publishedAt,
-            'images' => $images,
             'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
         ];
     }
@@ -132,7 +129,6 @@ class CrawlerService extends Service
             ],
             'content' => $content->body(),
             'published_at' => Carbon::now()->format('Y-m-d'),
-            'images' => [], // todo
             'link' => 'https://github.com/ruanyf/weekly/blob/master/'.$path,
         ];
     }

@@ -6,6 +6,7 @@ use App\Events\CrawlFinished;
 use App\Models\Post;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Str;
+use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 use League\HTMLToMarkdown\HtmlConverter;
 
 class CrawlFinishedListener implements ShouldQueue
@@ -35,12 +36,20 @@ class CrawlFinishedListener implements ShouldQueue
      */
     public function handle(CrawlFinished $event)
     {
-        $converter = new HtmlConverter();
+        if ($event->contentType === 'html') {
+            $images = Crawler::new($event->post['content'])->filter('img')->attrs('src');
+
+            $content = (new HtmlConverter())->convert($event->post['content']);
+        } else {
+            $images = Crawler::new(Str::markdown($event->post['content']))->filter('img')->attrs('src');
+
+            $content = $event->post['content'];
+        }
 
         $data = [
             'title' => $event->post['title'],
             'author' => $event->post['author']['name'],
-            'content' => $event->contentType === 'html' ? $converter->convert($event->post['content']) : $event->post['content'],
+            'content' => $content,
             'channel' => $event->channel,
             'link' => $event->post['link'],
             'category' => $event->post['category']['name'],
@@ -50,7 +59,8 @@ class CrawlFinishedListener implements ShouldQueue
         $post = Post::query()->updateOrCreate(['link' => $event->post['link']], $data);
 
         $content = $post->content;
-        foreach ($event->post['images'] as $image) {
+        $post->clearMediaCollection();
+        foreach ($images as $image) {
             $media = $post->addMediaFromUrl($image)->toMediaCollection();
             $content = Str::replace($image, $media->getUrl(), $content);
         }
