@@ -38,7 +38,7 @@ class ScheduleSeeder extends Seeder
                 'in_maintenance_mode' => true,
                 'output_file_path' => 'laravel-news.log',
                 'output_append' => true,
-            ]
+            ],
         ];
 
         Schedule::truncate();
