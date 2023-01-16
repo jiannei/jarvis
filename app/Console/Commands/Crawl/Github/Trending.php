@@ -32,7 +32,8 @@ class Trending extends Command
         $spokenLanguageCode = $this->option('spoken_language_code');
         $since = $this->option('since');
 
-        $this->info("[{$this->description}]:执行开始");
+        $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
+
         if ($this->argument('mode') === 'default') {
             CrawlGithubTrending::dispatch($language, $spokenLanguageCode, $since);
         } else {
@@ -51,7 +52,7 @@ class Trending extends Command
             $this->newLine();
         }
 
-        $this->info("[{$this->description}]:执行结束");
+        $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
 
         return self::SUCCESS;
     }

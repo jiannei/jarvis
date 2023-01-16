@@ -3,6 +3,8 @@
 namespace App\Jobs;
 
 use App\Models\Github\TrendingDaily;
+use App\Models\Github\TrendingMonthly;
+use App\Models\Github\TrendingWeekly;
 use App\Services\CrawlerService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -46,16 +48,38 @@ class CrawlGithubTrending implements ShouldQueue
         ]);
 
         foreach ($trending as $item) {
-            $item['day'] = now()->format('Y-m-d');
             $item['spoken_language_code'] = $this->spokenLanguageCode;
             $item['stars'] = Str::remove(',', $item['stars']);
             $item['forks'] = Str::remove(',', $item['forks']);
-            $item['added_stars'] = Str::remove([' star today', ' stars today'], $item['added_stars']);
+            $item['added_stars'] = Str::remove([
+                ',',
+                ' star today', ' stars today',
+                ' star this week', 'stars this week',
+                ' star this month', 'stars this month',
+            ], $item['added_stars']);
 
-            TrendingDaily::updateOrCreate([
-                'day' => $item['day'],
-                'repo' => $item['repo'],
-            ], $item);
+            if ($this->since === 'monthly') {
+                $item['month'] = now()->month;
+
+                TrendingMonthly::updateOrCreate([
+                    'month' => $item['month'],
+                    'repo' => $item['repo'],
+                ], $item);
+            } elseif ($this->since === 'weekly') {
+                $item['week'] = now()->week;
+
+                TrendingWeekly::updateOrCreate([
+                    'week' => $item['week'],
+                    'repo' => $item['repo'],
+                ], $item);
+            } else {
+                $item['day'] = now()->day;
+
+                TrendingDaily::updateOrCreate([
+                    'day' => $item['day'],
+                    'repo' => $item['repo'],
+                ], $item);
+            }
         }
     }
 }

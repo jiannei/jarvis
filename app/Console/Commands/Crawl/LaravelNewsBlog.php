@@ -30,7 +30,7 @@ class LaravelNewsBlog extends Command
      */
     public function handle(CrawlerService $service)
     {
-        $this->info("[{$this->description}]:执行开始");
+        $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
 
         if ($this->argument('mode') === 'all') {
             $blogs = $service->handleLaravelNewsBlogs();
@@ -44,7 +44,7 @@ class LaravelNewsBlog extends Command
                 $this->comment('正在爬取:'.CrawlEnum::LARAVEL_NEWS.$link);
 
                 $post = $service->handleLaravelNewsBlog(trim($link, '/'));
-                CrawlFinished::dispatch($post, 'laravel-news');// todo job or event?
+                CrawlFinished::dispatch($post, 'laravel-news'); // todo job or event?
 
                 $bar->advance();
             }
@@ -62,7 +62,7 @@ class LaravelNewsBlog extends Command
             }
         }
 
-        $this->info("[{$this->description}]:执行结束");
+        $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
 
         return self::SUCCESS;
     }
