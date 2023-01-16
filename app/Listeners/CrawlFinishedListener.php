@@ -28,11 +28,10 @@ class CrawlFinishedListener
     {
         $converter = new HtmlConverter();
 
-        $markdown = $converter->convert($event->content);
+        $markdown = $converter->convert($event->post['content']);
 
         // 存 markdown
-        Storage::put($event->channel.DIRECTORY_SEPARATOR.$event->link.'.md', $markdown);
-
-        //
+        $path = parse_url($event->post['link'])['path'];
+        Storage::put($event->channel.$path.'.md', $markdown);
     }
 }

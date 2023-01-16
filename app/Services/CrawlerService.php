@@ -63,7 +63,7 @@ class CrawlerService extends Service
         return $crawler->filter('main > div:last-child > ul > li:nth-of-type(n+2)')->rules($rules);
     }
 
-    public function handleLaravelNewsBlog($link)
+    public function handleLaravelNewsBlog($link): array
     {
         $crawler = Crawler::fetch(CrawlEnum::LARAVEL_NEWS."/{$link}");
 
@@ -83,12 +83,10 @@ class CrawlerService extends Service
         $author = [
             'name' => $authorDom->filter("a[rel='author']")->text(),
             'homepage' => CrawlEnum::LARAVEL_NEWS.$authorDom->filter("a[rel='author']")->attr('href'),
-            // 'intro' => $authorDom->filter('p:last-child')->text(),// todo
+            'intro' => $authorDom->matches('p:last-child') ? $authorDom->filter('p:last-child')->text() : null,
         ];
 
-        CrawlFinished::dispatch($link, $article, 'laravel-news');
-
-        return [
+        $post = [
             'title' => $title,
             'category' => $category,
             'author' => $author,
@@ -96,5 +94,9 @@ class CrawlerService extends Service
             'published_at' => $publishedAt,
             'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
         ];
+
+        CrawlFinished::dispatch($post, 'laravel-news');
+
+        return $post;
     }
 }
