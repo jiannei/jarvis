@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Github;
+namespace App\Console\Commands\Crawl\Github;
 
 use App\Jobs\CrawlGithubTrendingSpokenLanguage;
 use Illuminate\Console\Command;
@@ -12,7 +12,7 @@ class TrendingSpokenLanguage extends Command
      *
      * @var string
      */
-    protected $signature = 'github:trending:spoken-language';
+    protected $signature = 'crawl:github:trending:spoken-language';
 
     /**
      * The console command description.

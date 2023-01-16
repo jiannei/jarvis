@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Github;
+namespace App\Console\Commands\Crawl\Github;
 
 use App\Jobs\CrawlGithubTrending;
 use Illuminate\Console\Command;
@@ -12,7 +12,7 @@ class Trending extends Command
      *
      * @var string
      */
-    protected $signature = 'github:trending {mode=default} {--language=} {--spoken_language_code=zh} {--since=daily}';
+    protected $signature = 'crawl:github:trending {mode=default} {--language=} {--spoken_language_code=zh} {--since=daily}';
 
     /**
      * The console command description.
