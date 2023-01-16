@@ -27,7 +27,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
         // laravel-news
         Route::prefix('laravel-news')->group(function () {
-            Route::get('blog', [LaravelNewsController::class, 'blog']);
+            Route::get('blogs', [LaravelNewsController::class, 'blogs']);
+            Route::get('blogs/{link}', [LaravelNewsController::class, 'blog']);
         });
     });
 

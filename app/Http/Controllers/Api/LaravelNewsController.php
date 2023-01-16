@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Services\CrawlerService;
-use Illuminate\Support\Carbon;
-use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 use Jiannei\Response\Laravel\Support\Facades\Response;
 
 class LaravelNewsController extends Controller
@@ -14,9 +12,16 @@ class LaravelNewsController extends Controller
     {
     }
 
-    public function blog()
+    public function blogs()
     {
-        $blog = $this->service->handleLaravelNewsBlog();
+        $blogs = $this->service->handleLaravelNewsBlogs();
+
+        return Response::success($blogs);
+    }
+
+    public function blog($link)
+    {
+        $blog = $this->service->handleLaravelNewsBlog($link);
 
         return Response::success($blog);
     }
