@@ -51,7 +51,7 @@ class CrawlerService extends Service
 
     public function handleLaravelNewsBlogs(): array
     {
-        $crawler = Crawler::fetch(CrawlEnum::LARAVEL_NEWS.'blog');
+        $crawler = Crawler::fetch(CrawlEnum::LARAVEL_NEWS.'/blog');
 
         $rules = [
             'link' => ['a', 'href'],
