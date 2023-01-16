@@ -16,7 +16,7 @@ class CrawlFinished
      *
      * @return void
      */
-    public function __construct(public array $post, public string $channel)
+    public function __construct(public array $post, public string $channel, public string $contentType = 'html')
     {
         //
     }

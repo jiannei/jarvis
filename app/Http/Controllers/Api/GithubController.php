@@ -38,4 +38,11 @@ class GithubController extends Controller
 
         return Response::success($result);
     }
+
+    public function ruanyfWeekly()
+    {
+        $result = $this->crawlerService->handleRuanyfWeekly();
+
+        return Response::success($result);
+    }
 }

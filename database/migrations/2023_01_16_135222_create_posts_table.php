@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('channel');
             $table->string('link')->unique();
             $table->string('category')->nullable();
-            $table->timestamp('published_at');
+            $table->string('published_at');
             $table->timestamps();
         });
     }

@@ -63,6 +63,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'laravel-news.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '爬取阮一峰科技爱好者周刊',
+                'command' => 'crawl:ruanyf:weekly',
+                'parameters' => '',
+                'expression' => '0 10 * * 5',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'ruanyf-weekly.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();

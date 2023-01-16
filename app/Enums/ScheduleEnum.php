@@ -7,4 +7,6 @@ class ScheduleEnum extends \Jiannei\Schedule\Laravel\Repositories\Enums\Schedule
     const GITHUB_TRENDING = 'crawl:github:trending';
 
     const LARAVEL_NEWS_BLOG = 'crawl:laravel-news:blog';
+
+    const RUAN_YF_WEEKLY = 'crawl:ruanyf:weekly';
 }

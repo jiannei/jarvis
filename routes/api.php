@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\GithubController;
+use App\Http\Controllers\Api\JarvisController;
 use App\Http\Controllers\Api\LaravelNewsController;
-use App\Http\Controllers\JarvisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +23,8 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('languages', [GithubController::class, 'languages']);
             Route::get('spoken-languages', [GithubController::class, 'spokenLanguages']);
             Route::get('trending/{language?}', [GithubController::class, 'trending'])->whereAlpha('language');
+
+            Route::get('ruanyf/weekly', [GithubController::class, 'ruanyfWeekly']);
         });
 
         // laravel-news

@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Enums\CrawlEnum;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class CrawlerService extends Service
@@ -95,6 +97,40 @@ class CrawlerService extends Service
             'published_at' => $publishedAt,
             'images' => $images,
             'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
+        ];
+    }
+
+    public function handleRuanyfWeekly()
+    {
+        $readme = Http::withHeaders([
+            'Accept' => 'application/vnd.github.html+json',
+        ])->get('https://api.github.com/repos/ruanyf/weekly/readme');
+
+        $crawler = Crawler::new($readme->body());
+
+        $weekly = $crawler->filter('article ul:nth-of-type(1) li:first-child')->rules([
+            'path' => ['a', 'href'],
+            'title' => ['a', 'text'],
+        ]);
+
+        // latest
+        $content = Http::withHeaders([
+            'Accept' => 'application/vnd.github.raw+json',
+        ])->get('https://api.github.com/repos/ruanyf/weekly/contents/'.$weekly[0]['path']);
+
+        return [
+            'title' => $weekly[0]['title'],
+            'category' => [
+                'name' => 'weekly',
+                'link' => 'https://www.ruanyifeng.com/blog',
+            ],
+            'author' => [
+                'name' => 'ruanyf',
+            ],
+            'content' => $content->body(),
+            'published_at' => Carbon::now()->format('Y-m-d'),
+            'images' => [],
+            'link' => 'https://github.com/ruanyf/weekly/blob/master/'.$weekly[0]['path'],
         ];
     }
 }

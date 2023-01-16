@@ -40,7 +40,7 @@ class CrawlFinishedListener implements ShouldQueue
         $data = [
             'title' => $event->post['title'],
             'author' => $event->post['author']['name'],
-            'content' => $converter->convert($event->post['content']),
+            'content' => $event->contentType === 'html' ? $converter->convert($event->post['content']) : $event->post['content'],
             'channel' => $event->channel,
             'link' => $event->post['link'],
             'category' => $event->post['category']['name'],
