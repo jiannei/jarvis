@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\AbilityEnum;
 use App\Http\Controllers\Api\GithubController;
 use App\Http\Controllers\Api\JarvisController;
 use App\Http\Controllers\Api\LaravelNewsController;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::middleware('abilities:service:api')->group(function () {
+    Route::middleware('abilities:'.AbilityEnum::SERVICE_API)->group(function () {
         // github api
         Route::prefix('github')->group(function () {
             Route::get('languages', [GithubController::class, 'languages']);
@@ -35,7 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    Route::middleware('abilities:*')->group(function () {
+    Route::middleware('abilities:'.AbilityEnum::ALL)->group(function () {
         Route::get('database', [JarvisController::class, 'database']);
     });
 });
