@@ -4,6 +4,7 @@ use App\Enums\AbilityEnum;
 use App\Http\Controllers\Api\GithubController;
 use App\Http\Controllers\Api\JarvisController;
 use App\Http\Controllers\Api\LaravelNewsController;
+use App\Http\Controllers\Api\RssController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,9 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('blogs', [LaravelNewsController::class, 'blogs']);
             Route::get('blogs/{link}', [LaravelNewsController::class, 'blog']);
         });
+
+        // Rss
+        Route::get('rss/ruanyf/weekly',[RssController::class,'ruanyfWeekly']);
     });
 
     Route::middleware('abilities:'.AbilityEnum::ALL)->group(function () {
