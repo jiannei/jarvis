@@ -47,4 +47,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Determine if the current API token has a given scope.
+     *
+     * @param  string  $ability
+     * @return bool
+     */
+    public function tokenCan(string $ability)
+    {
+        return $this->isSuperAdmin() || ($this->accessToken && $this->accessToken->can($ability));
+    }
+
+    protected function isSuperAdmin()
+    {
+        return $this->id === 1; // 或者是 SuperAdmin 角色
+    }
 }
