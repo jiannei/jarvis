@@ -37,35 +37,35 @@ class CrawlFinishedListener implements ShouldQueue
     public function handle(CrawlFinished $event)
     {
         if ($event->contentType === 'html') {
-            $images = Crawler::new($event->post['content'])->filter('img')->attrs('src');
+            $images = Crawler::new($event->post['description'])->filter('img')->attrs('src');
 
-            $content = (new HtmlConverter())->convert($event->post['content']);
+            $content = (new HtmlConverter())->convert($event->post['description']);
         } else {
-            $images = Crawler::new(Str::markdown($event->post['content']))->filter('img')->attrs('src');
+            $images = Crawler::new(Str::markdown($event->post['description']))->filter('img')->attrs('src');
 
-            $content = $event->post['content'];
+            $content = $event->post['description'];
         }
 
         $data = [
             'title' => $event->post['title'],
-            'author' => $event->post['author']['name'],
-            'content' => $content,
-            'channel' => $event->channel,
             'link' => $event->post['link'],
+            'description' => $content,
+            'author' => $event->post['author']['name'],
             'category' => $event->post['category']['name'],
-            'published_at' => $event->post['published_at'],
+            'publish_date' => $event->post['publishDate'],
+            'source' => $event->source,
         ];
 
         $post = Post::query()->updateOrCreate(['link' => $event->post['link']], $data);
 
-        $content = $post->content;
+        $content = $post->description;
         $post->clearMediaCollection();
         foreach ($images as $image) {
             $media = $post->addMediaFromUrl($image)->toMediaCollection();
             $content = Str::replace($image, $media->getUrl(), $content);
         }
 
-        $post->content = $content;
+        $post->description = $content;
         $post->save();
     }
 }

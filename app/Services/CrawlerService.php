@@ -58,7 +58,7 @@ class CrawlerService extends Service
             'link' => ['a', 'href'],
             'title' => ['h4 > span', 'text'],
             'summary' => ['h4 + p', 'text'],
-            'published_at' => ['p', 'text'],
+            'publishDate' => ['p', 'text'],
         ];
 
         return $crawler->filter('main > div:last-child > ul > li:nth-of-type(n+2)')->rules($rules);
@@ -91,8 +91,8 @@ class CrawlerService extends Service
             'title' => $title,
             'category' => $category,
             'author' => $author,
-            'content' => $article,
-            'published_at' => $publishedAt,
+            'description' => $article,
+            'publishDate' => $publishedAt,
             'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
         ];
     }
@@ -127,8 +127,8 @@ class CrawlerService extends Service
             'author' => [
                 'name' => 'ruanyf',
             ],
-            'content' => $content->body(),
-            'published_at' => Carbon::now()->format('Y-m-d'),
+            'description' => $content->body(),
+            'publishDate' => Carbon::now()->format('Y-m-d'),
             'link' => 'https://github.com/ruanyf/weekly/blob/master/'.$path,
         ];
     }

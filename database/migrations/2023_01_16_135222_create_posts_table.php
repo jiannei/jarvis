@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('author');
-            $table->text('content');
-            $table->string('channel');
             $table->string('link')->unique();
+            $table->text('description');
+            $table->string('author');
             $table->string('category')->nullable();
-            $table->string('published_at');
+            $table->string('publish_date');
+            $table->string('source');
             $table->timestamps();
         });
     }

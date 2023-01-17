@@ -12,11 +12,11 @@ class Post extends Model implements HasMedia
 
     protected $fillable = [
         'title',
-        'author',
-        'content',
-        'channel',
         'link',
+        'description',
+        'author',
         'category',
-        'published_at',
+        'publish_date',
+        'source',
     ];
 }
