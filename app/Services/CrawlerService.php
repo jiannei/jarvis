@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Enums\CrawlEnum;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class CrawlerService extends Service
@@ -114,9 +113,10 @@ class CrawlerService extends Service
         }
 
         // latest
-        $content = Http::withHeaders([
-            'Accept' => 'application/vnd.github.raw+json',
-        ])->withToken(Auth::user()->github_token)->get('https://api.github.com/repos/ruanyf/weekly/contents/'.$path);
+        $content = Crawler::client()
+            ->accept('application/vnd.github.raw+json')
+            ->withToken(Auth::user()->github_token)
+            ->get('https://api.github.com/repos/ruanyf/weekly/contents/'.$path);
 
         return [
             'title' => $title,
@@ -135,15 +135,12 @@ class CrawlerService extends Service
 
     public function handleRuanyfWeekly()
     {
-        $response = Http::withHeaders([
-            'Accept' => 'application/vnd.github.html+json',
-        ])->withToken(Auth::user()->github_token)->get('https://api.github.com/repos/ruanyf/weekly/readme');
-
-        if ($response->failed()) {
-            abort(500, $response->json()['message']);
-        }
-
-        $crawler = Crawler::new($response->body());
+        $crawler = Crawler::fetch('https://api.github.com/repos/ruanyf/weekly/readme',null,[
+            'headers' => [
+                'Accept' => 'application/vnd.github.html+json',
+                'Authorization' => 'Bearer '.Auth::user()->github_token,
+            ],
+        ]);
 
         return $crawler->filter('article ul li')->rules([
             'path' => ['a', 'href'],
