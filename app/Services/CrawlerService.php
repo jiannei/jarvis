@@ -101,13 +101,13 @@ class CrawlerService extends Service
     {
         $issues = $this->handleRuanyfWeekly();
 
-        $issues = array_reverse($issues);
+        $issues['items'] = array_reverse($issues['items']);
 
-        $period = $period ?: count($issues);
+        $period = $period ?: count($issues['items']);
 
         try {
-            $path = $issues[$period - 1]['path'];
-            $title = $issues[$period - 1]['title'];
+            $path = $issues['items'][$period - 1]['path'];
+            $title = $issues['items'][$period - 1]['title'];
         } catch (\Exception $exception) {
             abort(404);
         }
@@ -142,10 +142,17 @@ class CrawlerService extends Service
             ],
         ]);
 
-        return $crawler->filter('article ul li')->rules([
+        $channel = [
+            'link' => 'https://github.com/ruanyf/weekly',
+            'author' => 'https://github.com/ruanyf'
+        ];
+
+        $items = $crawler->filter('article ul li')->rules([
             'path' => ['a', 'href'],
             'title' => ['a', 'text'],
         ]);
+
+        return compact('channel','items');
     }
 
     public function handleIndependentBlogs()
@@ -167,10 +174,17 @@ class CrawlerService extends Service
 
 //        $columns = $table->filter('thead th:nth-of-type(n+2)')->texts();
 
-        return $table->filter('tbody tr')->rules([
+        $channel = [
+            'link' => 'https://github.com/timqian/chinese-independent-blogs',
+            'author' => 'https://github.com/timqian'
+        ];
+
+        $items = $table->filter('tbody tr')->rules([
             'intro' => ['td:nth-child(2)', 'text'],
             'link' => ['td:nth-child(3)', 'text'],
             'tags' => ['td:nth-child(4)', 'text'],
         ]);
+
+        return compact('channel','items');
     }
 }
