@@ -17,7 +17,7 @@ class RssService extends Service
             'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
         ];
 
-        $list = $crawler->filter('channel item')->rules([
+        $items = $crawler->filter('channel item')->rules([
             'category' => ['category','text'],
             'title' => ['title','text'],
             'description' => ['description','text'],
@@ -26,6 +26,6 @@ class RssService extends Service
             'pubDate' => ['pubDate','text'],
         ]);
 
-        return compact('channel','list');
+        return compact('channel','items');
     }
 }
