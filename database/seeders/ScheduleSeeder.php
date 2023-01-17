@@ -19,7 +19,7 @@ class ScheduleSeeder extends Seeder
                 'description' => '爬取 Github daily 每日趋势',
                 'command' => 'crawl:github:trending',
                 'parameters' => 'all',
-                'expression' => '*/10 * * * *',
+                'expression' => '*/30 * * * *',
                 'active' => true,
                 'timezone' => 'Asia/Shanghai',
                 'in_background' => true,

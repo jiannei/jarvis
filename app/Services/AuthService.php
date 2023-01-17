@@ -33,7 +33,7 @@ class AuthService extends Service
 
     public function issueToken()
     {
-        return Cache::remember('auth:user:'.Auth::id(), now()->addSeconds(config('sanctum.expiration'))->subMinutes(rand(3,5)), function () {
+        return Cache::remember('auth:user:'.Auth::id(), now()->addSeconds(config('sanctum.expiration'))->subMinutes(rand(3, 5)), function () {
             return Auth::user()->createToken(config('app.name'), [AbilityEnum::SERVICE_API])->plainTextToken;
         });
     }
