@@ -28,6 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
             Route::get('ruanyf/weekly', [GithubController::class, 'ruanyfWeekly']);
             Route::get('ruanyf/weekly/{period?}', [GithubController::class, 'ruanyfWeeklyLatest'])->whereNumber('period');
+
+            Route::get('independent-blogs', [GithubController::class, 'independentBlogs']);
         });
 
         // laravel-news
@@ -37,7 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
 
         // Rss
-        Route::get('rss/ruanyf/weekly',[RssController::class,'ruanyfWeekly']);
+        Route::get('rss/ruanyf/weekly', [RssController::class, 'ruanyfWeekly']);
     });
 
     Route::middleware('abilities:'.AbilityEnum::ALL)->group(function () {

@@ -135,7 +135,7 @@ class CrawlerService extends Service
 
     public function handleRuanyfWeekly()
     {
-        $crawler = Crawler::fetch('https://api.github.com/repos/ruanyf/weekly/readme',null,[
+        $crawler = Crawler::fetch('https://api.github.com/repos/ruanyf/weekly/readme', null, [
             'headers' => [
                 'Accept' => 'application/vnd.github.html+json',
                 'Authorization' => 'Bearer '.Auth::user()->github_token,
@@ -145,6 +145,32 @@ class CrawlerService extends Service
         return $crawler->filter('article ul li')->rules([
             'path' => ['a', 'href'],
             'title' => ['a', 'text'],
+        ]);
+    }
+
+    public function handleIndependentBlogs()
+    {
+        $crawler = Crawler::fetch('https://api.github.com/repos/timqian/chinese-independent-blogs/readme', null, [
+            'headers' => [
+                'Accept' => 'application/vnd.github.html+json',
+                'Authorization' => 'Bearer '.Auth::user()->github_token,
+            ],
+        ]);
+
+        $table = $crawler->filter('table');
+
+//        $columns = [
+//            'intro' => $table->filter('thead th:nth-child(2)')->text(),
+//            'link' => $table->filter('thead th:nth-child(3)')->text(),
+//            'tags' => $table->filter('thead th:nth-child(4)')->text(),
+//        ];
+
+//        $columns = $table->filter('thead th:nth-of-type(n+2)')->texts();
+
+        return $table->filter('tbody tr')->rules([
+            'intro' => ['td:nth-child(2)', 'text'],
+            'link' => ['td:nth-child(3)', 'text'],
+            'tags' => ['td:nth-child(4)', 'text'],
         ]);
     }
 }
