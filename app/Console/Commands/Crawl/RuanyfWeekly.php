@@ -14,7 +14,7 @@ class RuanyfWeekly extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:ruanyf:weekly {mode=latest}';
+    protected $signature = 'crawl:ruanyf:weekly {mode=latest} {--period=}';
 
     /**
      * The console command description.
@@ -34,7 +34,7 @@ class RuanyfWeekly extends Command
 
         Auth::loginUsingId(1);
 
-        $latest = $service->handleRuanyfWeeklyLatest();
+        $latest = $service->handleRuanyfWeeklyLatest((int)$this->option('period'));
 
         CrawlFinished::dispatch($latest, 'laravel-news', 'markdown');
 
