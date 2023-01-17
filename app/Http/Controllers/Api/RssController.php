@@ -10,7 +10,6 @@ class RssController extends Controller
 {
     public function __construct(private RssService $service)
     {
-
     }
 
     public function ruanyfWeekly()

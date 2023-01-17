@@ -18,14 +18,15 @@ class RssService extends Service
         ];
 
         $items = $crawler->filter('channel item')->rules([
-            'category' => ['category','text'],
-            'title' => ['title','text'],
-            'description' => ['description','text'],
-            'link' => ['link','text'],
-            'guid' => ['guid','text'],
-            'pubDate' => ['pubDate','text'],
+            'lastBuildDate' => ['channel lastBuildDate', 'text'],
+            'category' => ['category', 'text'],
+            'title' => ['title', 'text'],
+            'description' => ['description', 'text'],
+            'link' => ['link', 'text'],
+            'guid' => ['guid', 'text'],
+            'pubDate' => ['pubDate', 'text'],
         ]);
 
-        return compact('channel','items');
+        return compact('channel', 'items');
     }
 }

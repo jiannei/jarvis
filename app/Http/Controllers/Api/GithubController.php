@@ -52,4 +52,11 @@ class GithubController extends Controller
 
         return Response::success($result);
     }
+
+    public function independentBlogs()
+    {
+        $result = $this->crawlerService->handleIndependentBlogs();
+
+        return Response::success($result);
+    }
 }

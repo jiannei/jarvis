@@ -34,7 +34,7 @@ class RuanyfWeekly extends Command
 
         Auth::loginUsingId(1);
 
-        $latest = $service->handleRuanyfWeeklyLatest((int)$this->option('period'));
+        $latest = $service->handleRuanyfWeeklyLatest((int) $this->option('period'));
 
         CrawlFinished::dispatch($latest, 'laravel-news', 'markdown');
 
