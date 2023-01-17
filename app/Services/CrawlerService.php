@@ -144,7 +144,7 @@ class CrawlerService extends Service
 
         $channel = [
             'link' => 'https://github.com/ruanyf/weekly',
-            'author' => 'https://github.com/ruanyf'
+            'author' => 'https://github.com/ruanyf',
         ];
 
         $items = $crawler->filter('article ul li')->rules([
@@ -152,7 +152,7 @@ class CrawlerService extends Service
             'title' => ['a', 'text'],
         ]);
 
-        return compact('channel','items');
+        return compact('channel', 'items');
     }
 
     public function handleIndependentBlogs()
@@ -176,7 +176,7 @@ class CrawlerService extends Service
 
         $channel = [
             'link' => 'https://github.com/timqian/chinese-independent-blogs',
-            'author' => 'https://github.com/timqian'
+            'author' => 'https://github.com/timqian',
         ];
 
         $items = $table->filter('tbody tr')->rules([
@@ -185,6 +185,6 @@ class CrawlerService extends Service
             'tags' => ['td:nth-child(4)', 'text'],
         ]);
 
-        return compact('channel','items');
+        return compact('channel', 'items');
     }
 }
