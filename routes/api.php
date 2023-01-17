@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
         // Rss
         Route::get('rss/ruanyf/weekly', [RssController::class, 'ruanyfWeekly']);
+        Route::get('rss/zhangxinxu/blog', [RssController::class, 'zhangxinxuBlog']);
     });
 
     Route::middleware('abilities:'.AbilityEnum::ALL)->group(function () {

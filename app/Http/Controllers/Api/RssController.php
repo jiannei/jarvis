@@ -18,4 +18,11 @@ class RssController extends Controller
 
         return Response::success($result);
     }
+
+    public function zhangxinxuBlog()
+    {
+        $result = $this->service->handleZhangXinxuBlog();
+
+        return Response::success($result);
+    }
 }

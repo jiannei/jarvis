@@ -29,4 +29,29 @@ class RssService extends Service
 
         return compact('channel', 'items');
     }
+
+    public function handleZhangXinxuBlog()
+    {
+        $crawler = Crawler::fetch('https://www.zhangxinxu.com/wordpress/feed/');
+
+        // TODO
+        $channel = [
+            'title' => $crawler->filter('channel title')->text(),
+            'link' => $crawler->filter('channel link')->text(),
+            'description' => $crawler->filter('channel description')->text(),
+            'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
+        ];
+
+        $items = $crawler->filter('channel item')->rules([
+            'lastBuildDate' => ['channel lastBuildDate', 'text'],
+            'category' => ['category', 'text'],
+            'title' => ['title', 'text'],
+            'description' => ['description', 'text'],
+            'link' => ['link', 'text'],
+            'guid' => ['guid', 'text'],
+            'pubDate' => ['pubDate', 'text'],
+        ]);
+
+        return compact('channel', 'items');
+    }
 }
