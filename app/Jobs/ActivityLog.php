@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\QueueEnum;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -25,7 +26,7 @@ class ActivityLog implements ShouldQueue
         private string $name = 'default'
     ) {
         //
-        $this->onQueue('log');
+        $this->onQueue(QueueEnum::LOG);
     }
 
     /**

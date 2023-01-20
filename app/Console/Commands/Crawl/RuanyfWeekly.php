@@ -36,7 +36,7 @@ class RuanyfWeekly extends Command
 
         $latest = $service->handleRuanyfWeeklyLatest((int) $this->option('period'));
 
-        CrawlFinished::dispatch($latest, 'laravel-news', 'markdown');
+        CrawlFinished::dispatch($latest, 'github', 'markdown');
 
         $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
 
