@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c5a357f43e891eab767432162fddbb5",
+    "content-hash": "b05c98db977ab6e55b7609dae7f033d6",
     "packages": [
         {
             "name": "brick/math",
@@ -1189,20 +1189,17 @@
         },
         {
             "name": "jiannei/laravel-schedule",
-            "version": "v1.0.1",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jiannei/laravel-schedule.git",
-                "reference": "e57b5313a24f3a8076452b6bb6379903a5ff4563"
+                "reference": "a8a0871d74f7020c381ed9fe3f8ca4c54e3b7b3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jiannei/laravel-schedule/zipball/e57b5313a24f3a8076452b6bb6379903a5ff4563",
-                "reference": "e57b5313a24f3a8076452b6bb6379903a5ff4563",
+                "url": "https://api.github.com/repos/jiannei/laravel-schedule/zipball/a8a0871d74f7020c381ed9fe3f8ca4c54e3b7b3c",
+                "reference": "a8a0871d74f7020c381ed9fe3f8ca4c54e3b7b3c",
                 "shasum": ""
-            },
-            "require": {
-                "jiannei/laravel-enum": "^3.0"
             },
             "require-dev": {
                 "orchestra/testbench": "^6.5",
@@ -1238,9 +1235,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jiannei/laravel-schedule/issues",
-                "source": "https://github.com/jiannei/laravel-schedule/tree/v1.0.1"
+                "source": "https://github.com/jiannei/laravel-schedule/tree/v2.0.0"
             },
-            "time": "2021-09-20T02:05:06+00:00"
+            "time": "2023-01-28T05:19:07+00:00"
         },
         {
             "name": "laravel/framework",

@@ -12,8 +12,6 @@
 return [
     'table' => 'schedules',
 
-    'enum' => \App\Enums\ScheduleEnum::class,
-
     'model' => \Jiannei\Schedule\Laravel\Repositories\Models\Schedule::class,
 
     'output' => [
