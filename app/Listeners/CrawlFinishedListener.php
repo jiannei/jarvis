@@ -4,7 +4,11 @@ namespace App\Listeners;
 
 use App\Events\CrawlFinished;
 use App\Models\Post;
+use App\Models\User;
+use App\Notifications\FeedUpdated;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 use League\HTMLToMarkdown\HtmlConverter;
@@ -67,5 +71,8 @@ class CrawlFinishedListener implements ShouldQueue
 
         $post->description = $content;
         $post->save();
+
+        // todo
+        Notification::send(Auth::user(),new FeedUpdated($post));
     }
 }

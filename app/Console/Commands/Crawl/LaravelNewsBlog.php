@@ -6,6 +6,7 @@ use App\Enums\CrawlEnum;
 use App\Events\CrawlFinished;
 use App\Services\CrawlerService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Auth;
 
 class LaravelNewsBlog extends Command
 {
@@ -31,6 +32,8 @@ class LaravelNewsBlog extends Command
     public function handle(CrawlerService $service)
     {
         $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
+
+        Auth::loginUsingId(1);
 
         if ($this->argument('mode') === 'all') {
             $blogs = $service->handleLaravelNewsBlogs();
