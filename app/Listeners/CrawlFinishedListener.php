@@ -4,7 +4,6 @@ namespace App\Listeners;
 
 use App\Events\CrawlFinished;
 use App\Models\Post;
-use App\Models\User;
 use App\Notifications\FeedUpdated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +72,6 @@ class CrawlFinishedListener implements ShouldQueue
         $post->save();
 
         // todo
-        Notification::send(Auth::user(),new FeedUpdated($post));
+        Notification::send(Auth::user(), new FeedUpdated($post));
     }
 }

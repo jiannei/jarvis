@@ -3,13 +3,12 @@
 namespace App\Notifications;
 
 use App\Enums\QueueEnum;
+use App\Mail\FeedUpdated as FeedUpdatedMailable;
 use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\FeedUpdated as FeedUpdatedMailable;
 
 class FeedUpdated extends Notification implements ShouldQueue
 {
@@ -46,7 +45,6 @@ class FeedUpdated extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new FeedUpdatedMailable($this->post))->to($notifiable->email);
-
     }
 
     /**

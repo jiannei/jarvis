@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\Post;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -50,7 +49,7 @@ class FeedUpdated extends Mailable
                 'author' => $this->post->author,
                 'category' => $this->post->category,
                 'publish_date' => $this->post->publish_date,
-                'url' => $this->post->link
+                'url' => $this->post->link,
             ],
         );
     }
