@@ -12,7 +12,7 @@ class Trending extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:github:trending {mode=default} {--language=} {--spoken_language_code=zh} {--since=daily}';
+    protected $signature = 'crawl:github:trending {mode=default} {--language=} {--spoken_language_code=} {--since=daily}';
 
     /**
      * The console command description.
@@ -37,13 +37,11 @@ class Trending extends Command
         if ($this->argument('mode') === 'default') {
             CrawlGithubTrending::dispatch($language, $spokenLanguageCode, $since);
         } else {
-            $bar = $this->output->createProgressBar(count($this->params()));
+            $bar = $this->output->createProgressBar(count($this->languages()));
             $bar->start();
 
-            foreach ($this->params() as $param) {
-                [$language, $spokenLanguageCode] = array_values($param);
-
-                CrawlGithubTrending::dispatch($language, $spokenLanguageCode, $since);
+            foreach ($this->languages() as $item) {
+                CrawlGithubTrending::dispatch($item, $spokenLanguageCode, $since);
 
                 $bar->advance();
             }
@@ -57,14 +55,10 @@ class Trending extends Command
         return self::SUCCESS;
     }
 
-    private function params(): array
+    private function languages(): array
     {
         return [
-            ['language' => null, 'spoken_language_code' => 'zh'],
-            ['language' => 'php', 'spoken_language_code' => 'zh'],
-            ['language' => 'golang', 'spoken_language_code' => 'zh'],
-            ['language' => 'javascript', 'spoken_language_code' => 'zh'],
-            ['language' => 'vue', 'spoken_language_code' => 'zh'],
+            null,'php','golang','javascript','vue','go','typescript','java','python'
         ];
     }
 }
