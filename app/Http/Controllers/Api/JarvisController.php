@@ -17,15 +17,7 @@ class JarvisController extends Controller
 
     public function openAi(Request $request)
     {
-        $this->validate($request, [
-            'model' => 'nullable|string',
-            'prompt' => 'required|string',
-        ]);
-
-        $result = OpenAI::completions()->create([
-            'model' => $request->get('model', 'text-davinci-003'),
-            'prompt' => $request->get('prompt'),
-        ]);
+        $result = OpenAI::completions()->create($request->all());
 
         return Response::success($result);
     }
