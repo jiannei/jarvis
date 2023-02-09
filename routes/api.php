@@ -45,5 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware('abilities:'.AbilityEnum::ALL)->group(function () {
         Route::get('database', [JarvisController::class, 'database']);
+
+        Route::get('openai',[JarvisController::class,'openAi']);
     });
 });
