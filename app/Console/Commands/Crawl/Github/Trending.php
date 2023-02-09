@@ -58,7 +58,7 @@ class Trending extends Command
     private function languages(): array
     {
         return [
-            null,'php','golang','javascript','vue','go','typescript','java','python'
+            null, 'php', 'golang', 'javascript', 'vue', 'go', 'typescript', 'java', 'python',
         ];
     }
 }
