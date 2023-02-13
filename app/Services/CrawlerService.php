@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class CrawlerService extends Service
@@ -238,6 +239,57 @@ class CrawlerService extends Service
                 'name' => $topic['result']['node']['name']
             ],
             'publishDate' => Carbon::createFromTimestamp($topic['result']['created'])->format('Y-m-d H:i:s')
+        ];
+    }
+
+    public function handleLearnKu(string $community)
+    {
+        $crawler = Crawler::fetch('https://learnku.com/'.$community);
+
+        $topics = $crawler->filter('.topic-list .simple-topic')->rules([
+            'avatar' => ['.user-avatar img', 'src'],
+            'category' => ['.category-name', 'text'],
+            'title' => ['.topic-title', 'text'],
+            'link' => ['.user-avatar a', 'href'],
+            'replies' => ['.count_of_replies', 'text'],
+            'updated_at' => ['.timeago', 'title'],
+        ]);
+
+        return collect($topics)->filter(function ($topic) {
+            return !in_array($topic['category'], ['置顶', '广告']);
+        })->values();
+    }
+
+    public function handleLearnKuTopic($topicUrl)
+    {
+        $crawler = Crawler::fetch($topicUrl);
+
+        $content = $crawler->filter('.article-content .content-body')->remove([
+            ['.toc-wraper', 'outerHtml'],
+            ['div', 'outerHtml', 'last'],
+        ]);
+
+        $publishDate = $crawler->filter('.book-article-meta a span')->attr('title');
+        $category = $crawler->filter('.book-article-meta a')->first()->text();
+        $title = $crawler->filter('h1')->text();
+
+        if (Str::contains($category, '博客')) {
+            $author = $crawler->filter('.blog-article .content .header')->text();
+        } else {
+            $author = $crawler->filter('.authors-box .content .header')->text();
+        }
+
+        return [
+            'title' => $title,
+            'link' => $topicUrl,
+            'description' => trim($content),
+            'author' => [
+                'name' => $author,
+            ],
+            'category' => [
+                'name' => $category,
+            ],
+            'publishDate' => $publishDate,
         ];
     }
 }
