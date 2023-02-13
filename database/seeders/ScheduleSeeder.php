@@ -171,6 +171,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'learnku.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '爬取张鑫旭博客',
+                'command' => ' crawl:zxx',
+                'parameters' => '',
+                'expression' => '0 0 * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'zxx.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();
