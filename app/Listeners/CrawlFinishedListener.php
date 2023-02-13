@@ -61,17 +61,20 @@ class CrawlFinishedListener implements ShouldQueue
 
         $post = Post::query()->updateOrCreate(['link' => $event->post['link']], $data);
 
-        $content = $post->description;
-        $post->clearMediaCollection();
-        foreach ($images as $image) {
-            $media = $post->addMediaFromUrl($image)->toMediaCollection();
-            $content = Str::replace($image, $media->getUrl(), $content);
+        // todo 图片是否都需要存下来？比如 探索模块，直接链接到
+        if (in_array($event->source, ['github', 'laravel-news',])) {
+            $content = $post->description;
+            $post->clearMediaCollection();
+            foreach ($images as $image) {
+                $media = $post->addMediaFromUrl($image)->toMediaCollection();
+                $content = Str::replace($image, $media->getUrl(), $content);
+            }
         }
 
         $post->description = $content;
         $post->save();
 
         // todo
-        Notification::send(Auth::user(), new FeedUpdated($post));
+        // Notification::send(Auth::user(), new FeedUpdated($post));
     }
 }

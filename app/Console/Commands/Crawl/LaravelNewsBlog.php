@@ -22,7 +22,7 @@ class LaravelNewsBlog extends Command
      *
      * @var string
      */
-    protected $description = '爬取 laravel-news blog';
+    protected $description = '爬取「laravel-news blog」';
 
     /**
      * Execute the console command.

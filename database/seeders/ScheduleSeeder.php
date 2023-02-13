@@ -111,6 +111,30 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'ruanyf-weekly.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '爬取 v2ex',
+                'command' => 'crawl:v2ex',
+                'parameters' => '',
+                'expression' => '*/5 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'v2ex.log',
+                'output_append' => true,
+            ],
+            [
+                'description' => '爬取 v2ex[热门]',
+                'command' => 'crawl:v2ex --tab=hot',
+                'parameters' => '',
+                'expression' => '*/5 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'v2ex.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();

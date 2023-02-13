@@ -3,8 +3,10 @@
 namespace App\Services;
 
 use App\Enums\CrawlEnum;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class CrawlerService extends Service
@@ -186,5 +188,56 @@ class CrawlerService extends Service
         ]);
 
         return compact('channel', 'items');
+    }
+
+    public function handleV2ex($tab = null)
+    {
+        $url = 'https://www.v2ex.com/';
+
+        $crawler = Crawler::fetch($tab ? $url."?tab={$tab}" : $url);
+
+        $tabs = $crawler->filter('#Tabs a')->rules([
+            'label' => ['a', 'text'],
+            'value' => ['a', 'href'],
+        ]);
+
+        // 可使用 API 获取
+        $nodes = $crawler->filter('#SecondaryTabs a')->rules([
+            'label' => ['a', 'text'],
+            'value' => ['a', 'href'],
+        ]);
+
+        $posts = $crawler->filter('div .item table')->rules([
+            'member_avatar' => ['.avatar', 'src'],
+            'member_link' => ['strong a', 'href'],
+            'member_name' => ['strong a', 'text'],
+            'title' => ['.topic-link', 'text'],
+            'link' => ['.topic-link', 'href'],
+            'node_label' => ['.node', 'text'],
+            'node_value' => ['.node', 'href'],
+            'reply_count' => ['.count_livid', 'text'],
+        ]);
+
+        return compact('tabs', 'nodes', 'posts');
+    }
+
+    public function handleV2exTopic($topicId)
+    {
+        $url = "https://www.v2ex.com/api/v2/topics/".$topicId;
+
+        $topic = Http::withToken(config('services.v2ex.token'))->get($url)->throw()->json();
+
+        return [
+            'title' => $topic['result']['title'],
+            'link' => $topic['result']['url'],
+            'description' => $topic['result']['content'],
+            'author' => [
+                'name' => $topic['result']['member']['username'],
+            ],
+            'category' => [
+                'name' => $topic['result']['node']['name']
+            ],
+            'publishDate' => Carbon::createFromTimestamp($topic['result']['created'])->format('Y-m-d H:i:s')
+        ];
     }
 }

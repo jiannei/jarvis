@@ -19,7 +19,7 @@ class TrendingLanguage extends Command
      *
      * @var string
      */
-    protected $description = '爬取 Github Trending Language';
+    protected $description = '爬取「Github Trending Language」';
 
     /**
      * Execute the console command.

@@ -21,7 +21,7 @@ class RuanyfWeekly extends Command
      *
      * @var string
      */
-    protected $description = '爬取阮一峰科技爱好者周刊';
+    protected $description = '爬取「阮一峰科技爱好者周刊」';
 
     /**
      * Execute the console command.

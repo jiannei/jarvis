@@ -36,4 +36,8 @@ return [
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => env('APP_URL').'/auth/callback',
     ],
+
+    'v2ex' => [
+        'token' => env('V2EX_TOKEN'),
+    ],
 ];
