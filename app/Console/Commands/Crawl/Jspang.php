@@ -21,7 +21,7 @@ class Jspang extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = '爬取「jspang」博客';
 
     /**
      * Execute the console command.

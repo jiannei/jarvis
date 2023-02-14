@@ -383,6 +383,12 @@ class CrawlerService extends Service
             ->get("https://api.github.com/repos/$owner/$repo/releases")
             ->json();
 
+        // todo dot => undot
+//        $posts = $crawler->filter('.entry-list > .item')->rules([
+//            'author.name' => ['.user-message a','text'],
+//            'author.link' => ['.user-message a','href'],
+//        ]);
+
         return Arr::map($releases, function ($release) {
             return [
                 'name' => $release['name'],
