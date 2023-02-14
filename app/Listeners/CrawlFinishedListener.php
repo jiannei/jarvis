@@ -62,7 +62,7 @@ class CrawlFinishedListener implements ShouldQueue
         $post = Post::query()->updateOrCreate(['link' => $event->post['link']], $data);
 
         // todo 图片是否都需要存下来？比如 探索模块，直接链接到
-        if (in_array($event->source, ['github', 'laravel-news','zhangxinxu'])) {
+        if (in_array($event->source, ['github', 'laravel-news','zhangxinxu','jspang'])) {
             $content = $post->description;
             $post->clearMediaCollection();
             foreach ($images as $image) {

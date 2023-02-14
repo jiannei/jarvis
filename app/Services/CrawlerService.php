@@ -292,4 +292,59 @@ class CrawlerService extends Service
             'publishDate' => $publishDate,
         ];
     }
+
+    public function handleJspang()
+    {
+        // SSL certificate problem: unable to get local issuer certificate
+        $crawler = Crawler::fetch('https://jspang.com', null, ['verify' => false]);
+
+        // TODO filter selector => rules 对应的 json 文件配置，返回 collection
+        $blogs = $crawler->filter('.blog-list .blog-item')->rules([
+            'title' => ['.item-title', 'text'],
+            'link' => ['.item-title a', 'href'],
+            'category' => ['.item-tag span', 'text', 1],
+            'publishDate' => ['.item-tag span', 'text', 0],
+            'views' => ['.item-tag span', 'text', 2],
+            'summary' => ['.item-desc', 'text'],
+        ]);
+
+        $videos = $crawler->filter('.left-video-box li')->rules([
+            'link' => ['a', 'href'],
+            'cover' => ['.video-image img', 'src'],
+            'title' => ['.video-title', 'text'],
+        ]);
+
+        return compact('blogs', 'videos');
+    }
+
+    public function handleJspangPost($link)
+    {
+        $crawler = Crawler::fetch('https://jspang.com'.$link, null, ['verify' => false]);
+
+        $post = $crawler->filter('.main-box')->rules([
+            'title' => ['.article-title h1', 'text'],
+            'category' => ['.remarks span b', 'text', 0],
+            'publishDate' => ['.remarks span b', 'text', 1],
+            'videos' => ['.remarks span b', 'text', 2],
+            'views' => ['.remarks span b', 'text', 3],
+            'time' => ['.remarks span b', 'text', 4],
+            'summary' => ['.introduce-html', 'text',],
+            'description' => ['.article-details', 'html',],
+        ]);
+
+        $post = current($post);// FIXED me
+
+        return [
+            'title' => $post['title'],
+            'link' => 'https://jspang.com'.$link,
+            'description' => $post['summary'].$post['description'],
+            'author' => [
+                'name' => 'JSPang',
+            ],
+            'category' => [
+                'name' => $post['category'],
+            ],
+            'publishDate' => $post['publishDate'],
+        ];
+    }
 }
