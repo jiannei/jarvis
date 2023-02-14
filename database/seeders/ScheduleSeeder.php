@@ -183,6 +183,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'zxx.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '爬取技术胖博客',
+                'command' => ' crawl:jsp',
+                'parameters' => '',
+                'expression' => '0 0 * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'jspang.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();
