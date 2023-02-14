@@ -23,10 +23,25 @@ class JarvisController extends Controller
         return Response::success($result);
     }
 
-    public function posts()
+    public function posts(Request $request)
     {
-        $posts = Post::select(['id','title','link','category','author'])
+        $this->validate($request,[
+            'source' => 'filled|string'
+        ]);
+
+        $posts = Post::query()
+            ->select([
+                'id',
+                'title',
+                'link',
+                'category',
+                'author',
+                'source',
+                'created_at',
+                'updated_at',
+            ])
             ->orderByDesc('updated_at')
+            ->where($request->only('source'))
             ->paginate();
 
         return Response::success($posts);
