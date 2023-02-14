@@ -236,9 +236,9 @@ class CrawlerService extends Service
                 'name' => $topic['result']['member']['username'],
             ],
             'category' => [
-                'name' => $topic['result']['node']['name']
+                'name' => $topic['result']['node']['name'],
             ],
-            'publishDate' => Carbon::createFromTimestamp($topic['result']['created'])->format('Y-m-d H:i:s')
+            'publishDate' => Carbon::createFromTimestamp($topic['result']['created'])->format('Y-m-d H:i:s'),
         ];
     }
 
@@ -346,5 +346,51 @@ class CrawlerService extends Service
             ],
             'publishDate' => $post['publishDate'],
         ];
+    }
+
+    public function handleGithubStarred($query)
+    {
+        $repos = Http::withToken(Auth::user()->github_token)
+            ->withHeaders(['Accept' => 'application/vnd.github+json'])
+            ->throw()
+            ->get("https://api.github.com/user/starred", $query)
+            ->json();
+
+        return Arr::map($repos, function ($repo) {
+            return [
+                'owner' => $repo['owner']['login'],
+                'name' => $repo['name'],
+                'full_name' => $repo['full_name'],
+                'html_url' => $repo['html_url'],
+                'description' => $repo['description'],
+                'homepage' => $repo['homepage'],
+                'language' => $repo['language'],
+                'stargazers_count' => $repo['stargazers_count'],
+                'watchers_count' => $repo['watchers_count'],
+                'forks_count' => $repo['forks_count'],
+                'created_at' => Carbon::createFromTimestamp(strtotime($repo['created_at']))->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::createFromTimestamp(strtotime($repo['updated_at']))->format('Y-m-d H:i:s'),
+                'pushed_at' => Carbon::createFromTimestamp(strtotime($repo['pushed_at']))->format('Y-m-d H:i:s'),
+            ];
+        });
+    }
+
+    public function handleGithubRelease(string $owner, string $repo)
+    {
+        $releases = Http::withToken(Auth::user()->github_token)
+            ->withHeaders(['Accept' => 'application/vnd.github+json'])
+            ->throw()
+            ->get("https://api.github.com/repos/$owner/$repo/releases")
+            ->json();
+
+        return Arr::map($releases, function ($release) {
+            return [
+                'name' => $release['name'],
+                'body' => $release['body'],
+                'tag' => $release['tag_name'],
+                'created_at' => Carbon::createFromTimestamp(strtotime($release['created_at']))->format('Y-m-d H:i:s'),
+                'published_at' => Carbon::createFromTimestamp(strtotime($release['published_at']))->format('Y-m-d H:i:s'),
+            ];
+        });
     }
 }

@@ -195,6 +195,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'jspang.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '爬取 Github Releases',
+                'command' => ' crawl:github:release',
+                'parameters' => '',
+                'expression' => '*/15 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'github-release.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();
