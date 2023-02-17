@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Enums\CrawlEnum;
+use Carbon\CarbonInterface;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -95,7 +96,7 @@ class CrawlerService extends Service
             'category' => $category,
             'author' => $author,
             'description' => $article,
-            'publishDate' => $publishedAt,
+            'publishDate' => Carbon::createFromTimestamp(strtotime($publishedAt))->format(CarbonInterface::DEFAULT_TO_STRING_FORMAT),
             'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
         ];
     }
