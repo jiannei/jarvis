@@ -400,4 +400,40 @@ class CrawlerService extends Service
             ];
         });
     }
+
+    public function handleCxy521(string $page = 'index')
+    {
+        $crawler = Crawler::fetch("https://www.cxy521.com/{$page}.html");
+
+        // TODO 列表套列表
+        $categories = $crawler->filter('.main-content .indexbox:nth-of-type(n+2)')->rules([
+            'title' => ['.indexbox_title strong','text'],
+        ]);
+
+        $data = [];
+        foreach ($categories as $index => $category) {
+            $pos = 2 * ($index + 1) + 1;
+            $links = $crawler->filter(".main-content .indexbox:nth-of-type({$pos}) li")->rules([
+                'icon' => ['img', 'src'],
+                'link' => ['a', 'href'],
+                'description' => ['p', 'text'],
+            ]);
+
+            foreach ($links as $key => $item) {
+                if (!$item['link']) {
+                    unset($links[$key]);
+                    continue;
+                }
+
+                $links[$key]['icon'] = 'https://www.cxy521.com'.trim($item['icon'],'.');
+            }
+
+            $data[$index] = [
+                'category' => $category['title'],
+                'links' => array_values($links),
+            ];
+        }
+
+        return $data;
+    }
 }
