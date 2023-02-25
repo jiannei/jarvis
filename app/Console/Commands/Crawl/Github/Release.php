@@ -62,6 +62,7 @@ class Release extends Command
             CrawlFinished::dispatch($post, 'github', 'markdown');
         }
 
+        Auth::logout();
         $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
 
         return self::SUCCESS;

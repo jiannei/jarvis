@@ -137,7 +137,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取 LearnKu[laravel]',
-                'command' => ' crawl:learnku laravel',
+                'command' => 'crawl:learnku laravel',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
                 'active' => true,
@@ -149,7 +149,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取 LearnKu[php]',
-                'command' => ' crawl:learnku php',
+                'command' => 'crawl:learnku php',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
                 'active' => true,
@@ -161,7 +161,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取 LearnKu[go]',
-                'command' => ' crawl:learnku go',
+                'command' => 'crawl:learnku go',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
                 'active' => true,
@@ -173,7 +173,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取张鑫旭博客',
-                'command' => ' crawl:zxx',
+                'command' => 'crawl:zxx',
                 'parameters' => '',
                 'expression' => '0 0 * * *',
                 'active' => true,
@@ -185,7 +185,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取技术胖博客',
-                'command' => ' crawl:jsp',
+                'command' => 'crawl:jsp',
                 'parameters' => '',
                 'expression' => '0 0 * * *',
                 'active' => true,
@@ -197,7 +197,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取 Github Releases',
-                'command' => ' crawl:github:release',
+                'command' => 'crawl:github:release',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
                 'active' => true,
@@ -209,7 +209,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取 CXY521 导航[链接]',
-                'command' => ' crawl:cxy521',
+                'command' => 'crawl:cxy521',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
                 'active' => true,
@@ -221,7 +221,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取 CXY521 导航[手册]',
-                'command' => ' crawl:cxy521 --page=manual',
+                'command' => 'crawl:cxy521 --page=manual',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
                 'active' => true,
@@ -233,7 +233,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '爬取 CXY521 导航[书籍]',
-                'command' => ' crawl:cxy521 --page=book',
+                'command' => 'crawl:cxy521 --page=book',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
                 'active' => true,
@@ -243,6 +243,19 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'cxy521.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '爬取 laravel-tips',
+                'command' => 'crawl:github:laravel-tips',
+                'parameters' => '',
+                'expression' => '0 0 * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'laravel-tips.log',
+                'output_append' => true,
+            ],
+
         ];
 
         Schedule::truncate();

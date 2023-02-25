@@ -436,4 +436,24 @@ class CrawlerService extends Service
 
         return $data;
     }
+
+    public function handleLaravelTips($owner = 'LaravelDaily', $repo = 'laravel-tips', $branch = 'master')
+    {
+
+        $tips = Http::throw()
+            ->get("https://api.github.com/repos/{$owner}/{$repo}/git/trees/{$branch}?recursive=1")
+            ->collect('tree');
+
+        return $tips->filter(function ($tip) {
+            return !Str::contains($tip['path'], 'README');
+        })->map(function ($tip) use ($owner, $repo) {
+            return [
+                'path' => $tip['path'],
+                'content' => Http::withToken(Auth::user()->github_token)
+                    ->withHeaders(['Accept' => 'application/vnd.github.raw'])
+                    ->throw()
+                    ->get("https://api.github.com/repos/{$owner}/{$repo}/contents/{$tip['path']}")->body()
+            ];
+        });
+    }
 }
