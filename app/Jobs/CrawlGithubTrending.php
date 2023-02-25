@@ -59,21 +59,21 @@ class CrawlGithubTrending implements ShouldQueue
             ], $item['added_stars']);
 
             if ($this->since === 'monthly') {
-                $item['month'] = now()->month;
+                $item['month'] = now()->format('Y-m');
 
                 TrendingMonthly::updateOrCreate([
                     'month' => $item['month'],
                     'repo' => $item['repo'],
                 ], $item);
             } elseif ($this->since === 'weekly') {
-                $item['week'] = now()->week;
+                $item['week'] = now()->format('Y-W');
 
                 TrendingWeekly::updateOrCreate([
                     'week' => $item['week'],
                     'repo' => $item['repo'],
                 ], $item);
             } else {
-                $item['day'] = now()->dayOfYear;
+                $item['day'] = now()->format('Y-d');
 
                 TrendingDaily::updateOrCreate([
                     'day' => $item['day'],
