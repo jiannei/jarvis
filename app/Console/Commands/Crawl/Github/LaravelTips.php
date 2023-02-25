@@ -44,7 +44,7 @@ class LaravelTips extends Command
             $this->comment('正在获取：'.$category);
 
             $post = [
-                'title' => 'laravel-tips:'.$tip['path'],
+                'title' => 'laravel-tips:'.$category,
                 'link' => "https://github.com/{$owner}/{$repo}/blob/{$branch}/{$tip['path']}",
                 'description' => $tip['content'],
                 'author' => [
