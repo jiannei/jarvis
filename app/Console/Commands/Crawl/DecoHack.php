@@ -5,6 +5,7 @@ namespace App\Console\Commands\Crawl;
 use App\Events\CrawlFinished;
 use App\Services\RssService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class DecoHack extends Command
@@ -33,13 +34,23 @@ class DecoHack extends Command
         Auth::loginUsingId(1);
 
         $posts = $service->handleViggoDecoHack();
-        foreach ($posts as $post) {
+        foreach ($posts['items'] as $post) {
             $this->comment('正在获取：'.$post['title']);
 
-            $topicId = explode('#', explode('/', $post['link'])[2])[0];
-            $topic = $service->handleV2exTopic($topicId);
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => 'viggo',
+                ],
+                'category' => [
+                    'name' => $post['category'],
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-            CrawlFinished::dispatch($topic, $topic['author']['name'], 'markdown');
+            CrawlFinished::dispatch($topic, 'decohack', 'html');
         }
 
         Auth::logout();
