@@ -225,7 +225,7 @@ class CrawlerService extends Service
 
     public function handleV2exTopic($topicId)
     {
-        $url = "https://www.v2ex.com/api/v2/topics/".$topicId;
+        $url = 'https://www.v2ex.com/api/v2/topics/'.$topicId;
 
         $topic = Http::withToken(config('services.v2ex.token'))->get($url)->throw()->json();
 
@@ -257,7 +257,7 @@ class CrawlerService extends Service
         ]);
 
         return collect($topics)->filter(function ($topic) {
-            return !in_array($topic['category'], ['置顶', '广告']);
+            return ! in_array($topic['category'], ['置顶', '广告']);
         })->values();
     }
 
@@ -329,11 +329,11 @@ class CrawlerService extends Service
             'videos' => ['.remarks span b', 'text', 2],
             'views' => ['.remarks span b', 'text', 3],
             'time' => ['.remarks span b', 'text', 4],
-            'summary' => ['.introduce-html', 'text',],
-            'description' => ['.article-details', 'html',],
+            'summary' => ['.introduce-html', 'text'],
+            'description' => ['.article-details', 'html'],
         ]);
 
-        $post = current($post);// FIXED me
+        $post = current($post); // FIXED me
 
         return [
             'title' => $post['title'],
@@ -354,7 +354,7 @@ class CrawlerService extends Service
         $repos = Http::withToken(Auth::user()->github_token)
             ->withHeaders(['Accept' => 'application/vnd.github+json'])
             ->throw()
-            ->get("https://api.github.com/user/starred", $query)
+            ->get('https://api.github.com/user/starred', $query)
             ->json();
 
         return Arr::map($repos, function ($repo) {
@@ -407,7 +407,7 @@ class CrawlerService extends Service
 
         // TODO 列表套列表
         $categories = $crawler->filter('.main-content .indexbox:nth-of-type(n+2)')->rules([
-            'title' => ['.indexbox_title strong','text'],
+            'title' => ['.indexbox_title strong', 'text'],
         ]);
 
         $data = [];
@@ -420,12 +420,13 @@ class CrawlerService extends Service
             ]);
 
             foreach ($links as $key => $item) {
-                if (!$item['link']) {
+                if (! $item['link']) {
                     unset($links[$key]);
+
                     continue;
                 }
 
-                $links[$key]['icon'] = 'https://www.cxy521.com'.trim($item['icon'],'.');
+                $links[$key]['icon'] = 'https://www.cxy521.com'.trim($item['icon'], '.');
             }
 
             $data[$index] = [
@@ -444,14 +445,14 @@ class CrawlerService extends Service
             ->collect('tree');
 
         return $tips->filter(function ($tip) {
-            return !Str::contains($tip['path'], 'README');
+            return ! Str::contains($tip['path'], 'README');
         })->map(function ($tip) use ($owner, $repo) {
             return [
                 'path' => $tip['path'],
                 'content' => Http::withToken(Auth::user()->github_token)
                     ->withHeaders(['Accept' => 'application/vnd.github.raw'])
                     ->throw()
-                    ->get("https://api.github.com/repos/{$owner}/{$repo}/contents/{$tip['path']}")->body()
+                    ->get("https://api.github.com/repos/{$owner}/{$repo}/contents/{$tip['path']}")->body(),
             ];
         });
     }
@@ -462,12 +463,12 @@ class CrawlerService extends Service
 
         // TODO 自动分页
         return $crawler->filter('.item')->rules([
-            'title' => ['.topic-link','text'],
-            'link' => ['.topic-link','href'],
-            'node_name' => ['.node','text'],
-            'node_link' => ['.node','href'],
-            'member_name' => ['strong','text'],
-            'member_link' => ['strong a','href'],
+            'title' => ['.topic-link', 'text'],
+            'link' => ['.topic-link', 'href'],
+            'node_name' => ['.node', 'text'],
+            'node_link' => ['.node', 'href'],
+            'member_name' => ['strong', 'text'],
+            'member_link' => ['strong a', 'href'],
         ]);
     }
 }

@@ -16,7 +16,7 @@ class ScheduleSeeder extends Seeder
     {
         $schedules = [
             [
-                'description' => '爬取 Github daily 每日趋势',
+                'description' => '更新 Github daily 每日趋势',
                 'command' => 'crawl:github:trending',
                 'parameters' => 'all',
                 'expression' => '*/30 * * * *',
@@ -28,7 +28,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 Github daily 每日趋势[中文区]',
+                'description' => '更新 Github daily 每日趋势[中文区]',
                 'command' => 'crawl:github:trending',
                 'parameters' => 'all --spoken_language_code=zh',
                 'expression' => '*/30 * * * *',
@@ -40,7 +40,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 Github daily 每周趋势',
+                'description' => '更新 Github daily 每周趋势',
                 'command' => 'crawl:github:trending',
                 'parameters' => 'all --since=weekly',
                 'expression' => '10 3 * * *',
@@ -52,7 +52,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 Github daily 每周趋势[中文区]',
+                'description' => '更新 Github daily 每周趋势[中文区]',
                 'command' => 'crawl:github:trending',
                 'parameters' => 'all --since=weekly --spoken_language_code=zh',
                 'expression' => '10 3 * * *',
@@ -64,7 +64,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 Github daily 每月趋势',
+                'description' => '更新 Github daily 每月趋势',
                 'command' => 'crawl:github:trending',
                 'parameters' => 'all --since=monthly',
                 'expression' => '0 0 * * 5',
@@ -76,7 +76,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 Github daily 每月趋势[中文区]',
+                'description' => '更新 Github daily 每月趋势[中文区]',
                 'command' => 'crawl:github:trending',
                 'parameters' => 'all --since=monthly --spoken_language_code=zh',
                 'expression' => '0 0 * * 5',
@@ -88,7 +88,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 laravel-news blog',
+                'description' => '更新 laravel-news blog',
                 'command' => 'crawl:laravel-news:blog',
                 'parameters' => 'all',
                 'expression' => '0 3 * * *',
@@ -100,7 +100,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取阮一峰科技爱好者周刊',
+                'description' => '更新阮一峰科技爱好者周刊',
                 'command' => 'crawl:ruanyf:weekly',
                 'parameters' => '',
                 'expression' => '0 10 * * 5',
@@ -112,7 +112,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 v2ex',
+                'description' => '更新 v2ex',
                 'command' => 'crawl:v2ex',
                 'parameters' => '',
                 'expression' => '*/10 * * * *',
@@ -124,7 +124,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 v2ex[热门]',
+                'description' => '更新 v2ex[热门]',
                 'command' => 'crawl:v2ex --tab=hot',
                 'parameters' => '',
                 'expression' => '*/10 * * * *',
@@ -136,7 +136,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 LearnKu[laravel]',
+                'description' => '更新 LearnKu[laravel]',
                 'command' => 'crawl:learnku laravel',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
@@ -148,7 +148,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 LearnKu[php]',
+                'description' => '更新 LearnKu[php]',
                 'command' => 'crawl:learnku php',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
@@ -160,7 +160,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 LearnKu[go]',
+                'description' => '更新 LearnKu[go]',
                 'command' => 'crawl:learnku go',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
@@ -172,7 +172,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取张鑫旭博客',
+                'description' => '更新张鑫旭博客',
                 'command' => 'crawl:zxx',
                 'parameters' => '',
                 'expression' => '0 0 * * *',
@@ -184,7 +184,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取技术胖博客',
+                'description' => '更新技术胖博客',
                 'command' => 'crawl:jsp',
                 'parameters' => '',
                 'expression' => '0 0 * * *',
@@ -196,7 +196,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 Github Releases',
+                'description' => '更新 Github Releases',
                 'command' => 'crawl:github:release',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
@@ -208,7 +208,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 CXY521 导航[链接]',
+                'description' => '更新 CXY521 导航[链接]',
                 'command' => 'crawl:cxy521',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
@@ -220,7 +220,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 CXY521 导航[手册]',
+                'description' => '更新 CXY521 导航[手册]',
                 'command' => 'crawl:cxy521 --page=manual',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
@@ -232,7 +232,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 CXY521 导航[书籍]',
+                'description' => '更新 CXY521 导航[书籍]',
                 'command' => 'crawl:cxy521 --page=book',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
@@ -244,7 +244,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '爬取 laravel-tips',
+                'description' => '更新 laravel-tips',
                 'command' => 'crawl:github:laravel-tips',
                 'parameters' => '',
                 'expression' => '0 0 * * *',
@@ -255,7 +255,30 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'laravel-tips.log',
                 'output_append' => true,
             ],
-
+            [
+                'description' => '更新 Airing weekly',
+                'command' => 'crawl:airing-weekly',
+                'parameters' => '',
+                'expression' => '0 0 * * 0',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'airing-weekly.log',
+                'output_append' => true,
+            ],
+            [
+                'description' => '更新 DechoHack 产品周刊',
+                'command' => 'crawl:decohack',
+                'parameters' => '',
+                'expression' => '0 0 * * 0',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'decohack.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();

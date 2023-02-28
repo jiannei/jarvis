@@ -21,7 +21,7 @@ class LearnKu extends Command
      *
      * @var string
      */
-    protected $description = '爬取「LearnKu」';
+    protected $description = '更新「LearnKu」';
 
     /**
      * Execute the console command.
@@ -30,7 +30,6 @@ class LearnKu extends Command
      */
     public function handle(CrawlerService $service)
     {
-
         $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
 
         Auth::loginUsingId(1);

@@ -19,7 +19,7 @@ class Trending extends Command
      *
      * @var string
      */
-    protected $description = '爬取「Github Trending」';
+    protected $description = '更新「Github Trending」';
 
     /**
      * Execute the console command.

@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
- $suffix = now()->format('Y-m-d');
+$suffix = now()->format('Y-m-d');
 
 return [
     'debug' => false, // http client debug

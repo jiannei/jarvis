@@ -22,7 +22,7 @@ class LaravelNewsBlog extends Command
      *
      * @var string
      */
-    protected $description = '爬取「laravel-news blog」';
+    protected $description = '更新「laravel-news blog」';
 
     /**
      * Execute the console command.
@@ -44,7 +44,7 @@ class LaravelNewsBlog extends Command
 
             foreach ($links as $link) {
                 $this->newLine();
-                $this->comment('正在爬取:'.CrawlEnum::LARAVEL_NEWS.$link);
+                $this->comment('正在更新:'.CrawlEnum::LARAVEL_NEWS.$link);
 
                 $post = $service->handleLaravelNewsBlog(trim($link, '/'));
                 CrawlFinished::dispatch($post, 'laravel-news'); // todo job or event?
@@ -58,7 +58,7 @@ class LaravelNewsBlog extends Command
             $link = $this->option('link') ?: '';
 
             if ($link) {
-                $this->comment('正在爬取:'.CrawlEnum::LARAVEL_NEWS.$link);
+                $this->comment('正在更新:'.CrawlEnum::LARAVEL_NEWS.$link);
 
                 $post = $service->handleLaravelNewsBlog(trim($this->option('link'), '/'));
                 CrawlFinished::dispatch($post, 'laravel-news');

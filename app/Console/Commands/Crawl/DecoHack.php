@@ -3,11 +3,9 @@
 namespace App\Console\Commands\Crawl;
 
 use App\Events\CrawlFinished;
-use App\Services\CrawlerService;
+use App\Services\RssService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class DecoHack extends Command
 {
@@ -28,7 +26,7 @@ class DecoHack extends Command
     /**
      * Execute the console command.
      */
-    public function handle(CrawlerService $service): void
+    public function handle(RssService $service): void
     {
         $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
 
@@ -38,7 +36,7 @@ class DecoHack extends Command
         foreach ($posts as $post) {
             $this->comment('正在获取：'.$post['title']);
 
-            $topicId = explode('#',explode('/',$post['link'])[2])[0];
+            $topicId = explode('#', explode('/', $post['link'])[2])[0];
             $topic = $service->handleV2exTopic($topicId);
 
             CrawlFinished::dispatch($topic, $topic['author']['name'], 'markdown');

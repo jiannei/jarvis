@@ -21,7 +21,7 @@ class LaravelTips extends Command
      *
      * @var string
      */
-    protected $description = '爬取「laravel-tips」';
+    protected $description = '更新「laravel-tips」';
 
     /**
      * Execute the console command.

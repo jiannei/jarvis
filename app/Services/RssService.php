@@ -62,7 +62,7 @@ class RssService extends Service
         $channel = [
             'title' => $crawler->filter('channel title')->text(),
             'link' => $crawler->filter('channel link')->text(),
-            'description' => $crawler->filter("channel description")->text(),
+            'description' => $crawler->filter('channel description')->text(),
             'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
         ];
 
@@ -70,6 +70,30 @@ class RssService extends Service
             'category' => ['category', 'text'],
             'title' => ['title', 'text'],
             'description' => ['description', 'text'],
+            'link' => ['link', 'text'],
+            'guid' => ['guid', 'text'],
+            'pubDate' => ['pubDate', 'text'],
+        ]);
+
+        return compact('channel', 'items');
+    }
+
+    public function handleViggoDecoHack()
+    {
+        // todo
+        $crawler = Crawler::fetch('https://www.decohack.com/feed', null, ['verify' => false]);
+
+        $channel = [
+            'title' => $crawler->filter('channel title')->text(),
+            'link' => $crawler->filter('channel link')->text(),
+            'description' => $crawler->filter('channel description')->text(),
+            'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
+        ];
+
+        $items = $crawler->filter('channel item')->rules([
+            'category' => ['category', 'text'],
+            'title' => ['title', 'text'],
+            'description' => ['content\:encoded', 'text'],
             'link' => ['link', 'text'],
             'guid' => ['guid', 'text'],
             'pubDate' => ['pubDate', 'text'],

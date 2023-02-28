@@ -25,8 +25,8 @@ class JarvisController extends Controller
 
     public function posts(Request $request)
     {
-        $this->validate($request,[
-            'source' => 'filled|string'
+        $this->validate($request, [
+            'source' => 'filled|string',
         ]);
 
         $posts = Post::query()

@@ -34,7 +34,6 @@ class CrawlFinishedListener implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  \App\Events\CrawlFinished  $event
      * @return void
      */
     public function handle(CrawlFinished $event)
@@ -63,12 +62,12 @@ class CrawlFinishedListener implements ShouldQueue
 
         // todo 图片是否都需要存下来？比如 探索模块，直接链接到
         try {
-            if (in_array($event->source, ['github', 'laravel-news','zhangxinxu','jspang'])) {
+            if (in_array($event->source, ['github', 'laravel-news', 'zhangxinxu', 'jspang'])) {
                 $content = $post->description;
                 $post->clearMediaCollection();
                 foreach ($images as $image) {
-                    if (!Str::contains($image,['https','http'])) {
-                        $image = Str::start($image,'https:');
+                    if (! Str::contains($image, ['https', 'http'])) {
+                        $image = Str::start($image, 'https:');
                     }
 
                     $media = $post->addMediaFromUrl($image)->toMediaCollection();

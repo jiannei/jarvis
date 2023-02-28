@@ -21,7 +21,7 @@ class Release extends Command
      *
      * @var string
      */
-    protected $description = '爬取「Github Release」';
+    protected $description = '更新「Github Release」';
 
     /**
      * Execute the console command.

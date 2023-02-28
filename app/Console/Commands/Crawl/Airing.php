@@ -46,9 +46,9 @@ class Airing extends Command
                     'name' => 'airing',
                 ],
                 'category' => [
-                    'name' => $post['category'] ?? 'weekly'
+                    'name' => $post['category'] ?? 'weekly',
                 ],
-                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s')
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
             ];
 
             CrawlFinished::dispatch($topic, 'airing', 'html');

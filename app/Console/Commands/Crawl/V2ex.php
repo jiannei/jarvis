@@ -21,7 +21,7 @@ class V2ex extends Command
      *
      * @var string
      */
-    protected $description = '爬取「v2ex」';
+    protected $description = '更新「v2ex」';
 
     /**
      * Execute the console command.
@@ -37,14 +37,14 @@ class V2ex extends Command
         $data = $service->handleV2ex($this->option('tab'));
 
 //        try {
-            foreach ($data['posts'] ?? [] as $item) {
-                $this->comment('正在获取：'.$item['title']);
+        foreach ($data['posts'] ?? [] as $item) {
+            $this->comment('正在获取：'.$item['title']);
 
-                $topicId = explode('#',explode('/',$item['link'])[2])[0];
-                $topic = $service->handleV2exTopic($topicId);
+            $topicId = explode('#', explode('/', $item['link'])[2])[0];
+            $topic = $service->handleV2exTopic($topicId);
 
-                CrawlFinished::dispatch($topic, 'v2ex', 'markdown');
-            }
+            CrawlFinished::dispatch($topic, 'v2ex', 'markdown');
+        }
 //        } catch (\Throwable $e) {
 //            $this->error("[{$this->description}]:执行异常 ".$e->getMessage());
 //        }

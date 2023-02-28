@@ -5,7 +5,6 @@ namespace App\Console\Commands\Crawl;
 use App\Events\CrawlFinished;
 use App\Services\CrawlerService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Carbon;
 
 class Cxy521 extends Command
 {
@@ -21,7 +20,7 @@ class Cxy521 extends Command
      *
      * @var string
      */
-    protected $description = '爬取「cxy521」导航';
+    protected $description = '更新「cxy521」导航';
 
     /**
      * Execute the console command.
@@ -31,11 +30,12 @@ class Cxy521 extends Command
         $pages = [
             'index' => '链接',
             'manual' => '手册',
-            'book'=> '书籍',
+            'book' => '书籍',
         ];
 
-        if (!isset($pages[$this->option('page')])) {
+        if (! isset($pages[$this->option('page')])) {
             $this->error('参数错误');
+
             return;
         }
 

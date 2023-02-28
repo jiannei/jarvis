@@ -22,7 +22,7 @@ class Zhangxinxu extends Command
      *
      * @var string
      */
-    protected $description = '爬取「张鑫旭博客」';
+    protected $description = '更新「张鑫旭博客」';
 
     /**
      * Execute the console command.
@@ -48,9 +48,9 @@ class Zhangxinxu extends Command
                     'name' => '张鑫旭',
                 ],
                 'category' => [
-                    'name' => $blog['category']
+                    'name' => $blog['category'],
                 ],
-                'publishDate' => Carbon::createFromTimestamp(strtotime($blog['pubDate']))->format('Y-m-d H:i:s')
+                'publishDate' => Carbon::createFromTimestamp(strtotime($blog['pubDate']))->format('Y-m-d H:i:s'),
             ];
 
             CrawlFinished::dispatch($topic, 'zhangxinxu', 'html');
