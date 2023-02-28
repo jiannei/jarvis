@@ -58,6 +58,8 @@ class Zhangxinxu extends Command
 
         $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
 
+        Auth::logout();
+
         return self::SUCCESS;
     }
 }

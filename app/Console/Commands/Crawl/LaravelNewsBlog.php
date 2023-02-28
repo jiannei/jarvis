@@ -65,6 +65,8 @@ class LaravelNewsBlog extends Command
             }
         }
 
+        Auth::logout();
+
         $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
 
         return self::SUCCESS;
