@@ -54,4 +54,27 @@ class RssService extends Service
 
         return compact('channel', 'items');
     }
+
+    public function handleAiringWeekly()
+    {
+        $crawler = Crawler::fetch('https://weekly.ursb.me/index.xml');
+
+        $channel = [
+            'title' => $crawler->filter('channel title')->text(),
+            'link' => $crawler->filter('channel link')->text(),
+            'description' => $crawler->filter("channel description")->text(),
+            'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
+        ];
+
+        $items = $crawler->filter('channel item')->rules([
+            'category' => ['category', 'text'],
+            'title' => ['title', 'text'],
+            'description' => ['description', 'text'],
+            'link' => ['link', 'text'],
+            'guid' => ['guid', 'text'],
+            'pubDate' => ['pubDate', 'text'],
+        ]);
+
+        return compact('channel', 'items');
+    }
 }
