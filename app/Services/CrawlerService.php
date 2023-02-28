@@ -439,7 +439,6 @@ class CrawlerService extends Service
 
     public function handleLaravelTips($owner = 'LaravelDaily', $repo = 'laravel-tips', $branch = 'master')
     {
-
         $tips = Http::throw()
             ->get("https://api.github.com/repos/{$owner}/{$repo}/git/trees/{$branch}?recursive=1")
             ->collect('tree');
@@ -455,5 +454,20 @@ class CrawlerService extends Service
                     ->get("https://api.github.com/repos/{$owner}/{$repo}/contents/{$tip['path']}")->body()
             ];
         });
+    }
+
+    public function handleViggoDecoHack()
+    {
+        $crawler = Crawler::fetch('https://www.v2ex.com/member/ViggoZ/topics');
+
+        // TODO 自动分页
+        return $crawler->filter('.item')->rules([
+            'title' => ['.topic-link','text'],
+            'link' => ['.topic-link','href'],
+            'node_name' => ['.node','text'],
+            'node_link' => ['.node','href'],
+            'member_name' => ['strong','text'],
+            'member_link' => ['strong a','href'],
+        ]);
     }
 }
