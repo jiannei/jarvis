@@ -16,80 +16,81 @@ class CrawlerService extends Service
 {
     public function handleGithubTrending(?string $language = null, ?array $query = []): array
     {
-        // TODO url query options group parse
-        $url = $language ? CrawlEnum::GITHUB_TRENDING."/{$language}" : CrawlEnum::GITHUB_TRENDING;
-        $crawler = Crawler::fetch($url, $query);
-
-        $rules = [
-            'repo' => ['h1 a', 'href'],
-            'desc' => ['p', 'text'],
-            'language' => ["span[itemprop='programmingLanguage']", 'text'],
-            'stars' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)', 'text'],
-            'forks' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)', 'text'],
-            'added_stars' => ['div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right', 'text'],
-        ];
-
-        return $crawler->group('article')->parse($rules)->all();
+       return Crawler::pattern([
+            'url' => $language ? CrawlEnum::GITHUB_TRENDING."/{$language}" : CrawlEnum::GITHUB_TRENDING,
+            'query' => $query,
+            'group' => 'article',
+            'rules' => [
+                'repo' => ['h1 a', 'href'],
+                'desc' => ['p', 'text'],
+                'language' => ["span[itemprop='programmingLanguage']", 'text'],
+                'stars' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)', 'text'],
+                'forks' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)', 'text'],
+                'added_stars' => ['div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right', 'text'],
+            ]
+        ])->all();
     }
 
     public function handleGithubTrendingLanguages(): array
     {
-        $crawler = Crawler::fetch(CrawlEnum::GITHUB_TRENDING);
-
-        $rules = [
-            'code' => ['', 'href'],
-            'name' => ['span', 'text'],
-        ];
-
-        return $crawler->group("#languages-menuitems a[role='menuitemradio']")->parse($rules)->all();
+        return Crawler::pattern([
+            'url' => CrawlEnum::GITHUB_TRENDING,
+            'group' => "#languages-menuitems a[role='menuitemradio']",
+            'rules' => [
+                'code' => ['', 'href'],
+                'name' => ['span', 'text'],
+            ]
+        ])->all();
     }
 
     public function handleGithubTrendingSpokenLanguages(): array
     {
-        $crawler = Crawler::fetch(CrawlEnum::GITHUB_TRENDING);
-
-        $rules = [
-            'code' => ['', 'href'],
-            'name' => ['span', 'text'],
-        ];
-
-        return $crawler->group("div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']")->parse($rules)->all();
+        return Crawler::pattern([
+            'url' => CrawlEnum::GITHUB_TRENDING,
+            'group' => "div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']",
+            'rules' => [
+                'code' => ['', 'href'],
+                'name' => ['span', 'text'],
+            ]
+        ])->all();
     }
 
     public function handleLaravelNewsBlogs(): array
     {
-        $crawler = Crawler::fetch(CrawlEnum::LARAVEL_NEWS.'/blog');
-
-        $rules = [
-            'link' => ['a', 'href'],
-            'title' => ['h4 > span', 'text'],
-            'summary' => ['h4 + p', 'text'],
-            'publishDate' => ['p', 'text'],
-        ];
-
-        return $crawler->group('main > div:last-child > ul > li:nth-of-type(n+2)')->parse($rules)->all();
+        return Crawler::pattern([
+            'url' => CrawlEnum::LARAVEL_NEWS.'/blog',
+            'group' => 'main > div:last-child > ul > li:nth-of-type(n+2)',
+            'rules' => [
+                'link' => ['a', 'href'],
+                'title' => ['h4 > span', 'text'],
+                'summary' => ['h4 + p', 'text'],
+                'publishDate' => ['p', 'text'],
+            ]
+        ])->all();
     }
 
     public function handleLaravelNewsBlog($link): array
     {
-        $crawler = Crawler::fetch(CrawlEnum::LARAVEL_NEWS."/{$link}");
-
-        return $crawler->parse([
-            'title' => ['h1','text'],
-            'category.link' => ['h1 + div a','href',null, function ($node, Stringable $val) {
-                return $val->start(CrawlEnum::LARAVEL_NEWS);
-            }],
-            'category.name' => ['h1 + div a','text'],
-            'author.name' => ["article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']",'text'],
-            'author.homepage' => ["article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']",'href',null, function ($node,Stringable $val) {
-                return $val->start(CrawlEnum::LARAVEL_NEWS);
-            }],
-            'author.intro' => ['article div:nth-of-type(2) div:nth-of-type(2) > div:last-child p:last-child','text'],
-            'description' => ['article div:nth-of-type(2) div:nth-of-type(1)','html'],
-            'publishDate' => ['h1 + div p','text',null, function ($node,$val) {
-                return Carbon::createFromTimestamp(strtotime($val))->format(CarbonInterface::DEFAULT_TO_STRING_FORMAT);
-            }],
-            'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
+        // 单个解析，不带 group
+        return Crawler::pattern([
+            'url' => CrawlEnum::LARAVEL_NEWS."/{$link}",
+            'rules' => [
+                'title' => ['h1','text'],
+                'category.link' => ['h1 + div a','href',null, function ($node, Stringable $val) {
+                    return $val->start(CrawlEnum::LARAVEL_NEWS);
+                }],
+                'category.name' => ['h1 + div a','text'],
+                'author.name' => ["article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']",'text'],
+                'author.homepage' => ["article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']",'href',null, function ($node,Stringable $val) {
+                    return $val->start(CrawlEnum::LARAVEL_NEWS);
+                }],
+                'author.intro' => ['article div:nth-of-type(2) div:nth-of-type(2) > div:last-child p:last-child','text'],
+                'description' => ['article div:nth-of-type(2) div:nth-of-type(1)','html'],
+                'publishDate' => ['h1 + div p','text',null, function ($node,$val) {
+                    return Carbon::createFromTimestamp(strtotime($val))->format(CarbonInterface::DEFAULT_TO_STRING_FORMAT);
+                }],
+                'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
+            ]
         ]);
     }
 
@@ -153,23 +154,26 @@ class CrawlerService extends Service
 
     public function handleIndependentBlogs()
     {
-        $crawler = Crawler::fetch('https://api.github.com/repos/timqian/chinese-independent-blogs/readme', null, [
-            'headers' => [
-                'Accept' => 'application/vnd.github.html+json',
-                'Authorization' => 'Bearer '.Auth::user()->github_token,
-            ],
-        ]);
-
         $channel = [
             'link' => 'https://github.com/timqian/chinese-independent-blogs',
             'author' => 'https://github.com/timqian',
         ];
 
-        $items = $crawler->group('table tbody tr')->parse([
-            'intro' => ['td:nth-child(2)', 'text'],
-            'link' => ['td:nth-child(3)', 'text'],
-            'tags' => ['td:nth-child(4)', 'text'],
-        ])->all();
+        $items =  Crawler::pattern([
+            'url' => 'https://api.github.com/repos/timqian/chinese-independent-blogs/readme',
+            'options' => [
+                'headers' => [
+                    'Accept' => 'application/vnd.github.html+json',
+                    'Authorization' => 'Bearer '.Auth::user()->github_token,
+                ],
+            ],
+            'group' => 'table tbody tr',
+            'rules' => [
+                'intro' => ['td:nth-child(2)', 'text'],
+                'link' => ['td:nth-child(3)', 'text'],
+                'tags' => ['td:nth-child(4)', 'text'],
+            ],
+        ]);
 
         return compact('channel', 'items');
     }
@@ -178,31 +182,31 @@ class CrawlerService extends Service
     {
         $url = 'https://www.v2ex.com/';
 
-        $crawler = Crawler::fetch($tab ? $url."?tab={$tab}" : $url);
-
-        $tabs = $crawler->group('#Tabs a')->parse([
-            'label' => ['a', 'text'],
-            'value' => ['a', 'href'],
-        ])->all();
-
-        // 可使用 API 获取
-        $nodes = $crawler->group('#SecondaryTabs a')->parse([
-            'label' => ['a', 'text'],
-            'value' => ['a', 'href'],
-        ])->all();
-
-        $posts = $crawler->group('div .item table')->parse([
-            'member_avatar' => ['.avatar', 'src'],
-            'member_link' => ['strong a', 'href'],
-            'member_name' => ['strong a', 'text'],
-            'title' => ['.topic-link', 'text'],
-            'link' => ['.topic-link', 'href'],
-            'node_label' => ['.node', 'text'],
-            'node_value' => ['.node', 'href'],
-            'reply_count' => ['.count_livid', 'text'],
-        ])->all();
-
-        return compact('tabs', 'nodes', 'posts');
+        return Crawler::pattern([
+            'url' => $tab ? $url."?tab={$tab}" : $url,
+            'group' => [
+                '#Tabs a' => [
+                    'label' => ['a', 'text'],
+                    'value' => ['a', 'href'],
+                ],
+                '#SecondaryTabs a' => [
+                    'label' => ['a', 'text'],
+                    'value' => ['a', 'href'],
+                ],
+                'div .item table' => [
+                    'member_avatar' => ['.avatar', 'src'],
+                    'member_link' => ['strong a', 'href'],
+                    'member_name' => ['strong a', 'text'],
+                    'title' => ['.topic-link', 'text'],
+                    'link' => ['.topic-link', 'href'],
+                    'node_label' => ['.node', 'text'],
+                    'node_value' => ['.node', 'href'],
+                    'reply_count' => ['.count_livid', 'text'],
+                ],
+            ],
+        ],['tabs','nodes','posts'])->map(function ($item) {
+            return $item->all();
+        })->all();
     }
 
     public function handleV2exTopic($topicId)
