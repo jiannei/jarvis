@@ -257,9 +257,9 @@ class CrawlerService extends Service
 
         // TODO Fixed me
         if (Str::contains($category, '博客')) {
-            $author = $crawler->filter('.blog-article .content .header')->text();
+            $author = $crawler->filter('.blog-article .content .header')->text('');
         } else {
-            $author = $crawler->filter('.authors-box .content .header')->text();
+            $author = $crawler->filter('.authors-box .content .header')->text('');
         }
 
         return [
