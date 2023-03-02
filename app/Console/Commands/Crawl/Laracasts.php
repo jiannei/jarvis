@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Crawl;
 
 use App\Services\CrawlerService;
+use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
 use Illuminate\Console\Command;
@@ -37,7 +38,17 @@ class Laracasts extends Command
         Auth::onceUsingId(1);
 
         $serverUrl = 'http://localhost:4444';
-        $driver = RemoteWebDriver::create($serverUrl, DesiredCapabilities::chrome());
+
+        $desiredCapabilities = DesiredCapabilities::chrome();
+
+        // Disable accepting SSL certificates
+        // $desiredCapabilities->setCapability('acceptSslCerts', false);
+
+        $chromeOptions = new ChromeOptions();
+        $chromeOptions->addArguments(['--headless']);
+        $desiredCapabilities->setCapability(ChromeOptions::CAPABILITY, $chromeOptions);
+
+        $driver = RemoteWebDriver::create($serverUrl, $desiredCapabilities);
         $driver->get('https://laracasts.com/series');
 
         $driver->wait()->until(\Facebook\WebDriver\WebDriverExpectedCondition::titleIs('Laracasts Series'));
