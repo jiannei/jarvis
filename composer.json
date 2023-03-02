@@ -17,7 +17,6 @@
         "laravel/tinker": "^2.8",
         "league/html-to-markdown": "^5.1",
         "openai-php/laravel": "^0.3.1",
-        "php-webdriver/webdriver": "^1.14",
         "spatie/laravel-activitylog": "^4.7",
         "spatie/laravel-medialibrary": "^10.0.0"
     },

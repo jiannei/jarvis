@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98e65f735998f68e75f9d8bf58762d65",
+    "content-hash": "a3356f8e82be9bbf0349efe2dd43a73f",
     "packages": [
         {
             "name": "brick/math",
@@ -1104,21 +1104,22 @@
         },
         {
             "name": "jiannei/laravel-crawler",
-            "version": "v2.6.1",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jiannei/laravel-crawler.git",
-                "reference": "9cc23f98d9479b3973a7c5821bdd569a65a40ae8"
+                "reference": "bab286ac56535865a7b43ed07a65b1e3f3a3be8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jiannei/laravel-crawler/zipball/9cc23f98d9479b3973a7c5821bdd569a65a40ae8",
-                "reference": "9cc23f98d9479b3973a7c5821bdd569a65a40ae8",
+                "url": "https://api.github.com/repos/jiannei/laravel-crawler/zipball/bab286ac56535865a7b43ed07a65b1e3f3a3be8a",
+                "reference": "bab286ac56535865a7b43ed07a65b1e3f3a3be8a",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "php": "^8.1",
+                "php-webdriver/webdriver": "^1.14",
                 "symfony/dom-crawler": "^6.2"
             },
             "require-dev": {
@@ -1159,9 +1160,9 @@
             "description": "crawler",
             "support": {
                 "issues": "https://github.com/jiannei/laravel-crawler/issues",
-                "source": "https://github.com/jiannei/laravel-crawler/tree/v2.6.1"
+                "source": "https://github.com/jiannei/laravel-crawler/tree/v2.7.0"
             },
-            "time": "2023-03-01T12:33:56+00:00"
+            "time": "2023-03-02T09:37:56+00:00"
         },
         {
             "name": "jiannei/laravel-enum",
@@ -3057,16 +3058,16 @@
         },
         {
             "name": "openai-php/client",
-            "version": "v0.3.2",
+            "version": "v0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openai-php/client.git",
-                "reference": "95674fbb8618939cb05c816fd1a4d198fae7f9f4"
+                "reference": "2ad7e55f91f893d04ca1dd1fb13a11e7d25ac30e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openai-php/client/zipball/95674fbb8618939cb05c816fd1a4d198fae7f9f4",
-                "reference": "95674fbb8618939cb05c816fd1a4d198fae7f9f4",
+                "url": "https://api.github.com/repos/openai-php/client/zipball/2ad7e55f91f893d04ca1dd1fb13a11e7d25ac30e",
+                "reference": "2ad7e55f91f893d04ca1dd1fb13a11e7d25ac30e",
                 "shasum": ""
             },
             "require": {
@@ -3081,7 +3082,7 @@
                 "pestphp/pest-plugin-mock": "^2.0.0",
                 "phpstan/phpstan": "^1.10.3",
                 "rector/rector": "^0.14.8",
-                "symfony/var-dumper": "^6.2.5"
+                "symfony/var-dumper": "^6.2.7"
             },
             "type": "library",
             "autoload": {
@@ -3118,7 +3119,7 @@
             ],
             "support": {
                 "issues": "https://github.com/openai-php/client/issues",
-                "source": "https://github.com/openai-php/client/tree/v0.3.2"
+                "source": "https://github.com/openai-php/client/tree/v0.3.3"
             },
             "funding": [
                 {
@@ -3134,25 +3135,25 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-02-28T13:33:04+00:00"
+            "time": "2023-03-02T08:57:28+00:00"
         },
         {
             "name": "openai-php/laravel",
-            "version": "v0.3.2",
+            "version": "v0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openai-php/laravel.git",
-                "reference": "c1702a498ddbb97890c7c2275fb989c2564a1b78"
+                "reference": "6b74e0e7a660983183e7196b6084ea4191c077b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openai-php/laravel/zipball/c1702a498ddbb97890c7c2275fb989c2564a1b78",
-                "reference": "c1702a498ddbb97890c7c2275fb989c2564a1b78",
+                "url": "https://api.github.com/repos/openai-php/laravel/zipball/6b74e0e7a660983183e7196b6084ea4191c077b1",
+                "reference": "6b74e0e7a660983183e7196b6084ea4191c077b1",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^9.46.0|^10.1.5",
-                "openai-php/client": "^0.3.2",
+                "openai-php/client": "^0.3.3",
                 "php": "^8.1.0"
             },
             "require-dev": {
@@ -3161,7 +3162,7 @@
                 "pestphp/pest-plugin-arch": "^2.0.0",
                 "pestphp/pest-plugin-mock": "^2.0.0",
                 "phpstan/phpstan": "^1.10.3",
-                "symfony/var-dumper": "^6.2.5"
+                "symfony/var-dumper": "^6.2.7"
             },
             "type": "library",
             "extra": {
@@ -3203,7 +3204,7 @@
             ],
             "support": {
                 "issues": "https://github.com/openai-php/laravel/issues",
-                "source": "https://github.com/openai-php/laravel/tree/v0.3.2"
+                "source": "https://github.com/openai-php/laravel/tree/v0.3.3"
             },
             "funding": [
                 {
@@ -3219,7 +3220,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-02-28T13:44:15+00:00"
+            "time": "2023-03-02T09:31:45+00:00"
         },
         {
             "name": "php-webdriver/webdriver",

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\CrawlEnum;
 use Carbon\CarbonInterface;
+use Facebook\WebDriver\WebDriverExpectedCondition;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -447,5 +448,16 @@ class CrawlerService extends Service
             'member_name' => ['strong', 'text'],
             'member_link' => ['strong a', 'href'],
         ]);
+    }
+
+    public function handleLaracasts(string $menu)
+    {
+        $crawler = Crawler::chrome("https://laracasts.com/{$menu}", WebDriverExpectedCondition::titleIs('Laracasts Series'));
+
+        $header = $crawler->parse([
+            'title' => ['header h3','text'],
+        ]);
+
+        dd($header);
     }
 }
