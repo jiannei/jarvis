@@ -456,8 +456,17 @@ class CrawlerService extends Service
 
         $header = $crawler->parse([
             'title' => ['header h3','text'],
+            'desc' => ['header p','text'],
         ]);
 
-        dd($header);
+        $post = $crawler->group('.featured-collection')->parse([
+            'title' => ['h3 a','text'],
+            'link' => ['h3 a','href'],
+            'desc' => ['.content','text'],
+        ])/*->filter(function ($item) {
+            return $item['title'] && $item['link'];
+        })*/->values();
+
+        dd($header,$post);
     }
 }
