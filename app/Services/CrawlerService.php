@@ -463,9 +463,9 @@ class CrawlerService extends Service
             'title' => ['h3 a','text'],
             'link' => ['h3 a','href'],
             'desc' => ['.content','text'],
-        ])/*->filter(function ($item) {
+        ])->filter(function ($item) {
             return $item['title'] && $item['link'];
-        })*/->values();
+        })->values();
 
         dd($header,$post);
     }
