@@ -2916,16 +2916,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.3",
+            "version": "v4.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039"
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/570e980a201d8ed0236b0a62ddf2c9cbb2034039",
-                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
                 "shasum": ""
             },
             "require": {
@@ -2966,9 +2966,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.3"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.4"
             },
-            "time": "2023-01-16T22:05:37+00:00"
+            "time": "2023-03-05T19:49:14+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -3058,16 +3058,16 @@
         },
         {
             "name": "openai-php/client",
-            "version": "v0.3.3",
+            "version": "v0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openai-php/client.git",
-                "reference": "2ad7e55f91f893d04ca1dd1fb13a11e7d25ac30e"
+                "reference": "2e7490421dddd80085af4cde854e597a98395deb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openai-php/client/zipball/2ad7e55f91f893d04ca1dd1fb13a11e7d25ac30e",
-                "reference": "2ad7e55f91f893d04ca1dd1fb13a11e7d25ac30e",
+                "url": "https://api.github.com/repos/openai-php/client/zipball/2e7490421dddd80085af4cde854e597a98395deb",
+                "reference": "2e7490421dddd80085af4cde854e597a98395deb",
                 "shasum": ""
             },
             "require": {
@@ -3119,7 +3119,7 @@
             ],
             "support": {
                 "issues": "https://github.com/openai-php/client/issues",
-                "source": "https://github.com/openai-php/client/tree/v0.3.3"
+                "source": "https://github.com/openai-php/client/tree/v0.3.4"
             },
             "funding": [
                 {
@@ -3127,33 +3127,33 @@
                     "type": "custom"
                 },
                 {
-                    "url": "https://github.com/nunomaduro",
+                    "url": "https://github.com/gehrisandro",
                     "type": "github"
                 },
                 {
-                    "url": "https://www.patreon.com/nunomaduro",
-                    "type": "patreon"
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
                 }
             ],
-            "time": "2023-03-02T08:57:28+00:00"
+            "time": "2023-03-03T06:57:29+00:00"
         },
         {
             "name": "openai-php/laravel",
-            "version": "v0.3.3",
+            "version": "v0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openai-php/laravel.git",
-                "reference": "6b74e0e7a660983183e7196b6084ea4191c077b1"
+                "reference": "69aa5e110464c3742ed64ebd39ea3ccd9d4502e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openai-php/laravel/zipball/6b74e0e7a660983183e7196b6084ea4191c077b1",
-                "reference": "6b74e0e7a660983183e7196b6084ea4191c077b1",
+                "url": "https://api.github.com/repos/openai-php/laravel/zipball/69aa5e110464c3742ed64ebd39ea3ccd9d4502e4",
+                "reference": "69aa5e110464c3742ed64ebd39ea3ccd9d4502e4",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^9.46.0|^10.1.5",
-                "openai-php/client": "^0.3.3",
+                "laravel/framework": "^9.46.0|^10.2.0",
+                "openai-php/client": "^0.3.4",
                 "php": "^8.1.0"
             },
             "require-dev": {
@@ -3204,7 +3204,7 @@
             ],
             "support": {
                 "issues": "https://github.com/openai-php/laravel/issues",
-                "source": "https://github.com/openai-php/laravel/tree/v0.3.3"
+                "source": "https://github.com/openai-php/laravel/tree/v0.3.4"
             },
             "funding": [
                 {
@@ -3220,7 +3220,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-03-02T09:31:45+00:00"
+            "time": "2023-03-03T19:54:05+00:00"
         },
         {
             "name": "php-webdriver/webdriver",
@@ -7191,16 +7191,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.14.6",
+            "version": "2.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "f7948baaa0330277c729714910336383286305da"
+                "reference": "3e8aebbca9f0ae6f618962c4ad514077fd365ab3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/f7948baaa0330277c729714910336383286305da",
-                "reference": "f7948baaa0330277c729714910336383286305da",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/3e8aebbca9f0ae6f618962c4ad514077fd365ab3",
+                "reference": "3e8aebbca9f0ae6f618962c4ad514077fd365ab3",
                 "shasum": ""
             },
             "require": {
@@ -7250,7 +7250,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.14.6"
+                "source": "https://github.com/filp/whoops/tree/2.15.0"
             },
             "funding": [
                 {
@@ -7258,7 +7258,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-02T16:23:29+00:00"
+            "time": "2023-03-03T12:00:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -9158,16 +9158,16 @@
         },
         {
             "name": "spatie/backtrace",
-            "version": "1.2.2",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/backtrace.git",
-                "reference": "7b34fee6c1ad45f8ee0498d17cd8ea9a076402c1"
+                "reference": "ec4dd16476b802dbdc6b4467f84032837e316b8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/backtrace/zipball/7b34fee6c1ad45f8ee0498d17cd8ea9a076402c1",
-                "reference": "7b34fee6c1ad45f8ee0498d17cd8ea9a076402c1",
+                "url": "https://api.github.com/repos/spatie/backtrace/zipball/ec4dd16476b802dbdc6b4467f84032837e316b8c",
+                "reference": "ec4dd16476b802dbdc6b4467f84032837e316b8c",
                 "shasum": ""
             },
             "require": {
@@ -9176,6 +9176,7 @@
             "require-dev": {
                 "ext-json": "*",
                 "phpunit/phpunit": "^9.3",
+                "spatie/phpunit-snapshot-assertions": "^4.2",
                 "symfony/var-dumper": "^5.1"
             },
             "type": "library",
@@ -9203,7 +9204,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/backtrace/tree/1.2.2"
+                "source": "https://github.com/spatie/backtrace/tree/1.4.0"
             },
             "funding": [
                 {
@@ -9215,7 +9216,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2023-02-21T08:29:12+00:00"
+            "time": "2023-03-04T08:57:24+00:00"
         },
         {
             "name": "spatie/flare-client-php",

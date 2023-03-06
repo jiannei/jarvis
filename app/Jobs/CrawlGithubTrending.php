@@ -73,7 +73,7 @@ class CrawlGithubTrending implements ShouldQueue
                     'repo' => $item['repo'],
                 ], $item);
             } else {
-                $item['day'] = now()->format('Y-d');
+                $item['day'] = now()->format('Y-z');
 
                 TrendingDaily::updateOrCreate([
                     'day' => $item['day'],
