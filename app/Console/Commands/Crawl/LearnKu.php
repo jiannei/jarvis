@@ -32,7 +32,7 @@ class LearnKu extends Command
     {
         $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
 
-        Auth::loginUsingId(1);
+        Auth::onceUsingId(1);
 
         $data = $service->handleLearnKu($this->argument('community'));
 

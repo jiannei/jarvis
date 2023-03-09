@@ -23,31 +23,31 @@ class HomeController extends Controller
 
     public function chat()
     {
-        $messages = collect(session('messages', []))->reject(fn($message) => $message['role'] === 'system');
-
-        return view('chat', [
-            'messages' => $messages,
-        ]);
+//        $messages = collect(session('messages', []))->reject(fn ($message) => $message['role'] === 'system');
+//
+//        return view('chat', [
+//            'messages' => $messages,
+//        ]);
     }
 
     public function ai(Request $request): RedirectResponse
     {
-        // 系统消息
-        $messages = $request->session()->get('messages', [
-            ['role' => 'system', 'content' => 'You are A ChatGPT clone. Answer as concisely as possible.'],
-        ]);
-
-        // 用户消息
-        $messages[] = ['role' => 'user', 'content' => $request->input('message')];
-        $response = OpenAI::chat()->create([
-            'model' => 'gpt-3.5-turbo',
-            'messages' => $messages,
-        ]);
-
-        // 响应消息
-        $messages[] = ['role' => 'assistant', 'content' => $response->choices[0]->message->content];
-        $request->session()->put('messages', $messages);
-
-        return redirect('/chat');
+//        // 系统消息
+//        $messages = $request->session()->get('messages', [
+//            ['role' => 'system', 'content' => 'You are A ChatGPT clone. Answer as concisely as possible.'],
+//        ]);
+//
+//        // 用户消息
+//        $messages[] = ['role' => 'user', 'content' => $request->input('message')];
+//        $response = OpenAI::chat()->create([
+//            'model' => 'gpt-3.5-turbo',
+//            'messages' => $messages,
+//        ]);
+//
+//        // 响应消息
+//        $messages[] = ['role' => 'assistant', 'content' => $response->choices[0]->message->content];
+//        $request->session()->put('messages', $messages);
+//
+//        return redirect('/chat');
     }
 }

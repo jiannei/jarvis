@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Jiannei\Response\Laravel\Support\Facades\Response;
@@ -21,23 +20,23 @@ class JarvisController extends Controller
     public function openAi(Request $request)
     {
         $request->validate([
-            'message' => 'required|string'
+            'message' => 'required|string',
         ]);
 
-        $messages = Cache::get('open-ai:chat',[
-            ['role' => 'system', 'content' => 'You are A ChatGPT clone. Answer as concisely as possible.']
+        $messages = Cache::get('open-ai:chat', [
+            ['role' => 'system', 'content' => 'You are A ChatGPT clone. Answer as concisely as possible.'],
         ]);
 
         $messages[] = ['role' => 'user', 'content' => $request->get('message')];
 
         $response = OpenAI::chat()->create([
             'model' => 'gpt-3.5-turbo',
-            'messages' => $messages
+            'messages' => $messages,
         ]);
 
         $messages[] = ['role' => 'assistant', 'content' => $response->choices[0]->message->content];
 
-        Cache::put('open-ai:chat',$messages);
+        Cache::put('open-ai:chat', $messages);
 
         return Response::success($response);
     }

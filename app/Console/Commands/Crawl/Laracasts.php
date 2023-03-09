@@ -33,7 +33,6 @@ class Laracasts extends Command
 
         $posts = $service->handleLaracasts($this->argument('menu'));
 
-
         $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
     }
 }

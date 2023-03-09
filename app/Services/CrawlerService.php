@@ -17,18 +17,20 @@ class CrawlerService extends Service
 {
     public function handleGithubTrending(?string $language = null, ?array $query = []): array
     {
-       return Crawler::pattern([
+        return Crawler::pattern([
             'url' => $language ? CrawlEnum::GITHUB_TRENDING."/{$language}" : CrawlEnum::GITHUB_TRENDING,
             'query' => $query,
-            'group' => 'article',
-            'rules' => [
-                'repo' => ['h1 a', 'href'],
-                'desc' => ['p', 'text'],
-                'language' => ["span[itemprop='programmingLanguage']", 'text'],
-                'stars' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)', 'text'],
-                'forks' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)', 'text'],
-                'added_stars' => ['div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right', 'text'],
-            ]
+            'group' => [
+                'selector' => 'article',
+                'rules' => [
+                    'repo' => ['h1 a', 'href'],
+                    'desc' => ['p', 'text'],
+                    'language' => ["span[itemprop='programmingLanguage']", 'text'],
+                    'stars' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)', 'text'],
+                    'forks' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)', 'text'],
+                    'added_stars' => ['div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right', 'text'],
+                ],
+            ],
         ])->all();
     }
 
@@ -36,11 +38,13 @@ class CrawlerService extends Service
     {
         return Crawler::pattern([
             'url' => CrawlEnum::GITHUB_TRENDING,
-            'group' => "#languages-menuitems a[role='menuitemradio']",
-            'rules' => [
-                'code' => ['', 'href'],
-                'name' => ['span', 'text'],
-            ]
+            'group' => [
+                'selector' => "#languages-menuitems a[role='menuitemradio']",
+                'rules' => [
+                    'code' => ['', 'href'],
+                    'name' => ['span', 'text'],
+                ],
+            ],
         ])->all();
     }
 
@@ -48,11 +52,13 @@ class CrawlerService extends Service
     {
         return Crawler::pattern([
             'url' => CrawlEnum::GITHUB_TRENDING,
-            'group' => "div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']",
-            'rules' => [
-                'code' => ['', 'href'],
-                'name' => ['span', 'text'],
-            ]
+            'group' => [
+                'selector' => "div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']",
+                'rules' => [
+                    'code' => ['', 'href'],
+                    'name' => ['span', 'text'],
+                ],
+            ],
         ])->all();
     }
 
@@ -60,13 +66,15 @@ class CrawlerService extends Service
     {
         return Crawler::pattern([
             'url' => CrawlEnum::LARAVEL_NEWS.'/blog',
-            'group' => 'main > div:last-child > ul > li:nth-of-type(n+2)',
-            'rules' => [
-                'link' => ['a', 'href'],
-                'title' => ['h4 > span', 'text'],
-                'summary' => ['h4 + p', 'text'],
-                'publishDate' => ['p', 'text'],
-            ]
+            'group' => [
+                'selector' => 'main > div:last-child > ul > li:nth-of-type(n+2)',
+                'rules' => [
+                    'link' => ['a', 'href'],
+                    'title' => ['h4 > span', 'text'],
+                    'summary' => ['h4 + p', 'text'],
+                    'publishDate' => ['p', 'text'],
+                ],
+            ],
         ])->all();
     }
 
@@ -76,22 +84,28 @@ class CrawlerService extends Service
         return Crawler::pattern([
             'url' => CrawlEnum::LARAVEL_NEWS."/{$link}",
             'rules' => [
-                'title' => ['h1','text'],
-                'category.link' => ['h1 + div a','href',null, function ($node, Stringable $val) {
-                    return $val->start(CrawlEnum::LARAVEL_NEWS);
-                }],
-                'category.name' => ['h1 + div a','text'],
-                'author.name' => ["article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']",'text'],
-                'author.homepage' => ["article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']",'href',null, function ($node,Stringable $val) {
-                    return $val->start(CrawlEnum::LARAVEL_NEWS);
-                }],
-                'author.intro' => ['article div:nth-of-type(2) div:nth-of-type(2) > div:last-child p:last-child','text'],
-                'description' => ['article div:nth-of-type(2) div:nth-of-type(1)','html'],
-                'publishDate' => ['h1 + div p','text',null, function ($node,$val) {
-                    return Carbon::createFromTimestamp(strtotime($val))->format(CarbonInterface::DEFAULT_TO_STRING_FORMAT);
-                }],
+                'title' => ['h1', 'text'],
+                'category.link' => [
+                    'h1 + div a', 'href', null, function ($node, Stringable $val) {
+                        return $val->start(CrawlEnum::LARAVEL_NEWS);
+                    },
+                ],
+                'category.name' => ['h1 + div a', 'text'],
+                'author.name' => ["article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']", 'text'],
+                'author.homepage' => [
+                    "article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']", 'href', null, function ($node, Stringable $val) {
+                        return $val->start(CrawlEnum::LARAVEL_NEWS);
+                    },
+                ],
+                'author.intro' => ['article div:nth-of-type(2) div:nth-of-type(2) > div:last-child p:last-child', 'text'],
+                'description' => ['article div:nth-of-type(2) div:nth-of-type(1)', 'html'],
+                'publishDate' => [
+                    'h1 + div p', 'text', null, function ($node, $val) {
+                        return Carbon::createFromTimestamp(strtotime($val))->format(CarbonInterface::DEFAULT_TO_STRING_FORMAT);
+                    },
+                ],
                 'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
-            ]
+            ],
         ]);
     }
 
@@ -160,7 +174,7 @@ class CrawlerService extends Service
             'author' => 'https://github.com/timqian',
         ];
 
-        $items =  Crawler::pattern([
+        $items = Crawler::pattern([
             'url' => 'https://api.github.com/repos/timqian/chinese-independent-blogs/readme',
             'options' => [
                 'headers' => [
@@ -168,11 +182,13 @@ class CrawlerService extends Service
                     'Authorization' => 'Bearer '.Auth::user()->github_token,
                 ],
             ],
-            'group' => 'table tbody tr',
-            'rules' => [
-                'intro' => ['td:nth-child(2)', 'text'],
-                'link' => ['td:nth-child(3)', 'text'],
-                'tags' => ['td:nth-child(4)', 'text'],
+            'group' => [
+                'selector' => 'table tbody tr',
+                'rules' => [
+                    'intro' => ['td:nth-child(2)', 'text'],
+                    'link' => ['td:nth-child(3)', 'text'],
+                    'tags' => ['td:nth-child(4)', 'text'],
+                ],
             ],
         ]);
 
@@ -186,26 +202,38 @@ class CrawlerService extends Service
         return Crawler::pattern([
             'url' => $tab ? $url."?tab={$tab}" : $url,
             'group' => [
-                '#Tabs a' => [
-                    'label' => ['a', 'text'],
-                    'value' => ['a', 'href'],
+                [
+                    'alias' => 'tabs',
+                    'selector' => '#Tabs a',
+                    'rules' => [
+                        'label' => ['a', 'text'],
+                        'value' => ['a', 'href'],
+                    ],
                 ],
-                '#SecondaryTabs a' => [
-                    'label' => ['a', 'text'],
-                    'value' => ['a', 'href'],
+                [
+                    'alias' => 'nodes',
+                    'selector' => '#SecondaryTabs a',
+                    'rules' => [
+                        'label' => ['a', 'text'],
+                        'value' => ['a', 'href'],
+                    ],
                 ],
-                'div .item table' => [
-                    'member_avatar' => ['.avatar', 'src'],
-                    'member_link' => ['strong a', 'href'],
-                    'member_name' => ['strong a', 'text'],
-                    'title' => ['.topic-link', 'text'],
-                    'link' => ['.topic-link', 'href'],
-                    'node_label' => ['.node', 'text'],
-                    'node_value' => ['.node', 'href'],
-                    'reply_count' => ['.count_livid', 'text'],
+                [
+                    'alias' => 'posts',
+                    'selector' => 'div .item table',
+                    'rules' => [
+                        'member_avatar' => ['.avatar', 'src'],
+                        'member_link' => ['strong a', 'href'],
+                        'member_name' => ['strong a', 'text'],
+                        'title' => ['.topic-link', 'text'],
+                        'link' => ['.topic-link', 'href'],
+                        'node_label' => ['.node', 'text'],
+                        'node_value' => ['.node', 'href'],
+                        'reply_count' => ['.count_livid', 'text'],
+                    ],
                 ],
             ],
-        ],['tabs','nodes','posts'])->map(function ($item) {
+        ])->map(function ($item) {
             return $item->all();
         })->all();
     }
@@ -454,19 +482,26 @@ class CrawlerService extends Service
     {
         $crawler = Crawler::chrome("https://laracasts.com/{$menu}", WebDriverExpectedCondition::titleIs('Laracasts Series'));
 
-        $header = $crawler->parse([
-            'title' => ['header h3','text'],
-            'desc' => ['header p','text'],
+        // 单个元素提取公共 selector，使用 filter
+        // TODO 单个元素中嵌套列表元素
+        $section1 = $crawler->filter('section:nth-of-type(1)')->parse([
+            'title' => ['header h3', 'text'],
+            'desc' => ['header p', 'text'],
+            'post.desc' => ['.featured-collection .content', 'text'],
         ]);
 
+        // $section1Posts = $crawler->filter();
+
+        dd($section1);
+
         $post = $crawler->group('.featured-collection')->parse([
-            'title' => ['h3 a','text'],
-            'link' => ['h3 a','href'],
-            'desc' => ['.content','text'],
+            'title' => ['h3 a', 'text'],
+            'link' => ['h3 a', 'href'],
+            'desc' => ['.content', 'text'],
         ])->filter(function ($item) {
             return $item['title'] && $item['link'];
         })->values();
 
-        dd($header,$post);
+        dd($header, $post);
     }
 }
