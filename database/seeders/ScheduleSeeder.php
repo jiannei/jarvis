@@ -279,6 +279,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'decohack.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '更新 Packagist',
+                'command' => 'crawl:packagist',
+                'parameters' => '',
+                'expression' => '*/10 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'packagist.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();

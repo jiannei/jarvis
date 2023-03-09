@@ -17,8 +17,7 @@ class RssService extends Service
             'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
         ];
 
-        $items = $crawler->filter('channel item')->rules([
-            'lastBuildDate' => ['channel lastBuildDate', 'text'],
+        $items = $crawler->group('channel item')->parse([
             'category' => ['category', 'text'],
             'title' => ['title', 'text'],
             'description' => ['description', 'text'],
@@ -42,8 +41,7 @@ class RssService extends Service
             'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
         ];
 
-        $items = $crawler->filter('channel item')->rules([
-            'lastBuildDate' => ['channel lastBuildDate', 'text'],
+        $items = $crawler->group('channel item')->parse([
             'category' => ['category', 'text'],
             'title' => ['title', 'text'],
             'description' => ['content\:encoded', 'text'],
@@ -66,7 +64,7 @@ class RssService extends Service
             'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
         ];
 
-        $items = $crawler->filter('channel item')->rules([
+        $items = $crawler->group('channel item')->parse([
             'category' => ['category', 'text'],
             'title' => ['title', 'text'],
             'description' => ['description', 'text'],
@@ -90,7 +88,7 @@ class RssService extends Service
             'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
         ];
 
-        $items = $crawler->filter('channel item')->rules([
+        $items = $crawler->group('channel item')->parse([
             'category' => ['category', 'text'],
             'title' => ['title', 'text'],
             'description' => ['content\:encoded', 'text'],
@@ -100,5 +98,10 @@ class RssService extends Service
         ]);
 
         return compact('channel', 'items');
+    }
+
+    public function handlePackagist()
+    {
+        return Crawler::rss('https://packagist.org/feeds/packages.rss');
     }
 }

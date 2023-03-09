@@ -14,6 +14,10 @@ $suffix = now()->format('Y-m-d');
 return [
     'debug' => false, // http client debug
 
+    'source' => [
+        'storage' => storage_path('app/crawler.json'),
+    ],
+
     'log' => [
         'driver' => 'daily',
         'path' => storage_path('logs/http.log'),
@@ -49,6 +53,31 @@ return [
         'log' => [
             'path' => storage_path('logs/crawler-server.log'),
             'level' => 'INFO', // set log level: ALL, DEBUG, INFO, WARNING, SEVERE, OFF
+        ],
+    ],
+
+    'rss' => [
+        [
+            'alias' => 'channel',
+            'selector' => 'channel',
+            'rules' => [
+                'title' => ['title', 'text'],
+                'link' => ['link', 'text'],
+                'description' => ['description', 'text'],
+                'pubDate' => ['pubDate', 'text'],
+            ],
+        ],
+        [
+            'alias' => 'items',
+            'selector' => 'channel item',
+            'rules' => [
+                'category' => ['category', 'text'],
+                'title' => ['title', 'text'],
+                'description' => ['description', 'text'],
+                'link' => ['link', 'text'],
+                'guid' => ['guid', 'text'],
+                'pubDate' => ['pubDate', 'text'],
+            ],
         ],
     ],
 ];
