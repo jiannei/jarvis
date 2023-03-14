@@ -315,6 +315,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'oschina.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '更新 知乎每日精选',
+                'command' => 'crawl:zhihu',
+                'parameters' => '',
+                'expression' => '0 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'zhihu.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();

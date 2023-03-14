@@ -114,4 +114,9 @@ class RssService extends Service
     {
         return Crawler::rss('https://www.oschina.net/news/rss');
     }
+
+    public function handleZhihu()
+    {
+        return Crawler::rss('https://www.zhihu.com/rss');
+    }
 }
