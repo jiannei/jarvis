@@ -340,7 +340,7 @@ class ScheduleSeeder extends Seeder
                 'output_append' => true,
             ],
             [
-                'description' => '更新 月光博客',
+                'description' => '更新 小众软件',
                 'command' => 'crawl:appinn',
                 'parameters' => '',
                 'expression' => '0 * * * *',
@@ -349,6 +349,18 @@ class ScheduleSeeder extends Seeder
                 'in_background' => true,
                 'in_maintenance_mode' => true,
                 'output_file_path' => 'appinn.log',
+                'output_append' => true,
+            ],
+            [
+                'description' => '更新 异次元软件世界',
+                'command' => 'crawl:iplaysoft',
+                'parameters' => '',
+                'expression' => '*/10 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'iplaysoft.log',
                 'output_append' => true,
             ],
         ];

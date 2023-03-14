@@ -148,4 +148,28 @@ class RssService extends Service
 
         return compact('channel','items');
     }
+
+    public function handleIplaysoft()
+    {
+        // todo wordpress
+        $crawler = Crawler::fetch('https://feed.iplaysoft.com/');
+
+        $channel = [
+            'title' => $crawler->filter('channel title')->text(),
+            'link' => $crawler->filter('channel link')->text(),
+            'description' => $crawler->filter("channel description")->text(),
+            'lastBuildDate' => $crawler->filter('channel pubDate')->text(),
+        ];
+
+        $items = $crawler->group('channel item')->parse([
+            'category' => ['category', 'text'],
+            'title' => ['title', 'text'],
+            'description' => ['description', 'text'],
+            'link' => ['link', 'text'],
+            'guid' => ['guid', 'text'],
+            'pubDate' => ['pubDate', 'text'],
+        ]);
+
+        return compact('channel','items');
+    }
 }
