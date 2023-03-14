@@ -303,6 +303,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'sspai.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '更新 开源中国',
+                'command' => 'crawl:oschina',
+                'parameters' => '',
+                'expression' => '*/10 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'oschina.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();

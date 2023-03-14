@@ -1108,12 +1108,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jiannei/laravel-crawler.git",
-                "reference": "072f539e5c41d67128e1eb41bfb1c947f89d44d1"
+                "reference": "3a1d977cc63f7f5b271a3ef3b2d13f868876f02e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jiannei/laravel-crawler/zipball/072f539e5c41d67128e1eb41bfb1c947f89d44d1",
-                "reference": "072f539e5c41d67128e1eb41bfb1c947f89d44d1",
+                "url": "https://api.github.com/repos/jiannei/laravel-crawler/zipball/3a1d977cc63f7f5b271a3ef3b2d13f868876f02e",
+                "reference": "3a1d977cc63f7f5b271a3ef3b2d13f868876f02e",
                 "shasum": ""
             },
             "require": {
@@ -1163,7 +1163,7 @@
                 "issues": "https://github.com/jiannei/laravel-crawler/issues",
                 "source": "https://github.com/jiannei/laravel-crawler/tree/main"
             },
-            "time": "2023-03-10T03:41:25+00:00"
+            "time": "2023-03-14T09:44:28+00:00"
         },
         {
             "name": "jiannei/laravel-enum",

@@ -109,4 +109,9 @@ class RssService extends Service
     {
         return Crawler::rss('https://sspai.com/feed');
     }
+
+    public function handleOschina()
+    {
+        return Crawler::rss('https://www.oschina.net/news/rss');
+    }
 }
