@@ -124,4 +124,28 @@ class RssService extends Service
     {
         return Crawler::rss('https://www.williamlong.info/rss.xml');
     }
+
+    public function handleAppinn()
+    {
+        // todo wordpress
+        $crawler = Crawler::fetch('https://feeds.appinn.com/appinns/');
+
+        $channel = [
+            'title' => $crawler->filter('channel title')->text(),
+            'link' => $crawler->filter('channel link')->text(),
+            'description' => $crawler->filter("content\:encoded")->text(),
+            'lastBuildDate' => $crawler->filter('channel lastBuildDate')->text(),
+        ];
+
+        $items = $crawler->group('channel item')->parse([
+            'category' => ['category', 'text'],
+            'title' => ['title', 'text'],
+            'description' => ['content\:encoded', 'text'],
+            'link' => ['link', 'text'],
+            'guid' => ['guid', 'text'],
+            'pubDate' => ['pubDate', 'text'],
+        ]);
+
+        return compact('channel','items');
+    }
 }
