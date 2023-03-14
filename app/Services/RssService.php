@@ -104,4 +104,9 @@ class RssService extends Service
     {
         return Crawler::rss('https://packagist.org/feeds/packages.rss');
     }
+
+    public function handleSspai()
+    {
+        return Crawler::rss('https://sspai.com/feed');
+    }
 }
