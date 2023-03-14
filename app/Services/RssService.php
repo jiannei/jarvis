@@ -119,4 +119,9 @@ class RssService extends Service
     {
         return Crawler::rss('https://www.zhihu.com/rss');
     }
+
+    public function handleWilliamlong()
+    {
+        return Crawler::rss('https://www.williamlong.info/rss.xml');
+    }
 }

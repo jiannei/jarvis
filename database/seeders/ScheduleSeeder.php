@@ -327,6 +327,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'zhihu.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '更新 月光博客',
+                'command' => 'crawl:williamlong',
+                'parameters' => '',
+                'expression' => '*/10 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'williamlong.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();
