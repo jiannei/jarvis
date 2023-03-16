@@ -20,21 +20,23 @@ class GithubController extends Controller
             'since' => 'nullable|string|in:daily,weekly,monthly',
         ]);
 
-        $result = $this->crawlerService->handleGithubTrending($language, $request->only('spoken_language_code', 'since'));
+        $result = $this->crawlerService->handleCrawl('github:trending',
+            $request->collect(['spoken_language_code', 'since'])->merge(['language' => $language])->all()
+        );
 
         return Response::success($result);
     }
 
     public function languages()
     {
-        $result = $this->crawlerService->handleGithubTrendingLanguages();
+        $result = $this->crawlerService->handleCrawl('github:trending:language');
 
         return Response::success($result);
     }
 
     public function spokenLanguages()
     {
-        $result = $this->crawlerService->handleGithubTrendingSpokenLanguages();
+        $result = $this->crawlerService->handleCrawl('github:trending:spoken-language');
 
         return Response::success($result);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Services\CrawlerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -63,5 +64,16 @@ class JarvisController extends Controller
             ->paginate();
 
         return Response::success($posts);
+    }
+
+    public function crawl(Request $request, CrawlerService $service)
+    {
+        $this->validate($request, [
+            'key' => 'required|string', // todo pref
+        ]);
+
+        $result = $service->handleCrawl($request->get('key'), $request->except('url'));
+
+        return Response::success($result);
     }
 }

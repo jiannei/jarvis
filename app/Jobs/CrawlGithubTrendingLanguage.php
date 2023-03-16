@@ -31,7 +31,7 @@ class CrawlGithubTrendingLanguage implements ShouldQueue
      */
     public function handle(CrawlerService $service)
     {
-        $languages = $service->handleGithubTrendingLanguages();
+        $languages = $service->handleCrawl('github:trending:language');
 
         foreach ($languages as $language) {
             TrendingLanguage::updateOrCreate(['code' => $language['code']], $language);

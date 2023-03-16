@@ -36,7 +36,7 @@ class LaravelNewsBlog extends Command
         Auth::loginUsingId(1);
 
         if ($this->argument('mode') === 'all') {
-            $blogs = $service->handleLaravelNewsBlogs();
+            $blogs = $service->handleCrawl('laravel-news:blog');
             $links = array_column($blogs, 'link');
 
             $bar = $this->output->createProgressBar(count($links));

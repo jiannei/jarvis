@@ -42,9 +42,10 @@ class CrawlGithubTrending implements ShouldQueue
      */
     public function handle(CrawlerService $service)
     {
-        $trending = $service->handleGithubTrending($this->language, [
+        $trending = $service->handleCrawl('github:trending', [
             'spoken_language_code' => $this->spokenLanguageCode,
             'since' => $this->since,
+            'language' => $this->language,
         ]);
 
         foreach ($trending as $item) {

@@ -34,7 +34,7 @@ class V2ex extends Command
 
         Auth::loginUsingId(1);
 
-        $data = $service->handleV2ex($this->option('tab'));
+        $data = $service->handleCrawl('v2ex', ['tab' => $this->option('tab')]);
 
 //        try {
         foreach ($data['posts'] ?? [] as $item) {

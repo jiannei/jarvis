@@ -1,0 +1,188 @@
+[
+    {
+        "key": "github:trending",
+        "url": "https://github.com/trending",
+        "query": {},
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h1 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github:trending:language",
+        "url": "https://github.com/trending",
+        "group": {
+            "selector": "#languages-menuitems a[role='menuitemradio']",
+            "rules": {
+                "code": [
+                    "",
+                    "href"
+                ],
+                "name": [
+                    "span",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github:trending:spoken-language",
+        "url": "https://github.com/trending",
+        "group": {
+            "selector": "div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']",
+            "rules": {
+                "code": [
+                    "",
+                    "href"
+                ],
+                "name": [
+                    "span",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "laravel-news:blog",
+        "url": "https://laravel-news.com/blog",
+        "group": {
+            "selector": "main > div:last-child > ul > li:nth-of-type(n+2)",
+            "rules": {
+                "link": [
+                    "a",
+                    "href"
+                ],
+                "title": [
+                    "h4 > span",
+                    "text"
+                ],
+                "summary": [
+                    "h4 + p",
+                    "text"
+                ],
+                "publishDate": [
+                    "p",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github:independent-blogs",
+        "url": "https://api.github.com/repos/timqian/chinese-independent-blogs/readme",
+        "group": {
+            "selector": "table tbody tr",
+            "rules": {
+                "intro": [
+                    "td:nth-child(2)",
+                    "text"
+                ],
+                "link": [
+                    "td:nth-child(3)",
+                    "text"
+                ],
+                "tags": [
+                    "td:nth-child(4)",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "v2ex",
+        "url": "https://www.v2ex.com/",
+        "group": [
+            {
+                "alias": "tabs",
+                "selector": "#Tabs a",
+                "rules": {
+                    "label": [
+                        "a",
+                        "text"
+                    ],
+                    "value": [
+                        "a",
+                        "href"
+                    ]
+                }
+            },
+            {
+                "alias": "nodes",
+                "selector": "#SecondaryTabs a",
+                "rules": {
+                    "label": [
+                        "a",
+                        "text"
+                    ],
+                    "value": [
+                        "a",
+                        "href"
+                    ]
+                }
+            },
+            {
+                "alias": "posts",
+                "selector": "div .item table",
+                "rules": {
+                    "member_avatar": [
+                        ".avatar",
+                        "src"
+                    ],
+                    "member_link": [
+                        "strong a",
+                        "href"
+                    ],
+                    "member_name": [
+                        "strong a",
+                        "text"
+                    ],
+                    "title": [
+                        ".topic-link",
+                        "text"
+                    ],
+                    "link": [
+                        ".topic-link",
+                        "href"
+                    ],
+                    "node_label": [
+                        ".node",
+                        "text"
+                    ],
+                    "node_value": [
+                        ".node",
+                        "href"
+                    ],
+                    "reply_count": [
+                        ".count_livid",
+                        "text"
+                    ]
+                }
+            }
+        ]
+    }
+]

@@ -8,13 +8,13 @@ use Jiannei\Response\Laravel\Support\Facades\Response;
 
 class LaravelNewsController extends Controller
 {
-    public function __construct(private CrawlerService $service)
+    public function __construct(private readonly CrawlerService $service)
     {
     }
 
     public function blogs()
     {
-        $blogs = $this->service->handleLaravelNewsBlogs();
+        $blogs = $this->service->handleCrawl('laravel-news:blog');
 
         return Response::success($blogs);
     }

@@ -146,7 +146,7 @@ class RssService extends Service
             'pubDate' => ['pubDate', 'text'],
         ]);
 
-        return compact('channel','items');
+        return compact('channel', 'items');
     }
 
     public function handleIplaysoft()
@@ -157,7 +157,7 @@ class RssService extends Service
         $channel = [
             'title' => $crawler->filter('channel title')->text(),
             'link' => $crawler->filter('channel link')->text(),
-            'description' => $crawler->filter("channel description")->text(),
+            'description' => $crawler->filter('channel description')->text(),
             'lastBuildDate' => $crawler->filter('channel pubDate')->text(),
         ];
 
@@ -170,6 +170,6 @@ class RssService extends Service
             'pubDate' => ['pubDate', 'text'],
         ]);
 
-        return compact('channel','items');
+        return compact('channel', 'items');
     }
 }

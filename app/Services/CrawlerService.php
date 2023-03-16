@@ -15,69 +15,6 @@ use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class CrawlerService extends Service
 {
-    public function handleGithubTrending(?string $language = null, ?array $query = []): array
-    {
-        return Crawler::pattern([
-            'url' => $language ? CrawlEnum::GITHUB_TRENDING."/{$language}" : CrawlEnum::GITHUB_TRENDING,
-            'query' => $query,
-            'group' => [
-                'selector' => 'article',
-                'rules' => [
-                    'repo' => ['h1 a', 'href'],
-                    'desc' => ['p', 'text'],
-                    'language' => ["span[itemprop='programmingLanguage']", 'text'],
-                    'stars' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)', 'text'],
-                    'forks' => ['div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)', 'text'],
-                    'added_stars' => ['div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right', 'text'],
-                ],
-            ],
-        ])->all();
-    }
-
-    public function handleGithubTrendingLanguages(): array
-    {
-        return Crawler::pattern([
-            'url' => CrawlEnum::GITHUB_TRENDING,
-            'group' => [
-                'selector' => "#languages-menuitems a[role='menuitemradio']",
-                'rules' => [
-                    'code' => ['', 'href'],
-                    'name' => ['span', 'text'],
-                ],
-            ],
-        ])->all();
-    }
-
-    public function handleGithubTrendingSpokenLanguages(): array
-    {
-        return Crawler::pattern([
-            'url' => CrawlEnum::GITHUB_TRENDING,
-            'group' => [
-                'selector' => "div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']",
-                'rules' => [
-                    'code' => ['', 'href'],
-                    'name' => ['span', 'text'],
-                ],
-            ],
-        ])->all();
-    }
-
-    public function handleLaravelNewsBlogs(): array
-    {
-        return Crawler::pattern([
-            'url' => CrawlEnum::LARAVEL_NEWS.'/blog',
-            'group' => [
-                'selector' => 'main > div:last-child > ul > li:nth-of-type(n+2)',
-                'rules' => [
-                    'link' => ['a', 'href'],
-                    'title' => ['h4 > span', 'text'],
-                    'summary' => ['h4 + p', 'text'],
-                    'publishDate' => ['p', 'text'],
-                ],
-            ],
-        ])->all();
-    }
-
     public function handleLaravelNewsBlog($link): array
     {
         // 单个解析，不带 group
@@ -174,68 +111,14 @@ class CrawlerService extends Service
             'author' => 'https://github.com/timqian',
         ];
 
-        $items = Crawler::pattern([
-            'url' => 'https://api.github.com/repos/timqian/chinese-independent-blogs/readme',
-            'options' => [
-                'headers' => [
-                    'Accept' => 'application/vnd.github.html+json',
-                    'Authorization' => 'Bearer '.Auth::user()->github_token,
-                ],
+        $items = Crawler::json('github:independent-blogs', [], [
+            'headers' => [
+                'Accept' => 'application/vnd.github.html+json',
+                'Authorization' => 'Bearer '.Auth::user()->github_token,
             ],
-            'group' => [
-                'selector' => 'table tbody tr',
-                'rules' => [
-                    'intro' => ['td:nth-child(2)', 'text'],
-                    'link' => ['td:nth-child(3)', 'text'],
-                    'tags' => ['td:nth-child(4)', 'text'],
-                ],
-            ],
-        ]);
+        ])->all();
 
         return compact('channel', 'items');
-    }
-
-    public function handleV2ex($tab = null)
-    {
-        $url = 'https://www.v2ex.com/';
-
-        return Crawler::pattern([
-            'url' => $tab ? $url."?tab={$tab}" : $url,
-            'group' => [
-                [
-                    'alias' => 'tabs',
-                    'selector' => '#Tabs a',
-                    'rules' => [
-                        'label' => ['a', 'text'],
-                        'value' => ['a', 'href'],
-                    ],
-                ],
-                [
-                    'alias' => 'nodes',
-                    'selector' => '#SecondaryTabs a',
-                    'rules' => [
-                        'label' => ['a', 'text'],
-                        'value' => ['a', 'href'],
-                    ],
-                ],
-                [
-                    'alias' => 'posts',
-                    'selector' => 'div .item table',
-                    'rules' => [
-                        'member_avatar' => ['.avatar', 'src'],
-                        'member_link' => ['strong a', 'href'],
-                        'member_name' => ['strong a', 'text'],
-                        'title' => ['.topic-link', 'text'],
-                        'link' => ['.topic-link', 'href'],
-                        'node_label' => ['.node', 'text'],
-                        'node_value' => ['.node', 'href'],
-                        'reply_count' => ['.count_livid', 'text'],
-                    ],
-                ],
-            ],
-        ])->map(function ($item) {
-            return $item->all();
-        })->all();
     }
 
     public function handleV2exTopic($topicId)
@@ -503,5 +386,10 @@ class CrawlerService extends Service
         })->values();
 
         dd($header, $post);
+    }
+
+    public function handleCrawl(string $key, array $query = [])
+    {
+        return Crawler::json($key, $query)->all();
     }
 }
