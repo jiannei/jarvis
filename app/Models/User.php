@@ -62,4 +62,10 @@ class User extends Authenticatable
     {
         return $this->id === 1; // 或者是 SuperAdmin 角色
     }
+
+    public function canAccessFilament(): bool
+    {
+        // https://filamentphp.com/tricks/admin-403-in-production
+        return $this->isSuperAdmin();
+    }
 }
