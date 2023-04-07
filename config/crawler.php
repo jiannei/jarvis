@@ -14,6 +14,12 @@ $suffix = now()->format('Y-m-d');
 return [
     'debug' => false, // http client debug
 
+    'fetch' => [
+        'times' => 3,
+        'sleep' => 1000, // Milliseconds
+        'cache' => 180, // seconds
+    ],
+
     'source' => [
         'storage' => storage_path('app/crawler.json'),
     ],

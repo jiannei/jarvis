@@ -153,7 +153,7 @@ class CrawlerService extends Service
             'replies' => ['.count_of_replies', 'text'],
             'updated_at' => ['.timeago', 'title'],
         ])->filter(function ($topic) {
-            return ! in_array($topic['category'], ['置顶', '广告']);
+            return !in_array($topic['category'], ['置顶', '广告']);
         })->values();
     }
 
@@ -309,7 +309,7 @@ class CrawlerService extends Service
             ])->all();
 
             foreach ($links as $key => $item) {
-                if (! $item['link']) {
+                if (!$item['link']) {
                     unset($links[$key]);
 
                     continue;
@@ -334,7 +334,7 @@ class CrawlerService extends Service
             ->collect('tree');
 
         return $tips->filter(function ($tip) {
-            return ! Str::contains($tip['path'], 'README');
+            return !Str::contains($tip['path'], 'README');
         })->map(function ($tip) use ($owner, $repo) {
             return [
                 'path' => $tip['path'],
@@ -391,5 +391,12 @@ class CrawlerService extends Service
     public function handleCrawl(string $key, array $query = [])
     {
         return Crawler::json($key, $query)->all();
+    }
+
+    public function handleGitee(string $explore = '/explore/all')
+    {
+        return Crawler::before(function ($url, $query, $option) use ($explore) {
+            return [str_replace('{explore}', trim($explore,'/'), $url), $query, $option];
+        })->json('gitee');
     }
 }

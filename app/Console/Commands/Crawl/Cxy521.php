@@ -5,6 +5,7 @@ namespace App\Console\Commands\Crawl;
 use App\Events\CrawlFinished;
 use App\Services\CrawlerService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Auth;
 
 class Cxy521 extends Command
 {
@@ -41,6 +42,8 @@ class Cxy521 extends Command
 
         $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
 
+        Auth::loginUsingId(1);
+
         $result = $service->handleCxy521($this->option('page'));
 
         foreach ($result as $item) {
@@ -63,6 +66,8 @@ class Cxy521 extends Command
                 CrawlFinished::dispatch($topic, 'cxy521', 'html');
             }
         }
+
+        Auth::logout();
 
         $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
     }
