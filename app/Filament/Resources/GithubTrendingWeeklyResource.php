@@ -34,7 +34,7 @@ class GithubTrendingWeeklyResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
-                Tables\Columns\TextColumn::make('repo'),
+                Tables\Columns\TextColumn::make('repo')->url(fn(TrendingWeekly $record):string => "https://github.com{$record->repo}")->openUrlInNewTab(),
                 Tables\Columns\TextColumn::make('desc')->toggleable()->tooltip(fn (Model $record): string => "{$record->desc}")->limit(50),
                 Tables\Columns\TextColumn::make('language')->searchable(),
                 Tables\Columns\TextColumn::make('stars')->sortable(),
