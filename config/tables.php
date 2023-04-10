@@ -15,7 +15,7 @@ return [
     */
 
     'date_format' => 'M j, Y',
-    'date_time_format' => CarbonInterface::DEFAULT_TO_STRING_FORMAT,// 'M j, Y H:i:s'
+    'date_time_format' => CarbonInterface::DEFAULT_TO_STRING_FORMAT, // 'M j, Y H:i:s'
     'time_format' => 'H:i:s',
 
     /*

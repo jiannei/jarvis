@@ -3,16 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PostResource extends Resource
 {
@@ -46,7 +43,7 @@ class PostResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
                 Tables\Columns\TextColumn::make('title')->limit(50)->tooltip(fn (Model $record): string => "{$record->title}"),
-                Tables\Columns\TextColumn::make('link')->url(fn(Post $record):string => $record->link)->openUrlInNewTab(),
+                Tables\Columns\TextColumn::make('link')->url(fn (Post $record): string => $record->link)->openUrlInNewTab(),
                 Tables\Columns\TextColumn::make('description')->limit(50)->tooltip(fn (Model $record): string => "{$record->description}"),
                 Tables\Columns\TextColumn::make('author'),
                 Tables\Columns\TextColumn::make('category'),
@@ -61,27 +58,27 @@ class PostResource extends Resource
                 //
             ])
             ->actions([
-//                Tables\Actions\EditAction::make(),
+                //                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-//                Tables\Actions\DeleteBulkAction::make(),
+                //                Tables\Actions\DeleteBulkAction::make(),
             ])
-            ->defaultSort('id','desc');
+            ->defaultSort('id', 'desc');
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListPosts::route('/'),
-//            'create' => Pages\CreatePost::route('/create'),
-//            'edit' => Pages\EditPost::route('/{record}/edit'),
+            //            'create' => Pages\CreatePost::route('/create'),
+            //            'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
     }
 
@@ -90,4 +87,3 @@ class PostResource extends Resource
         return false;
     }
 }
-

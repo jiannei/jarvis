@@ -9,7 +9,6 @@ use App\Models\Gitee\TrendingWeekly;
 use App\Services\CrawlerService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
-use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class Gitee extends Command
 {
@@ -65,7 +64,7 @@ class Gitee extends Command
         $bar = $this->output->createProgressBar(count($result->get('languages')));
         $bar->start();
 
-        $result->get('languages')->each(function ($language) use ($service, $bar) {
+        $result->get('languages')->each(function ($language) use ($bar) {
             $this->comment(' '.$language['link']);
 
             dispatch(new CrawlGiteeExplore($language['link']));

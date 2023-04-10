@@ -6,7 +6,6 @@ use App\Models\Gitee\TrendingDaily;
 use App\Models\Gitee\TrendingWeekly;
 use App\Services\CrawlerService;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
