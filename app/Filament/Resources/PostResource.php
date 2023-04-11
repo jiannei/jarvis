@@ -42,8 +42,10 @@ class PostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
-                Tables\Columns\TextColumn::make('title')->limit(50)->tooltip(fn (Model $record): string => "{$record->title}"),
-                Tables\Columns\TextColumn::make('link')->limit(50)->url(fn (Post $record): string => $record->link)->openUrlInNewTab(),
+                Tables\Columns\TextColumn::make('title')->limit(50)
+                    ->tooltip(fn (Model $record): string => "{$record->title}")
+                    ->url(fn (Post $record): string => $record->link)
+                    ->openUrlInNewTab(),
                 Tables\Columns\TextColumn::make('description')->limit(50)->tooltip(fn (Model $record): string => "{$record->description}")->visibleFrom('md'),
                 Tables\Columns\TextColumn::make('author'),
                 Tables\Columns\TextColumn::make('category'),
