@@ -76,4 +76,19 @@ class JarvisController extends Controller
 
         return Response::success($result);
     }
+
+    public function feed(Request $request)
+    {
+        $this->validate($request,[
+            'limit' => 'integer',
+            'page' => 'integer'
+        ]);
+
+       $posts =  Post::query()->simplePaginate(
+           perPage: $request->get('limit',15),
+           page: $request->get('page',1)
+       );
+
+       return Response::success($posts);
+    }
 }

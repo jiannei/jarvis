@@ -51,5 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('posts', [JarvisController::class, 'posts']);
 
         Route::get('crawl', [JarvisController::class, 'crawl']);
+
+        Route::get('feed',[JarvisController::class,'feed']);
     });
 });
