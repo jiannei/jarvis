@@ -84,7 +84,7 @@ class JarvisController extends Controller
             'page' => 'integer'
         ]);
 
-       $posts =  Post::query()->simplePaginate(
+       $posts =  Post::query()->orderBy('id')->simplePaginate(
            perPage: $request->get('limit',15),
            page: $request->get('page',1)
        );
