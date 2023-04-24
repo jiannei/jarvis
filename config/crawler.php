@@ -81,6 +81,7 @@ return [
                 'title' => ['title', 'text'],
                 'description' => ['description', 'text'],
                 'link' => ['link', 'text'],
+                'author' => ['author', 'text'],
                 'guid' => ['guid', 'text'],
                 'pubDate' => ['pubDate', 'text'],
             ],
