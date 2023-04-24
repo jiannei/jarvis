@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Github\TrendingDaily;
+use App\Models\Github\TrendingMonthly;
+use App\Models\Github\TrendingWeekly;
 use App\Models\Post;
 use App\Services\CrawlerService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -90,5 +94,28 @@ class JarvisController extends Controller
        );
 
        return Response::success($posts);
+    }
+
+    public function trending(Request $request, $type)
+    {
+        $this->validate($request, [
+            'period' => 'required',
+        ]);
+
+        $period = $request->get('period');
+
+        $trending = match ($type) {
+            'weekly' => TrendingWeekly::query()->orderBy('id')
+                ->where('week', $period)
+                ->get(),
+            'monthly' => TrendingMonthly::query()->orderBy('id')
+                ->where('month', $period)
+                ->get(),
+            default => TrendingDaily::query()->orderBy('id')
+                ->where('day', $period)
+                ->get(),
+        };
+
+        return Response::success($trending);
     }
 }

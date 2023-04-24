@@ -53,5 +53,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('crawl', [JarvisController::class, 'crawl']);
 
         Route::get('feed',[JarvisController::class,'feed']);
+
+        Route::get('trending/{type}',[JarvisController::class,'trending']);
     });
 });
