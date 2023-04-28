@@ -483,6 +483,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'cnblogs.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '更新「远程 work 招聘信息」',
+                'command' => 'app:crawl:remote-work',
+                'parameters' => '',
+                'expression' => '*/10 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'remote_work.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();
