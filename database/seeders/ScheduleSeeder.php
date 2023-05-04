@@ -483,6 +483,18 @@ class ScheduleSeeder extends Seeder
                 'output_file_path' => 'cnblogs.log',
                 'output_append' => true,
             ],
+            [
+                'description' => '更新 Github daily 每日趋势',
+                'command' => 'crawl:github:trending',
+                'parameters' => 'all',
+                'expression' => '*/30 * * * *',
+                'active' => true,
+                'timezone' => 'Asia/Shanghai',
+                'in_background' => true,
+                'in_maintenance_mode' => true,
+                'output_file_path' => 'github_trending.log',
+                'output_append' => true,
+            ],
         ];
 
         Schedule::truncate();
