@@ -28,7 +28,7 @@ class CrawlGiteeTrending implements ShouldQueue
      */
     public function handle(CrawlerService $service): void
     {
-       $result = $service->handleGitee()->only(['daily', 'weekly']);
+        $result = $service->handleGitee()->only(['daily', 'weekly']);
 
         foreach ($result['daily'] as $item) {
             $item['day'] = now()->format('Y-z');

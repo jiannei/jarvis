@@ -15,7 +15,7 @@ class DecoHack extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:decohack';
+    protected $signature = 'app:crawl:decohack';
 
     /**
      * The console command description.

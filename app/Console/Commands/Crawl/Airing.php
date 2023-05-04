@@ -3,10 +3,10 @@
 namespace App\Console\Commands\Crawl;
 
 use App\Events\CrawlFinished;
-use App\Services\RssService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class Airing extends Command
 {
@@ -15,7 +15,7 @@ class Airing extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:airing-weekly';
+    protected $signature = 'app:crawl:airing-weekly';
 
     /**
      * The console command description.
@@ -27,13 +27,13 @@ class Airing extends Command
     /**
      * Execute the console command.
      */
-    public function handle(RssService $service): void
+    public function handle(): void
     {
         $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
 
         Auth::loginUsingId(1);
 
-        $posts = $service->handleAiringWeekly();
+        $posts = Crawler::rss('https://weekly.ursb.me/index.xml');
 
         foreach ($posts['items'] as $post) {
             $this->comment('正在获取：'.$post['title']);

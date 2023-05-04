@@ -14,7 +14,7 @@ class LearnKu extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:learnku {community=laravel}';
+    protected $signature = 'app:crawl:learnku {community=laravel}';
 
     /**
      * The console command description.

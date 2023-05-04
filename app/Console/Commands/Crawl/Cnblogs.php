@@ -33,7 +33,6 @@ class Cnblogs extends Command
 
         Auth::loginUsingId(1);
 
-
         foreach ($this->routes() as $route) {
             $this->crawl($route);
         }

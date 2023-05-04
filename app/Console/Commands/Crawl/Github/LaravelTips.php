@@ -14,7 +14,7 @@ class LaravelTips extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:github:laravel-tips';
+    protected $signature = 'app:crawl:github:laravel-tips';
 
     /**
      * The console command description.

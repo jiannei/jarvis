@@ -3,10 +3,10 @@
 namespace App\Console\Commands\Crawl;
 
 use App\Events\CrawlFinished;
-use App\Services\RssService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class Zhihu extends Command
 {
@@ -15,7 +15,7 @@ class Zhihu extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:zhihu';
+    protected $signature = 'app:crawl:zhihu';
 
     /**
      * The console command description.
@@ -27,13 +27,13 @@ class Zhihu extends Command
     /**
      * Execute the console command.
      */
-    public function handle(RssService $service): void
+    public function handle(): void
     {
         $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
 
         Auth::onceUsingId(1);
 
-        $posts = $service->handleZhihu();
+        $posts = Crawler::rss('https://www.zhihu.com/rss');
 
         foreach ($posts['items'] as $post) {
             $this->comment('正在获取：'.$post['title']);

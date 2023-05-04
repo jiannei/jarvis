@@ -7,6 +7,7 @@ use App\Services\RssService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class Appinn extends Command
 {
@@ -15,7 +16,7 @@ class Appinn extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:appinn';
+    protected $signature = 'app:crawl:appinn';
 
     /**
      * The console command description.
@@ -33,7 +34,31 @@ class Appinn extends Command
 
         Auth::onceUsingId(1);
 
-        $posts = $service->handleAppinn();
+        $posts = Crawler::rss('https://feeds.appinn.com/appinns/', [
+            [
+                'alias' => 'channel',
+                'selector' => 'channel',
+                'rules' => [
+                    'title' => ['title', 'text'],
+                    'link' => ['link', 'text'],
+                    'description' => ['description', 'text'],
+                    'pubDate' => ['pubDate', 'text'],
+                ],
+            ],
+            [
+                'alias' => 'items',
+                'selector' => 'channel item',
+                'rules' => [
+                    'category' => ['category', 'text'],
+                    'title' => ['title', 'text'],
+                    'description' => ['content\:encoded', 'text'],
+                    'link' => ['link', 'text'],
+                    'author' => ["dc\:creator", 'text'],
+                    'guid' => ['guid', 'text'],
+                    'pubDate' => ['pubDate', 'text'],
+                ],
+            ],
+        ]);
 
         foreach ($posts['items'] as $post) {
             $this->comment('正在获取：'.$post['title']);

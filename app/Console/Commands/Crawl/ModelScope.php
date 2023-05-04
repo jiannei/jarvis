@@ -37,7 +37,7 @@ class ModelScope extends Command
 
         foreach ($posts['items'] as $post) {
             $title = $post['title'] ?? '';
-            if (!$title) {
+            if (! $title) {
                 continue;
             }
 

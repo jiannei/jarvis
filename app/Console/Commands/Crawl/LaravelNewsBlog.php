@@ -15,7 +15,7 @@ class LaravelNewsBlog extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:laravel-news:blog {mode=default} {--link=}';
+    protected $signature = 'app:crawl:laravel-news:blog {mode=default} {--link=}';
 
     /**
      * The console command description.

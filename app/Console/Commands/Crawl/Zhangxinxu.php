@@ -15,7 +15,7 @@ class Zhangxinxu extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:zxx';
+    protected $signature = 'app:crawl:zxx';
 
     /**
      * The console command description.

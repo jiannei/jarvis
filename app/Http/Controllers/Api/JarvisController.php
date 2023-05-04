@@ -8,7 +8,6 @@ use App\Models\Github\TrendingMonthly;
 use App\Models\Github\TrendingWeekly;
 use App\Models\Post;
 use App\Services\CrawlerService;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -83,17 +82,17 @@ class JarvisController extends Controller
 
     public function feed(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'limit' => 'integer',
-            'page' => 'integer'
+            'page' => 'integer',
         ]);
 
-       $posts =  Post::query()->orderBy('id')->simplePaginate(
-           perPage: $request->get('limit',15),
-           page: $request->get('page',1)
-       );
+        $posts = Post::query()->orderBy('id')->simplePaginate(
+            perPage: $request->get('limit', 15),
+            page: $request->get('page', 1)
+        );
 
-       return Response::success($posts);
+        return Response::success($posts);
     }
 
     public function trending(Request $request, $type)

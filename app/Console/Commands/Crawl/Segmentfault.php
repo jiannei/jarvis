@@ -33,7 +33,6 @@ class Segmentfault extends Command
 
         Auth::loginUsingId(1);
 
-
         foreach ($this->channels() as $channel) {
             $this->crawl($channel);
         }

@@ -17,7 +17,7 @@ class ScheduleSeeder extends Seeder
         $schedules = [
             [
                 'description' => '更新 Github daily 每日趋势',
-                'command' => 'crawl:github:trending',
+                'command' => 'app:crawl:github:trending',
                 'parameters' => 'all',
                 'expression' => '*/30 * * * *',
                 'active' => true,
@@ -29,7 +29,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 Github daily 每日趋势[中文区]',
-                'command' => 'crawl:github:trending',
+                'command' => 'app:crawl:github:trending',
                 'parameters' => 'all --spoken_language_code=zh',
                 'expression' => '*/30 * * * *',
                 'active' => true,
@@ -41,7 +41,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 Github daily 每周趋势',
-                'command' => 'crawl:github:trending',
+                'command' => 'app:crawl:github:trending',
                 'parameters' => 'all --since=weekly',
                 'expression' => '10 3 * * *',
                 'active' => true,
@@ -53,7 +53,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 Github daily 每周趋势[中文区]',
-                'command' => 'crawl:github:trending',
+                'command' => 'app:crawl:github:trending',
                 'parameters' => 'all --since=weekly --spoken_language_code=zh',
                 'expression' => '10 3 * * *',
                 'active' => true,
@@ -65,7 +65,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 Github daily 每月趋势',
-                'command' => 'crawl:github:trending',
+                'command' => 'app:crawl:github:trending',
                 'parameters' => 'all --since=monthly',
                 'expression' => '0 0 * * 5',
                 'active' => true,
@@ -77,7 +77,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 Github daily 每月趋势[中文区]',
-                'command' => 'crawl:github:trending',
+                'command' => 'app:crawl:github:trending',
                 'parameters' => 'all --since=monthly --spoken_language_code=zh',
                 'expression' => '0 0 * * 5',
                 'active' => true,
@@ -89,7 +89,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 laravel-news blog',
-                'command' => 'crawl:laravel-news:blog',
+                'command' => 'app:crawl:laravel-news:blog',
                 'parameters' => 'all',
                 'expression' => '0 3 * * *',
                 'active' => true,
@@ -101,7 +101,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新阮一峰科技爱好者周刊',
-                'command' => 'crawl:ruanyf:weekly',
+                'command' => 'app:crawl:ruanyf:weekly',
                 'parameters' => '',
                 'expression' => '0 10 * * 5',
                 'active' => true,
@@ -113,7 +113,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 v2ex',
-                'command' => 'crawl:v2ex',
+                'command' => 'app:crawl:v2ex',
                 'parameters' => '',
                 'expression' => '*/10 * * * *',
                 'active' => true,
@@ -125,7 +125,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 v2ex[热门]',
-                'command' => 'crawl:v2ex --tab=hot',
+                'command' => 'app:crawl:v2ex --tab=hot',
                 'parameters' => '',
                 'expression' => '*/10 * * * *',
                 'active' => true,
@@ -137,7 +137,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 LearnKu[laravel]',
-                'command' => 'crawl:learnku laravel',
+                'command' => 'app:crawl:learnku laravel',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
                 'active' => true,
@@ -149,7 +149,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 LearnKu[php]',
-                'command' => 'crawl:learnku php',
+                'command' => 'app:crawl:learnku php',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
                 'active' => true,
@@ -161,7 +161,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 LearnKu[go]',
-                'command' => 'crawl:learnku go',
+                'command' => 'app:crawl:learnku go',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
                 'active' => true,
@@ -173,7 +173,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新张鑫旭博客',
-                'command' => 'crawl:zxx',
+                'command' => 'app:crawl:zxx',
                 'parameters' => '',
                 'expression' => '0 0 * * *',
                 'active' => true,
@@ -185,7 +185,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新技术胖博客',
-                'command' => 'crawl:jsp',
+                'command' => 'app:crawl:jsp',
                 'parameters' => '',
                 'expression' => '0 0 * * *',
                 'active' => true,
@@ -197,7 +197,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 Github Releases',
-                'command' => 'crawl:github:release',
+                'command' => 'app:crawl:github:release',
                 'parameters' => '',
                 'expression' => '*/15 * * * *',
                 'active' => true,
@@ -209,7 +209,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 CXY521 导航[链接]',
-                'command' => 'crawl:cxy521',
+                'command' => 'app:crawl:cxy521',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
                 'active' => true,
@@ -221,7 +221,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 CXY521 导航[手册]',
-                'command' => 'crawl:cxy521 --page=manual',
+                'command' => 'app:crawl:cxy521 --page=manual',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
                 'active' => true,
@@ -233,7 +233,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 CXY521 导航[书籍]',
-                'command' => 'crawl:cxy521 --page=book',
+                'command' => 'app:crawl:cxy521 --page=book',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
                 'active' => true,
@@ -245,7 +245,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 laravel-tips',
-                'command' => 'crawl:github:laravel-tips',
+                'command' => 'app:crawl:github:laravel-tips',
                 'parameters' => '',
                 'expression' => '0 0 * * *',
                 'active' => true,
@@ -257,7 +257,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 Airing weekly',
-                'command' => 'crawl:airing-weekly',
+                'command' => 'app:crawl:airing-weekly',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
                 'active' => true,
@@ -269,7 +269,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 DechoHack 产品周刊',
-                'command' => 'crawl:decohack',
+                'command' => 'app:crawl:decohack',
                 'parameters' => '',
                 'expression' => '0 0 * * 0',
                 'active' => true,
@@ -281,7 +281,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 Packagist',
-                'command' => 'crawl:packagist',
+                'command' => 'app:crawl:packagist',
                 'parameters' => '',
                 'expression' => '*/10 * * * *',
                 'active' => true,
@@ -293,7 +293,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 少数派',
-                'command' => 'crawl:sspai',
+                'command' => 'app:crawl:sspai',
                 'parameters' => '',
                 'expression' => '0,30 * * * *',
                 'active' => true,
@@ -305,7 +305,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 开源中国',
-                'command' => 'crawl:oschina',
+                'command' => 'app:crawl:oschina',
                 'parameters' => '',
                 'expression' => '*/10 * * * *',
                 'active' => true,
@@ -317,7 +317,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 知乎每日精选',
-                'command' => 'crawl:zhihu',
+                'command' => 'app:crawl:zhihu',
                 'parameters' => '',
                 'expression' => '0 * * * *',
                 'active' => true,
@@ -329,7 +329,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 月光博客',
-                'command' => 'crawl:williamlong',
+                'command' => 'app:crawl:williamlong',
                 'parameters' => '',
                 'expression' => '*/10 * * * *',
                 'active' => true,
@@ -341,7 +341,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 小众软件',
-                'command' => 'crawl:appinn',
+                'command' => 'app:crawl:appinn',
                 'parameters' => '',
                 'expression' => '0 * * * *',
                 'active' => true,
@@ -353,7 +353,7 @@ class ScheduleSeeder extends Seeder
             ],
             [
                 'description' => '更新 异次元软件世界',
-                'command' => 'crawl:iplaysoft',
+                'command' => 'app:crawl:iplaysoft',
                 'parameters' => '',
                 'expression' => '*/10 * * * *',
                 'active' => true,

@@ -3,7 +3,6 @@
 namespace App\Console\Commands\Crawl;
 
 use App\Events\CrawlFinished;
-use App\Services\RssService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;

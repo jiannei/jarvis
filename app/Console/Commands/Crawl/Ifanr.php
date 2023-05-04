@@ -33,7 +33,7 @@ class Ifanr extends Command
 
         Auth::loginUsingId(1);
 
-        $posts = Crawler::rss('https://www.ifanr.com/feed',[
+        $posts = Crawler::rss('https://www.ifanr.com/feed', [
             [
                 'alias' => 'channel',
                 'selector' => 'channel',

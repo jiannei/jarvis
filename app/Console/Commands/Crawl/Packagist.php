@@ -3,10 +3,10 @@
 namespace App\Console\Commands\Crawl;
 
 use App\Events\CrawlFinished;
-use App\Services\RssService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class Packagist extends Command
 {
@@ -15,7 +15,7 @@ class Packagist extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:packagist';
+    protected $signature = 'app:crawl:packagist';
 
     /**
      * The console command description.
@@ -27,14 +27,14 @@ class Packagist extends Command
     /**
      * Execute the console command.
      */
-    public function handle(RssService $service): void
+    public function handle(): void
     {
         $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
 
         Auth::onceUsingId(1);
 
         // TODO 生成 daily?
-        $posts = $service->handlePackagist();
+        $posts = Crawler::rss('https://packagist.org/feeds/packages.rss');
 
         foreach ($posts['items'] as $post) {
             $this->comment('正在获取：'.$post['title']);

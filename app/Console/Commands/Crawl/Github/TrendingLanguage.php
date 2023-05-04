@@ -12,7 +12,7 @@ class TrendingLanguage extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:github:trending:language';
+    protected $signature = 'app:crawl:github:trending:language';
 
     /**
      * The console command description.

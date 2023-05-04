@@ -7,6 +7,7 @@ use App\Services\RssService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 
 class Sspai extends Command
 {
@@ -15,7 +16,7 @@ class Sspai extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:sspai';
+    protected $signature = 'app:crawl:sspai';
 
     /**
      * The console command description.
@@ -33,7 +34,7 @@ class Sspai extends Command
 
         Auth::onceUsingId(1);
 
-        $posts = $service->handleSspai();
+        $posts = Crawler::rss('https://sspai.com/feed');
 
         foreach ($posts['items'] as $post) {
             $this->comment('正在获取：'.$post['title']);

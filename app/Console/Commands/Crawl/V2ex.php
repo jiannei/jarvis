@@ -14,7 +14,7 @@ class V2ex extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:v2ex {--tab=}';
+    protected $signature = 'app:crawl:v2ex {--tab=}';
 
     /**
      * The console command description.
@@ -36,7 +36,7 @@ class V2ex extends Command
 
         $data = $service->handleCrawl('v2ex', ['tab' => $this->option('tab')]);
 
-//        try {
+        //        try {
         foreach ($data['posts'] ?? [] as $item) {
             $this->comment('正在获取：'.$item['title']);
 
@@ -45,9 +45,9 @@ class V2ex extends Command
 
             CrawlFinished::dispatch($topic, 'v2ex', 'markdown');
         }
-//        } catch (\Throwable $e) {
-//            $this->error("[{$this->description}]:执行异常 ".$e->getMessage());
-//        }
+        //        } catch (\Throwable $e) {
+        //            $this->error("[{$this->description}]:执行异常 ".$e->getMessage());
+        //        }
 
         $this->info("[{$this->description}]:执行结束 ".now()->format('Y-m-d H:i:s'));
 

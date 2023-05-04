@@ -14,7 +14,7 @@ class Eleduck extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:eleduck';
+    protected $signature = 'app:crawl:eleduck';
 
     /**
      * The console command description.
@@ -30,6 +30,7 @@ class Eleduck extends Command
     {
         Auth::loginUsingId(1);
 
+        // TODO
         $posts = $service->handleEleDuck();
 
         foreach ($posts['blogs'] as $item) {

@@ -33,7 +33,6 @@ class Juejin extends Command
 
         Auth::loginUsingId(1);
 
-
         foreach ($this->channels() as $channel) {
             $this->crawl($channel);
         }
@@ -46,7 +45,7 @@ class Juejin extends Command
     private function channels()
     {
         return [
-            'frontend', 'backend', 'ai', 'freebie','career','article'
+            'frontend', 'backend', 'ai', 'freebie', 'career', 'article',
         ];
     }
 

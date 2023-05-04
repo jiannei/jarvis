@@ -14,7 +14,7 @@ class Cxy521 extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:cxy521 {--page=index}';
+    protected $signature = 'app:crawl:cxy521 {--page=index}';
 
     /**
      * The console command description.

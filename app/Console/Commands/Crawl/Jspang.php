@@ -14,7 +14,7 @@ class Jspang extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:jspang';
+    protected $signature = 'app:crawl:jspang';
 
     /**
      * The console command description.

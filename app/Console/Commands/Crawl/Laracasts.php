@@ -13,7 +13,7 @@ class Laracasts extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:laracasts {menu}';
+    protected $signature = 'app:crawl:laracasts {menu}';
 
     /**
      * The console command description.

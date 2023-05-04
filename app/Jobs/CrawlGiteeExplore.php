@@ -28,19 +28,19 @@ class CrawlGiteeExplore implements ShouldQueue
      */
     public function handle(CrawlerService $service): void
     {
-       $result = $service->handleGitee($this->language)->only(['repos']);
+        $result = $service->handleGitee($this->language)->only(['repos']);
 
-       dump($result['repos']);
+        dump($result['repos']);
 
         foreach ($result['repos'] as $item) {
-           $data = [
-               'repo' => $item['repo']['link'],
-               'stars' => $item['repo']['stars'],
-               'desc' => $item['repo']['desc'],
-               'language' => $item['language'],
-               'category' => $item['category'],
-               'latest_updated_at' => Carbon::createFromTimestamp(strtotime($item['updated_at']))->format('Y-m-d H:i:s'),
-           ];
+            $data = [
+                'repo' => $item['repo']['link'],
+                'stars' => $item['repo']['stars'],
+                'desc' => $item['repo']['desc'],
+                'language' => $item['language'],
+                'category' => $item['category'],
+                'latest_updated_at' => Carbon::createFromTimestamp(strtotime($item['updated_at']))->format('Y-m-d H:i:s'),
+            ];
 
             Explore::updateOrCreate([
                 'repo' => $item['repo']['link'],

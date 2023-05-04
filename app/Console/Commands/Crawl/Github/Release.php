@@ -14,7 +14,7 @@ class Release extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:github:release';
+    protected $signature = 'app:crawl:github:release';
 
     /**
      * The console command description.

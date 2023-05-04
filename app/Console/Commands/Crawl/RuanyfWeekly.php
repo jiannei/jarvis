@@ -14,7 +14,7 @@ class RuanyfWeekly extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:ruanyf:weekly {mode=latest} {--period=}';
+    protected $signature = 'app:crawl:ruanyf:weekly {mode=latest} {--period=}';
 
     /**
      * The console command description.

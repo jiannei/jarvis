@@ -17,7 +17,7 @@ class Gitee extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl:gitee';
+    protected $signature = 'app:crawl:gitee';
 
     /**
      * The console command description.
@@ -57,9 +57,9 @@ class Gitee extends Command
             ], $item);
         }
 
-//        dd($result->get('repos'));
+        //        dd($result->get('repos'));
 
-//        dispatch(new CrawlGiteeTrending());
+        //        dispatch(new CrawlGiteeTrending());
 
         $bar = $this->output->createProgressBar(count($result->get('languages')));
         $bar->start();
