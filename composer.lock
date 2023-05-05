@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c67881d2388be6ed7a574cb43dac1da5",
+    "content-hash": "ffde83a42edb402b7dd173e34d494f73",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -1707,12 +1707,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jiannei/laravel-crawler.git",
-                "reference": "41b06033ea038eb683fffa769880263452de16fa"
+                "reference": "7a272e9e341f1afd40aab3106e34055d4dc840b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jiannei/laravel-crawler/zipball/41b06033ea038eb683fffa769880263452de16fa",
-                "reference": "41b06033ea038eb683fffa769880263452de16fa",
+                "url": "https://api.github.com/repos/jiannei/laravel-crawler/zipball/7a272e9e341f1afd40aab3106e34055d4dc840b1",
+                "reference": "7a272e9e341f1afd40aab3106e34055d4dc840b1",
                 "shasum": ""
             },
             "require": {
@@ -1762,7 +1762,7 @@
                 "issues": "https://github.com/jiannei/laravel-crawler/issues",
                 "source": "https://github.com/jiannei/laravel-crawler/tree/main"
             },
-            "time": "2023-05-04T06:39:21+00:00"
+            "time": "2023-05-05T08:05:19+00:00"
         },
         {
             "name": "jiannei/laravel-enum",
