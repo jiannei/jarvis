@@ -27,6 +27,7 @@
         "fakerphp/faker": "^1.21",
         "laravel/pint": "^1.4",
         "laravel/sail": "^1.18",
+        "laravel/telescope": "^4.14",
         "mockery/mockery": "^1.5.1",
         "nunomaduro/collision": "^6.4",
         "phpunit/phpunit": "^9.5.27",
@@ -68,7 +69,9 @@
             "dev-master": "10.x-dev"
         },
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "config": {
