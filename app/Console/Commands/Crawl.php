@@ -6,6 +6,7 @@ use App\Models\CrawlTask;
 use Cron\CronExpression;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
@@ -33,7 +34,10 @@ class Crawl extends Command implements Isolatable
     {
         $this->info("[{$this->description}]:执行开始 ".now()->format('Y-m-d H:i:s'));
 
-        $tasks = CrawlTask::query()->where('active', true)->where('next_run_date', '<=', Carbon::now())->get();
+        $tasks = CrawlTask::query()->where('active', true)->where(function (Builder $query) {
+            $query->where('next_run_date', '<=', Carbon::now())
+                ->orWhereNull('next_run_date');
+        })->get();
 
         $tasks->each(function ($task) {
             $this->comment('正在调度：'.$task->name);
