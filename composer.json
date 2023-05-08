@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^7.5",
         "jiannei/laravel-crawler": "dev-main",
         "jiannei/laravel-enum": "^3.0",
-        "jiannei/laravel-response": "^5.1.1",
+        "jiannei/laravel-response": "^5.2.0",
         "jiannei/laravel-schedule": "^2.0",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",

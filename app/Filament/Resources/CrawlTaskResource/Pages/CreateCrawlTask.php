@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\CrawlTaskResource\Pages;
 
 use App\Filament\Resources\CrawlTaskResource;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateCrawlTask extends CreateRecord
@@ -12,9 +11,8 @@ class CreateCrawlTask extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-       $data['pattern'] = json_decode($data['pattern'],true);
+        $data['pattern'] = json_decode($data['pattern'], true);
 
         return $data;
     }
-
 }

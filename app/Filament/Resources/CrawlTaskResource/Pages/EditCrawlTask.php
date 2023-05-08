@@ -19,14 +19,14 @@ class EditCrawlTask extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $data['pattern'] = json_encode($data['pattern'],JSON_PRETTY_PRINT);
+        $data['pattern'] = json_encode($data['pattern'], JSON_PRETTY_PRINT);
 
         return $data;
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $data['pattern'] = json_decode($data['pattern'],true);
+        $data['pattern'] = json_decode($data['pattern'], true);
 
         return $data;
     }

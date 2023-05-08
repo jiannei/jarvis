@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CrawlTaskResource\Pages;
-use App\Filament\Resources\CrawlTaskResource\RelationManagers;
 use App\Models\CrawlTask;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CrawlTaskResource extends Resource
 {
@@ -71,14 +68,14 @@ class CrawlTaskResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -86,5 +83,5 @@ class CrawlTaskResource extends Resource
             'create' => Pages\CreateCrawlTask::route('/create'),
             'edit' => Pages\EditCrawlTask::route('/{record}/edit'),
         ];
-    }    
+    }
 }

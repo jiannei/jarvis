@@ -3,17 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ScheduleResource\Pages;
-use App\Filament\Resources\ScheduleResource\RelationManagers;
 use App\Models\Schedule;
 use Cron\CronExpression;
-use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Columns\IconColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Carbon;
 
 class ScheduleResource extends Resource
@@ -58,20 +53,20 @@ class ScheduleResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListSchedules::route('/'),
-//            'create' => Pages\CreateSchedule::route('/create'),
-//            'edit' => Pages\EditSchedule::route('/{record}/edit'),
+            //            'create' => Pages\CreateSchedule::route('/create'),
+            //            'edit' => Pages\EditSchedule::route('/{record}/edit'),
         ];
     }
 
