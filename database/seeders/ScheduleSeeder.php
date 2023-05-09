@@ -19,7 +19,7 @@ class ScheduleSeeder extends Seeder
                 'description' => '执行爬取任务',
                 'command' => 'crawler:task',
                 'parameters' => '',
-                'expression' => '* * * * *',
+                'expression' => '*/5 * * * *',
                 'active' => true,
                 'timezone' => 'Asia/Shanghai',
                 'in_background' => true,
