@@ -26,7 +26,7 @@ class ActivityLog implements ShouldQueue
         private string $name = 'default'
     ) {
         //
-        $this->onQueue(QueueEnum::LOG);
+        $this->onQueue('log');
     }
 
     /**

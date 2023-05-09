@@ -22,7 +22,7 @@ class FeedUpdated extends Notification implements ShouldQueue
     public function __construct(private Post $post)
     {
         //
-        $this->onQueue(QueueEnum::NOTIFY);
+        $this->onQueue('notify');
     }
 
     /**

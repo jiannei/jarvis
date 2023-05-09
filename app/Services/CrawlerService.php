@@ -8,8 +8,6 @@ use App\Models\Github\TrendingDaily;
 use App\Models\Github\TrendingLanguage;
 use App\Models\Github\TrendingSpokenLanguage;
 use Carbon\CarbonInterface;
-use Facebook\WebDriver\WebDriverExpectedCondition;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -27,19 +25,19 @@ class CrawlerService extends Service implements ConsumeService
     {
         // 单个解析，不带 group
         return Crawler::pattern([
-            'url' => CrawlEnum::LARAVEL_NEWS."/{$link}",
+            'url' => "https://laravel-news.com/{$link}",
             'rules' => [
                 'title' => ['h1', 'text'],
                 'category.link' => [
                     'h1 + div a', 'href', null, function ($node, Stringable $val) {
-                        return $val->start(CrawlEnum::LARAVEL_NEWS);
+                        return $val->start('https://laravel-news.com/');
                     },
                 ],
                 'category.name' => ['h1 + div a', 'text'],
                 'author.name' => ["article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']", 'text'],
                 'author.homepage' => [
                     "article div:nth-of-type(2) div:nth-of-type(2) > div:last-child a[rel='author']", 'href', null, function ($node, Stringable $val) {
-                        return $val->start(CrawlEnum::LARAVEL_NEWS);
+                        return $val->start('https://laravel-news.com/');
                     },
                 ],
                 'author.intro' => ['article div:nth-of-type(2) div:nth-of-type(2) > div:last-child p:last-child', 'text'],
@@ -49,7 +47,7 @@ class CrawlerService extends Service implements ConsumeService
                         return Carbon::createFromTimestamp(strtotime($val))->format(CarbonInterface::DEFAULT_TO_STRING_FORMAT);
                     },
                 ],
-                'link' => CrawlEnum::LARAVEL_NEWS."/{$link}",
+                'link' => "https://laravel-news.com//{$link}",
             ],
         ]);
     }
@@ -112,23 +110,6 @@ class CrawlerService extends Service implements ConsumeService
         return compact('channel', 'items');
     }
 
-    public function handleIndependentBlogs()
-    {
-        $channel = [
-            'link' => 'https://github.com/timqian/chinese-independent-blogs',
-            'author' => 'https://github.com/timqian',
-        ];
-
-        $items = Crawler::json('github:independent-blogs', [], [
-            'headers' => [
-                'Accept' => 'application/vnd.github.html+json',
-                'Authorization' => 'Bearer '.Auth::user()->github_token,
-            ],
-        ])->all();
-
-        return compact('channel', 'items');
-    }
-
     public function handleV2exTopic($topicId)
     {
         $url = 'https://www.v2ex.com/api/v2/topics/'.$topicId;
@@ -183,142 +164,6 @@ class CrawlerService extends Service implements ConsumeService
         ];
     }
 
-    public function handleJspang()
-    {
-        // SSL certificate problem: unable to get local issuer certificate
-        $crawler = Crawler::fetch('https://jspang.com', null, ['verify' => false]);
-
-        // TODO filter selector => rules 对应的 json 文件配置，返回 collection
-        $blogs = $crawler->group('.blog-list .blog-item')->parse([
-            'title' => ['.item-title', 'text'],
-            'link' => ['.item-title a', 'href'],
-            'category' => ['.item-tag span', 'text', 1],
-            'publishDate' => ['.item-tag span', 'text', 0],
-            'views' => ['.item-tag span', 'text', 2],
-            'summary' => ['.item-desc', 'text'],
-        ])->all();
-
-        $videos = $crawler->group('.left-video-box li')->parse([
-            'link' => ['a', 'href'],
-            'cover' => ['.video-image img', 'src'],
-            'title' => ['.video-title', 'text'],
-        ])->all();
-
-        return compact('blogs', 'videos');
-    }
-
-    public function handleJspangPost($link)
-    {
-        $crawler = Crawler::fetch('https://jspang.com'.$link, null, ['verify' => false]);
-
-        $post = $crawler->group('.main-box')->parse([
-            'title' => ['.article-title h1', 'text'],
-            'category' => ['.remarks span b', 'text', 0],
-            'publishDate' => ['.remarks span b', 'text', 1],
-            'videos' => ['.remarks span b', 'text', 2],
-            'views' => ['.remarks span b', 'text', 3],
-            'time' => ['.remarks span b', 'text', 4],
-            'summary' => ['.introduce-html', 'text'],
-            'description' => ['.article-details', 'html'],
-        ])->first();
-
-        return [
-            'title' => $post['title'],
-            'link' => 'https://jspang.com'.$link,
-            'description' => $post['summary'].$post['description'],
-            'author' => [
-                'name' => 'JSPang',
-            ],
-            'category' => [
-                'name' => $post['category'],
-            ],
-            'publishDate' => $post['publishDate'],
-        ];
-    }
-
-    public function handleGithubStarred($query)
-    {
-        $repos = Http::withToken(Auth::user()->github_token)
-            ->withHeaders(['Accept' => 'application/vnd.github+json'])
-            ->throw()
-            ->get('https://api.github.com/user/starred', $query)
-            ->json();
-
-        return Arr::map($repos, function ($repo) {
-            return [
-                'owner' => $repo['owner']['login'],
-                'name' => $repo['name'],
-                'full_name' => $repo['full_name'],
-                'html_url' => $repo['html_url'],
-                'description' => $repo['description'],
-                'homepage' => $repo['homepage'],
-                'language' => $repo['language'],
-                'stargazers_count' => $repo['stargazers_count'],
-                'watchers_count' => $repo['watchers_count'],
-                'forks_count' => $repo['forks_count'],
-                'created_at' => Carbon::createFromTimestamp(strtotime($repo['created_at']))->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::createFromTimestamp(strtotime($repo['updated_at']))->format('Y-m-d H:i:s'),
-                'pushed_at' => Carbon::createFromTimestamp(strtotime($repo['pushed_at']))->format('Y-m-d H:i:s'),
-            ];
-        });
-    }
-
-    public function handleGithubRelease(string $owner, string $repo)
-    {
-        $releases = Http::withToken(Auth::user()->github_token)
-            ->withHeaders(['Accept' => 'application/vnd.github+json'])
-            ->throw()
-            ->get("https://api.github.com/repos/$owner/$repo/releases")
-            ->json();
-
-        return Arr::map($releases, function ($release) {
-            return [
-                'name' => $release['name'],
-                'body' => $release['body'],
-                'tag' => $release['tag_name'],
-                'created_at' => Carbon::createFromTimestamp(strtotime($release['created_at']))->format('Y-m-d H:i:s'),
-                'published_at' => Carbon::createFromTimestamp(strtotime($release['published_at']))->format('Y-m-d H:i:s'),
-            ];
-        });
-    }
-
-    public function handleCxy521(string $page = 'index')
-    {
-        $crawler = Crawler::fetch("https://www.cxy521.com/{$page}.html");
-
-        // TODO 列表套列表
-        $categories = $crawler->group('.main-content .indexbox:nth-of-type(n+2)')->parse([
-            'title' => ['.indexbox_title strong', 'text'],
-        ])->all();
-
-        $data = [];
-        foreach ($categories as $index => $category) {
-            $pos = 2 * ($index + 1) + 1;
-            $links = $crawler->group(".main-content .indexbox:nth-of-type({$pos}) li")->parse([
-                'icon' => ['img', 'src'],
-                'link' => ['a', 'href'],
-                'description' => ['p', 'text'],
-            ])->all();
-
-            foreach ($links as $key => $item) {
-                if (! $item['link']) {
-                    unset($links[$key]);
-
-                    continue;
-                }
-
-                $links[$key]['icon'] = 'https://www.cxy521.com'.trim($item['icon'], '.');
-            }
-
-            $data[$index] = [
-                'category' => $category['title'],
-                'links' => array_values($links),
-            ];
-        }
-
-        return $data;
-    }
-
     public function handleLaravelTips($owner = 'LaravelDaily', $repo = 'laravel-tips', $branch = 'master')
     {
         $tips = Http::throw()
@@ -336,48 +181,6 @@ class CrawlerService extends Service implements ConsumeService
                     ->get("https://api.github.com/repos/{$owner}/{$repo}/contents/{$tip['path']}")->body(),
             ];
         });
-    }
-
-    public function handleViggoDecoHack()
-    {
-        $crawler = Crawler::fetch('https://www.v2ex.com/member/ViggoZ/topics');
-
-        // TODO 自动分页
-        return $crawler->group('.item')->parse([
-            'title' => ['.topic-link', 'text'],
-            'link' => ['.topic-link', 'href'],
-            'node_name' => ['.node', 'text'],
-            'node_link' => ['.node', 'href'],
-            'member_name' => ['strong', 'text'],
-            'member_link' => ['strong a', 'href'],
-        ]);
-    }
-
-    public function handleLaracasts(string $menu)
-    {
-        $crawler = Crawler::chrome("https://laracasts.com/{$menu}", WebDriverExpectedCondition::titleIs('Laracasts Series'));
-
-        // 单个元素提取公共 selector，使用 filter
-        // TODO 单个元素中嵌套列表元素
-        $section1 = $crawler->filter('section:nth-of-type(1)')->parse([
-            'title' => ['header h3', 'text'],
-            'desc' => ['header p', 'text'],
-            'post.desc' => ['.featured-collection .content', 'text'],
-        ]);
-
-        // $section1Posts = $crawler->filter();
-
-        dd($section1);
-
-        $post = $crawler->group('.featured-collection')->parse([
-            'title' => ['h3 a', 'text'],
-            'link' => ['h3 a', 'href'],
-            'desc' => ['.content', 'text'],
-        ])->filter(function ($item) {
-            return $item['title'] && $item['link'];
-        })->values();
-
-        dd($header, $post);
     }
 
     public function handleCrawl(string $key, array $query = [])
@@ -416,7 +219,7 @@ class CrawlerService extends Service implements ConsumeService
 
     public function githubTrendingLanguage()
     {
-        return function (array $language){
+        return function (array $language) {
             TrendingLanguage::updateOrCreate(['code' => $language['code']], $language);
 
             return true;
@@ -435,9 +238,9 @@ class CrawlerService extends Service implements ConsumeService
 
     public function laravelNewsBlog()
     {
-       return function () {
-           return true;
-       };
+        return function () {
+            return true;
+        };
     }
 
     public function v2ex()
@@ -619,24 +422,24 @@ class CrawlerService extends Service implements ConsumeService
 
     public function ifanr()
     {
-       return function ($post) {
-           $topic = [
-               'title' => $post['title'],
-               'link' => $post['link'],
-               'description' => $post['description'],
-               'author' => [
-                   'name' => $post['author'] ?? 'ifanr',
-               ],
-               'category' => [
-                   'name' => 'ifanr',
-               ],
-               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-           ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'ifanr',
+                ],
+                'category' => [
+                    'name' => 'ifanr',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-           CrawlFinished::dispatch($topic, 'ifanr');
+            CrawlFinished::dispatch($topic, 'ifanr');
 
-           return true;
-       };
+            return true;
+        };
     }
 
     public function infoQ()
@@ -733,24 +536,24 @@ class CrawlerService extends Service implements ConsumeService
 
     public function oschina()
     {
-       return function ($post) {
-           $topic = [
-               'title' => $post['title'],
-               'link' => $post['link'],
-               'description' => $post['description'],
-               'author' => [
-                   'name' => 'oschina',
-               ],
-               'category' => [
-                   'name' => $post['category'] ?? 'news',
-               ],
-               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-           ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => 'oschina',
+                ],
+                'category' => [
+                    'name' => $post['category'] ?? 'news',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-           CrawlFinished::dispatch($topic, 'oschina', 'html');
+            CrawlFinished::dispatch($topic, 'oschina', 'html');
 
-           return true;
-       };
+            return true;
+        };
     }
 
     public function packages()
@@ -843,24 +646,24 @@ class CrawlerService extends Service implements ConsumeService
 
     public function testerhomeNewest()
     {
-       return function ($post) {
-           $topic = [
-               'title' => $post['title'],
-               'link' => $post['link'],
-               'description' => $post['description'],
-               'author' => [
-                   'name' => $post['author'] ?? 'TesterHome',
-               ],
-               'category' => [
-                   'name' => 'TesterHome',
-               ],
-               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-           ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'TesterHome',
+                ],
+                'category' => [
+                    'name' => 'TesterHome',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-           CrawlFinished::dispatch($topic, 'TesterHome');
+            CrawlFinished::dispatch($topic, 'TesterHome');
 
-           return true;
-       };
+            return true;
+        };
     }
 
     public function williamlong()
@@ -887,68 +690,68 @@ class CrawlerService extends Service implements ConsumeService
 
     public function zaozaoArticleQuality()
     {
-       return function ($post) {
-           $topic = [
-               'title' => $post['title'],
-               'link' => $post['link'],
-               'description' => $post['description'],
-               'author' => [
-                   'name' => $post['author'] ?? 'zaozao',
-               ],
-               'category' => [
-                   'name' => 'zaozao',
-               ],
-               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-           ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'zaozao',
+                ],
+                'category' => [
+                    'name' => 'zaozao',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-           CrawlFinished::dispatch($topic, 'zaozao');
+            CrawlFinished::dispatch($topic, 'zaozao');
 
-           return true;
-       };
+            return true;
+        };
     }
 
     public function zxxBlog()
     {
-       return function ($blog) {
-           $topic = [
-               'title' => $blog['title'],
-               'link' => $blog['link'],
-               'description' => $blog['description'],
-               'author' => [
-                   'name' => '张鑫旭',
-               ],
-               'category' => [
-                   'name' => $blog['category'],
-               ],
-               'publishDate' => Carbon::createFromTimestamp(strtotime($blog['pubDate']))->format('Y-m-d H:i:s'),
-           ];
+        return function ($blog) {
+            $topic = [
+                'title' => $blog['title'],
+                'link' => $blog['link'],
+                'description' => $blog['description'],
+                'author' => [
+                    'name' => '张鑫旭',
+                ],
+                'category' => [
+                    'name' => $blog['category'],
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($blog['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-           CrawlFinished::dispatch($topic, 'zhangxinxu', 'html');
+            CrawlFinished::dispatch($topic, 'zhangxinxu', 'html');
 
-           return true;
-       };
+            return true;
+        };
     }
 
     public function zhihu()
     {
-       return function ($post) {
-           $topic = [
-               'title' => $post['title'],
-               'link' => $post['link'],
-               'description' => $post['description'],
-               'author' => [
-                   'name' => 'zhihu',
-               ],
-               'category' => [
-                   'name' => $post['category'] ?? 'daily',
-               ],
-               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-           ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => 'zhihu',
+                ],
+                'category' => [
+                    'name' => $post['category'] ?? 'daily',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-           CrawlFinished::dispatch($topic, 'zhihu', 'html');
+            CrawlFinished::dispatch($topic, 'zhihu', 'html');
 
-           return true;
-       };
+            return true;
+        };
     }
 
     public function learnKu()
