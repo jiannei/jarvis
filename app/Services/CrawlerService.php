@@ -17,9 +17,12 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Jiannei\LaravelCrawler\Contracts\ConsumeService;
 use Jiannei\LaravelCrawler\Support\Facades\Crawler;
+use Jiannei\LaravelCrawler\Support\Traits\Consumable;
 
 class CrawlerService extends Service implements ConsumeService
 {
+    use Consumable;
+
     public function handleLaravelNewsBlog($link): array
     {
         // 单个解析，不带 group
@@ -144,22 +147,6 @@ class CrawlerService extends Service implements ConsumeService
             ],
             'publishDate' => Carbon::createFromTimestamp($topic['result']['created'])->format('Y-m-d H:i:s'),
         ];
-    }
-
-    public function handleLearnKu(string $community)
-    {
-        $crawler = Crawler::fetch('https://learnku.com/'.$community);
-
-        return $crawler->group('.topic-list .simple-topic')->parse([
-            'avatar' => ['.user-avatar img', 'src'],
-            'category' => ['.category-name', 'text'],
-            'title' => ['.topic-title', 'text'],
-            'link' => ['.user-avatar a', 'href'],
-            'replies' => ['.count_of_replies', 'text'],
-            'updated_at' => ['.timeago', 'title'],
-        ])->filter(function ($topic) {
-            return ! in_array($topic['category'], ['置顶', '广告']);
-        })->values();
     }
 
     public function handleLearnKuTopic($topicUrl)
@@ -405,548 +392,577 @@ class CrawlerService extends Service implements ConsumeService
         })->json('gitee');
     }
 
-    public function githubTrending(array $content)
+    public function githubTrending()
     {
-        $content['stars'] = Str::remove(',', $content['stars']);
-        $content['forks'] = Str::remove(',', $content['forks']);
-        $content['added_stars'] = Str::remove([
-            ',',
-            ' star today', ' stars today',
-            ' star this week', 'stars this week',
-            ' star this month', 'stars this month',
-        ], $content['added_stars']);
-        $content['day'] = now()->format('Y-z');
+        return function ($content) {
+            $content['stars'] = Str::remove(',', $content['stars']);
+            $content['forks'] = Str::remove(',', $content['forks']);
+            $content['added_stars'] = Str::remove([
+                ',',
+                ' star today', ' stars today',
+                ' star this week', 'stars this week',
+                ' star this month', 'stars this month',
+            ], $content['added_stars']);
+            $content['day'] = now()->format('Y-z');
 
-        TrendingDaily::query()->updateOrCreate([
-            'day' => $content['day'],
-            'repo' => $content['repo'],
-        ], $content);
+            TrendingDaily::query()->updateOrCreate([
+                'day' => $content['day'],
+                'repo' => $content['repo'],
+            ], $content);
+
+            return true;
+        };
     }
 
-    public function githubTrendingLanguage(array $language)
+    public function githubTrendingLanguage()
     {
-        TrendingLanguage::updateOrCreate(['code' => $language['code']], $language);
+        return function (array $language){
+            TrendingLanguage::updateOrCreate(['code' => $language['code']], $language);
+
+            return true;
+        };
+
     }
 
-    public function githubTrendingSpokenLanguage(array $spokenLanguage)
+    public function githubTrendingSpokenLanguage()
     {
-        TrendingSpokenLanguage::updateOrCreate(['code' => $spokenLanguage['code']], $spokenLanguage);
+        return function ($spokenLanguage) {
+            TrendingSpokenLanguage::updateOrCreate(['code' => $spokenLanguage['code']], $spokenLanguage);
+
+            return true;
+        };
     }
 
-    public function laravelNewsBlog(array $content)
+    public function laravelNewsBlog()
     {
-        return true;
+       return function () {
+           return true;
+       };
     }
 
-    public function v2ex(array $content)
+    public function v2ex()
     {
-        $topicId = explode('#', explode('/', $content['link'])[2])[0];
-        $topic = $this->handleV2exTopic($topicId);
+        return function ($content) {
+            $topicId = explode('#', explode('/', $content['link'])[2])[0];
+            $topic = $this->handleV2exTopic($topicId);
 
-        CrawlFinished::dispatch($topic, 'v2ex', 'markdown');
+            CrawlFinished::dispatch($topic, 'v2ex', 'markdown');
+
+            return true;
+        };
     }
 
-    public function gitee(array $content)
+    public function gitee()
     {
-        return [];
+        return function () {
+            return true;
+        };
     }
 
-    public function airingWeekly(array $content)
+    public function airingWeekly()
     {
-        $topic = [
-            'title' => $content['title'],
-            'link' => $content['link'],
-            'description' => $content['description'],
-            'author' => [
-                'name' => 'airing',
-            ],
-            'category' => [
-                'name' => $content['category'] ?? 'weekly',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($content['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+        return function ($content) {
+            $topic = [
+                'title' => $content['title'],
+                'link' => $content['link'],
+                'description' => $content['description'],
+                'author' => [
+                    'name' => 'airing',
+                ],
+                'category' => [
+                    'name' => $content['category'] ?? 'weekly',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($content['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-        CrawlFinished::dispatch($topic, 'airing', 'html');
+            CrawlFinished::dispatch($topic, 'airing', 'html');
+
+            return true;
+        };
     }
 
-    public function appinn(array $post)
+    public function appinn()
     {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => 'appinn',
-            ],
-            'category' => [
-                'name' => $post['category'] ?? 'daily',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => 'appinn',
+                ],
+                'category' => [
+                    'name' => $post['category'] ?? 'daily',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-        CrawlFinished::dispatch($topic, 'appinn', 'html');
+            CrawlFinished::dispatch($topic, 'appinn', 'html');
+
+            return true;
+        };
     }
 
-    public function blogRead(array $post)
+    public function blogRead()
     {
-        if (! $post['title']) {
-            throw new \RuntimeException('blogRead missing title');
-        }
+        return function ($post) {
+            if (! $post['title']) {
+                throw new \RuntimeException('blogRead missing title');
+            }
 
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'BlogRead',
-            ],
-            'category' => [
-                'name' => 'BlogRead',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'BlogRead',
+                ],
+                'category' => [
+                    'name' => 'BlogRead',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-        CrawlFinished::dispatch($topic, 'BlogRead');
+            CrawlFinished::dispatch($topic, 'BlogRead');
+
+            return true;
+        };
     }
 
-    private function cnblogs(array $post)
+    public function cnblogs()
     {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'cnblogs',
-            ],
-            'category' => [
-                'name' => 'cnblogs',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'cnblogs',
+                ],
+                'category' => [
+                    'name' => 'cnblogs',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-        CrawlFinished::dispatch($topic, 'cnblogs');
+            CrawlFinished::dispatch($topic, 'cnblogs');
+
+            return true;
+        };
     }
 
-    public function cnblogsAggsiteTopdiggs(array $content)
+    public function gitBook()
     {
-        $this->cnblogs($content);
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'gitbook',
+                ],
+                'category' => [
+                    'name' => 'gitbook',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
+
+            CrawlFinished::dispatch($topic, 'gitbook');
+
+            return true;
+        };
     }
 
-    public function cnblogsAggsiteTopviews(array $content)
+    public function helloGithub()
     {
-        $this->cnblogs($content);
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'hellogithub',
+                ],
+                'category' => [
+                    'name' => 'hellogithub',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
+
+            CrawlFinished::dispatch($topic, 'hellogithub');
+
+            return true;
+        };
     }
 
-    public function cnblogsAggsiteHeadline(array $content)
+    public function huxiu()
     {
-        $this->cnblogs($content);
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'huxiu',
+                ],
+                'category' => [
+                    'name' => 'huxiu',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
+
+            CrawlFinished::dispatch($topic, 'huxiu');
+
+            return true;
+        };
     }
 
-    public function cnblogsCateGo(array $content)
+    public function ifanr()
     {
-        $this->cnblogs($content);
+       return function ($post) {
+           $topic = [
+               'title' => $post['title'],
+               'link' => $post['link'],
+               'description' => $post['description'],
+               'author' => [
+                   'name' => $post['author'] ?? 'ifanr',
+               ],
+               'category' => [
+                   'name' => 'ifanr',
+               ],
+               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+           ];
+
+           CrawlFinished::dispatch($topic, 'ifanr');
+
+           return true;
+       };
     }
 
-    public function cnblogsCatePhp(array $content)
+    public function infoQ()
     {
-        $this->cnblogs($content);
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'infoq',
+                ],
+                'category' => [
+                    'name' => 'infoq',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
+
+            CrawlFinished::dispatch($topic, 'infoq');
+
+            return true;
+        };
     }
 
-    public function cnblogsCateVue(array $content)
+    public function iplaysoft()
     {
-        $this->cnblogs($content);
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => 'iplaysoft',
+                ],
+                'category' => [
+                    'name' => $post['category'] ?? 'iplaysoft',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
+
+            CrawlFinished::dispatch($topic, 'iplaysoft', 'markdown');
+
+            return true;
+        };
     }
 
-    public function cnblogsCateJavascript(array $content)
+    public function juejin()
     {
-        $this->cnblogs($content);
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'juejin',
+                ],
+                'category' => [
+                    'name' => 'juejin',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
+
+            CrawlFinished::dispatch($topic, 'juejin');
+
+            return true;
+        };
     }
 
-    public function cnblogsCateReact(array $content)
+    public function modelscopeDatasets()
     {
-        $this->cnblogs($content);
+        return function ($post) {
+            if (! $post['title']) {
+                throw new \RuntimeException('blogRead missing title');
+            }
+
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'ModelScope',
+                ],
+                'category' => [
+                    'name' => 'ModelScope',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
+
+            CrawlFinished::dispatch($topic, 'ModelScope');
+
+            return true;
+        };
     }
 
-    public function cnblogsPick(array $content)
+    public function oschina()
     {
-        $this->cnblogs($content);
+       return function ($post) {
+           $topic = [
+               'title' => $post['title'],
+               'link' => $post['link'],
+               'description' => $post['description'],
+               'author' => [
+                   'name' => 'oschina',
+               ],
+               'category' => [
+                   'name' => $post['category'] ?? 'news',
+               ],
+               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+           ];
+
+           CrawlFinished::dispatch($topic, 'oschina', 'html');
+
+           return true;
+       };
     }
 
-    public function gitBook(array $post)
+    public function packages()
     {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'gitbook',
-            ],
-            'category' => [
-                'name' => 'gitbook',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+        return function ($post) {
+            $topic = [
+                'title' => 'packagist: '.$post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => 'packagist',
+                ],
+                'category' => [
+                    'name' => $post['category'] ?? 'daily',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-        CrawlFinished::dispatch($topic, 'gitbook');
+            CrawlFinished::dispatch($topic, 'packagist', 'html');
+
+            return true;
+        };
     }
 
-    public function helloGithub(array $post)
+    public function segmentfault()
     {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'hellogithub',
-            ],
-            'category' => [
-                'name' => 'hellogithub',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'segmentfault',
+                ],
+                'category' => [
+                    'name' => 'segmentfault',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-        CrawlFinished::dispatch($topic, 'hellogithub');
+            CrawlFinished::dispatch($topic, 'segmentfault');
+
+            return true;
+        };
     }
 
-    public function huxiu(array $post)
+    public function sspai()
     {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'huxiu',
-            ],
-            'category' => [
-                'name' => 'huxiu',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => 'sspai',
+                ],
+                'category' => [
+                    'name' => $post['category'] ?? 'daily',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-        CrawlFinished::dispatch($topic, 'huxiu');
+            CrawlFinished::dispatch($topic, 'sspai', 'html');
+
+            return true;
+        };
     }
 
-    public function ifanr(array $post)
+    public function studygolangGoDaily()
     {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'ifanr',
-            ],
-            'category' => [
-                'name' => 'ifanr',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => $post['author'] ?? 'studygolang',
+                ],
+                'category' => [
+                    'name' => 'studygolang',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-        CrawlFinished::dispatch($topic, 'ifanr');
+            CrawlFinished::dispatch($topic, 'studygolang');
+
+            return true;
+        };
     }
 
-    public function infoQ(array $post)
+    public function testerhomeNewest()
     {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'infoq',
-            ],
-            'category' => [
-                'name' => 'infoq',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+       return function ($post) {
+           $topic = [
+               'title' => $post['title'],
+               'link' => $post['link'],
+               'description' => $post['description'],
+               'author' => [
+                   'name' => $post['author'] ?? 'TesterHome',
+               ],
+               'category' => [
+                   'name' => 'TesterHome',
+               ],
+               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+           ];
 
-        CrawlFinished::dispatch($topic, 'infoq');
+           CrawlFinished::dispatch($topic, 'TesterHome');
+
+           return true;
+       };
     }
 
-    public function iplaysoft(array $post)
+    public function williamlong()
     {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => 'iplaysoft',
-            ],
-            'category' => [
-                'name' => $post['category'] ?? 'iplaysoft',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+        return function ($post) {
+            $topic = [
+                'title' => $post['title'],
+                'link' => $post['link'],
+                'description' => $post['description'],
+                'author' => [
+                    'name' => 'williamlong',
+                ],
+                'category' => [
+                    'name' => $post['category'] ?? 'daily',
+                ],
+                'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+            ];
 
-        CrawlFinished::dispatch($topic, 'iplaysoft', 'markdown');
+            CrawlFinished::dispatch($topic, 'williamlong', 'html');
+
+            return true;
+        };
     }
 
-    private function juejin(array $post)
+    public function zaozaoArticleQuality()
     {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'juejin',
-            ],
-            'category' => [
-                'name' => 'juejin',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
+       return function ($post) {
+           $topic = [
+               'title' => $post['title'],
+               'link' => $post['link'],
+               'description' => $post['description'],
+               'author' => [
+                   'name' => $post['author'] ?? 'zaozao',
+               ],
+               'category' => [
+                   'name' => 'zaozao',
+               ],
+               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+           ];
 
-        CrawlFinished::dispatch($topic, 'juejin');
+           CrawlFinished::dispatch($topic, 'zaozao');
+
+           return true;
+       };
     }
 
-    public function juejinCategoryFrontend(array $content)
+    public function zxxBlog()
     {
-        $this->juejin($content);
+       return function ($blog) {
+           $topic = [
+               'title' => $blog['title'],
+               'link' => $blog['link'],
+               'description' => $blog['description'],
+               'author' => [
+                   'name' => '张鑫旭',
+               ],
+               'category' => [
+                   'name' => $blog['category'],
+               ],
+               'publishDate' => Carbon::createFromTimestamp(strtotime($blog['pubDate']))->format('Y-m-d H:i:s'),
+           ];
+
+           CrawlFinished::dispatch($topic, 'zhangxinxu', 'html');
+
+           return true;
+       };
     }
 
-    public function juejinCategoryBackend(array $content)
+    public function zhihu()
     {
-        $this->juejin($content);
+       return function ($post) {
+           $topic = [
+               'title' => $post['title'],
+               'link' => $post['link'],
+               'description' => $post['description'],
+               'author' => [
+                   'name' => 'zhihu',
+               ],
+               'category' => [
+                   'name' => $post['category'] ?? 'daily',
+               ],
+               'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
+           ];
+
+           CrawlFinished::dispatch($topic, 'zhihu', 'html');
+
+           return true;
+       };
     }
 
-    public function juejinCategoryAi(array $content)
+    public function learnKu()
     {
-        $this->juejin($content);
-    }
+        return function ($content) {
+            if (in_array($content['category'], ['置顶', '广告'])) {
+                return false;
+            }
 
-    public function juejinCategoryFreebie(array $content)
-    {
-        $this->juejin($content);
-    }
+            $topic = $this->handleLearnKuTopic($content['link']);
 
-    public function juejinCategoryCareer(array $content)
-    {
-        $this->juejin($content);
-    }
+            CrawlFinished::dispatch($topic, 'learnku', 'html');
 
-    public function juejinCategoryArticle(array $content)
-    {
-        $this->juejin($content);
-    }
-
-    public function modelscopeDatasets(array $post)
-    {
-        if (! $post['title']) {
-            throw new \RuntimeException('blogRead missing title');
-        }
-
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'ModelScope',
-            ],
-            'category' => [
-                'name' => 'ModelScope',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'ModelScope');
-    }
-
-    public function oschina(array $post)
-    {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => 'oschina',
-            ],
-            'category' => [
-                'name' => $post['category'] ?? 'news',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'oschina', 'html');
-    }
-
-    public function packages(array $post)
-    {
-        $topic = [
-            'title' => 'packagist: '.$post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => 'packagist',
-            ],
-            'category' => [
-                'name' => $post['category'] ?? 'daily',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'packagist', 'html');
-    }
-
-    private function segmentfault($post)
-    {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'segmentfault',
-            ],
-            'category' => [
-                'name' => 'segmentfault',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'segmentfault');
-    }
-
-    public function segmentfaultChannelFrontend(array $post)
-    {
-        $this->segmentfault($post);
-    }
-
-    public function segmentfaultChannelBackend(array $post)
-    {
-        $this->segmentfault($post);
-    }
-
-    public function segmentfaultChannelMiniprogram(array $post)
-    {
-        $this->segmentfault($post);
-    }
-
-    public function segmentfaultChannelToolkit(array $post)
-    {
-        $this->segmentfault($post);
-    }
-
-    public function sspai(array $post)
-    {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => 'sspai',
-            ],
-            'category' => [
-                'name' => $post['category'] ?? 'daily',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'sspai', 'html');
-    }
-
-    public function studygolangGoDaily(array $post)
-    {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'studygolang',
-            ],
-            'category' => [
-                'name' => 'studygolang',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'studygolang');
-    }
-
-    public function testerhomeNewest(array $post)
-    {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'TesterHome',
-            ],
-            'category' => [
-                'name' => 'TesterHome',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'TesterHome');
-    }
-
-    public function williamlong(array $post)
-    {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => 'williamlong',
-            ],
-            'category' => [
-                'name' => $post['category'] ?? 'daily',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'williamlong', 'html');
-    }
-
-    public function zaozaoArticleQuality(array $post)
-    {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => $post['author'] ?? 'zaozao',
-            ],
-            'category' => [
-                'name' => 'zaozao',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'zaozao');
-    }
-
-    public function zxxBlog(array $blog)
-    {
-        $topic = [
-            'title' => $blog['title'],
-            'link' => $blog['link'],
-            'description' => $blog['description'],
-            'author' => [
-                'name' => '张鑫旭',
-            ],
-            'category' => [
-                'name' => $blog['category'],
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($blog['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'zhangxinxu', 'html');
-    }
-
-    public function zhihu(array $post)
-    {
-        $topic = [
-            'title' => $post['title'],
-            'link' => $post['link'],
-            'description' => $post['description'],
-            'author' => [
-                'name' => 'zhihu',
-            ],
-            'category' => [
-                'name' => $post['category'] ?? 'daily',
-            ],
-            'publishDate' => Carbon::createFromTimestamp(strtotime($post['pubDate']))->format('Y-m-d H:i:s'),
-        ];
-
-        CrawlFinished::dispatch($topic, 'zhihu', 'html');
+            return true;
+        };
     }
 }

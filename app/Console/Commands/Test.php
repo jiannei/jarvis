@@ -28,9 +28,11 @@ class Test extends Command
     {
         $this->info("[{$this->description}]:开始 ".now()->format('Y-m-d H:i:s'));
 
-        $tmp = Crawler::json('cnblogs-aggsite-headline');
 
-        dd($tmp);
+        $posts = Crawler::json('learnku-laravel');
+
+        dd($posts);
+
 
         $this->info("[{$this->description}]:结束 ".now()->format('Y-m-d H:i:s'));
     }

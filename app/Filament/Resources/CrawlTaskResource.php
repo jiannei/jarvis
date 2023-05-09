@@ -49,9 +49,9 @@ class CrawlTaskResource extends Resource
                     'success' => static fn ($state): bool => $state === '成功',
                     'danger' => static fn ($state): bool => $state === '失败',
                 ]),
-                Tables\Columns\TextColumn::make('previous_run_date')
+                Tables\Columns\TextColumn::make('previous_run_date')->sortable()
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('next_run_date')
+                Tables\Columns\TextColumn::make('next_run_date')->sortable()
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),

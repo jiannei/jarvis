@@ -3,6 +3,7 @@
         "key": "github-trending",
         "url": "https://github.com/trending",
         "expression": "*/30 * * * *",
+        "consume": "githubTrending",
         "query": [],
         "group": {
             "selector": "article",
@@ -38,6 +39,7 @@
         "key": "github-trending-language",
         "url": "https://github.com/trending",
         "expression": "0 10 * * 5",
+        "consume": "githubTrendingLanguage",
         "group": {
             "selector": "#languages-menuitems a[role='menuitemradio']",
             "rules": {
@@ -55,6 +57,7 @@
     {
         "key": "github-trending-spokenLanguage",
         "url": "https://github.com/trending",
+        "consume": "githubTrendingSpokenLanguage",
         "expression": "0 10 * * 5",
         "group": {
             "selector": "div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']",
@@ -74,6 +77,7 @@
         "key": "laravelNews-blog",
         "url": "https://laravel-news.com/blog",
         "expression": "0 3 * * *",
+        "consume": "laravelNewsBlog",
         "group": {
             "selector": "main > div:last-child > ul > li:nth-of-type(n+2)",
             "rules": {
@@ -100,6 +104,7 @@
         "key": "github-independentBlogs",
         "url": "https://api.github.com/repos/timqian/chinese-independent-blogs/readme",
         "expression": "0 3 * * *",
+        "consume": "laravelNewsBlog",
         "group": {
             "selector": "table tbody tr",
             "rules": {
@@ -122,6 +127,7 @@
         "key": "v2ex",
         "url": "https://www.v2ex.com/",
         "expression": "*/10 * * * *",
+        "consume": "v2ex",
         "group": {
             "selector": "div .item table",
             "rules": {
@@ -164,6 +170,7 @@
         "key": "gitee",
         "url": "https://gitee.com/{explore}",
         "expression": "*/10 * * * *",
+        "consume": "gitee",
         "group": [
             {
                 "alias": "categories",
@@ -285,6 +292,7 @@
         "key": "airing-weekly",
         "url": "https://weekly.ursb.me/index.xml",
         "expression": "0 10 * * 5",
+        "consume": "airingWeekly",
         "query": [],
         "group": {
             "alias": "items",
@@ -325,6 +333,7 @@
         "key": "appinn",
         "url": "https://feeds.appinn.com/appinns/",
         "expression": "0 3 * * *",
+        "consume": "appinn",
         "query": [],
         "group": {
             "alias": "items",
@@ -365,6 +374,7 @@
         "key": "blog-read",
         "url": "https://rsshub.app/blogread/newest",
         "expression": "0 3 * * *",
+        "consume": "blogRead",
         "query": [],
         "group": {
             "alias": "items",
@@ -405,6 +415,7 @@
         "key": "cnblogs-aggsite-topdiggs",
         "url": "https://rsshub.app/cnblogs/aggsite/topdiggs",
         "expression": "*/30 * * * *",
+        "consume": "cnblogs",
         "query": [],
         "group": {
             "alias": "items",
@@ -445,6 +456,7 @@
         "key": "cnblogs-aggsite-topviews",
         "url": "https://rsshub.app/cnblogs/aggsite/topviews",
         "expression": "*/30 * * * *",
+        "consume": "cnblogs",
         "query": [],
         "group": {
             "alias": "items",
@@ -485,6 +497,7 @@
         "key": "cnblogs-aggsite-headline",
         "url": "https://rsshub.app/cnblogs/aggsite/headline",
         "expression": "*/30 * * * *",
+        "consume": "cnblogs",
         "query": [],
         "group": {
             "alias": "items",
@@ -525,6 +538,7 @@
         "key": "cnblogs-cate-go",
         "url": "https://rsshub.app/cnblogs/cate/go",
         "expression": "*/30 * * * *",
+        "consume": "cnblogs",
         "query": [],
         "group": {
             "alias": "items",
@@ -565,6 +579,7 @@
         "key": "cnblogs-cate-php",
         "url": "https://rsshub.app/cnblogs/cate/php",
         "expression": "*/30 * * * *",
+        "consume": "cnblogs",
         "query": [],
         "group": {
             "alias": "items",
@@ -605,6 +620,7 @@
         "key": "cnblogs-cate-vue",
         "url": "https://rsshub.app/cnblogs/cate/vue",
         "expression": "*/30 * * * *",
+        "consume": "cnblogs",
         "query": [],
         "group": {
             "alias": "items",
@@ -645,6 +661,7 @@
         "key": "cnblogs-cate-javascript",
         "url": "https://rsshub.app/cnblogs/cate/javascript",
         "expression": "*/30 * * * *",
+        "consume": "cnblogs",
         "query": [],
         "group": {
             "alias": "items",
@@ -685,6 +702,7 @@
         "key": "cnblogs-cate-react",
         "url": "https://rsshub.app/cnblogs/cate/react",
         "expression": "*/30 * * * *",
+        "consume": "cnblogs",
         "query": [],
         "group": {
             "alias": "items",
@@ -725,6 +743,7 @@
         "key": "cnblogs-pick",
         "url": "https://rsshub.app/cnblogs/pick",
         "expression": "*/30 * * * *",
+        "consume": "cnblogs",
         "query": [],
         "group":{
             "alias": "items",
@@ -765,6 +784,7 @@
         "key": "git-book",
         "url": "https://rsshub.app/gitchat/newest",
         "expression": "*/30 * * * *",
+        "consume": "gitBook",
         "query": [],
         "group": {
             "alias": "items",
@@ -805,6 +825,7 @@
         "key": "hello-github",
         "url": "https://rsshub.app/hellogithub/hot",
         "expression": "*/20 * * * *",
+        "consume": "helloGithub",
         "query": [],
         "group": {
             "alias": "items",
@@ -845,6 +866,7 @@
         "key": "huxiu",
         "url": "https://rss.huxiu.com/",
         "expression": "*/30 * * * *",
+        "consume": "huxiu",
         "query": [],
         "group": {
             "alias": "items",
@@ -885,6 +907,7 @@
         "key": "ifanr",
         "url": "https://www.ifanr.com/feed",
         "expression": "*/30 * * * *",
+        "consume": "ifanr",
         "query": [],
         "group": {
             "alias": "items",
@@ -925,6 +948,7 @@
         "key": "info-q",
         "url": "https://rsshub.app/infoq/recommend",
         "expression": "*/30 * * * *",
+        "consume": "infoQ",
         "query": [],
         "group": {
             "alias": "items",
@@ -965,6 +989,7 @@
         "key": "iplaysoft",
         "url": "https://feed.iplaysoft.com/",
         "expression": "*/30 * * * *",
+        "consume": "iplaysoft",
         "query": [],
         "group": {
             "alias": "items",
@@ -1005,6 +1030,7 @@
         "key": "juejin-category-frontend",
         "url": "https://rsshub.app/juejin/category/frontend",
         "expression": "*/30 * * * *",
+        "consume": "juejin",
         "query": [],
         "group": {
             "alias": "items",
@@ -1045,6 +1071,7 @@
         "key": "juejin-category-backend",
         "url": "https://rsshub.app/juejin/category/backend",
         "expression": "*/30 * * * *",
+        "consume": "juejin",
         "query": [],
         "group": {
             "alias": "items",
@@ -1085,6 +1112,7 @@
         "key": "juejin-category-ai",
         "url": "https://rsshub.app/juejin/category/ai",
         "expression": "*/30 * * * *",
+        "consume": "juejin",
         "query": [],
         "group": {
             "alias": "items",
@@ -1125,6 +1153,7 @@
         "key": "juejin-category-freebie",
         "url": "https://rsshub.app/juejin/category/freebie",
         "expression": "*/30 * * * *",
+        "consume": "juejin",
         "query": [],
         "group": {
             "alias": "items",
@@ -1165,6 +1194,7 @@
         "key": "juejin-category-career",
         "url": "https://rsshub.app/juejin/category/career",
         "expression": "*/30 * * * *",
+        "consume": "juejin",
         "query": [],
         "group": {
             "alias": "items",
@@ -1205,6 +1235,7 @@
         "key": "juejin-category-article",
         "url": "https://rsshub.app/juejin/category/article",
         "expression": "*/30 * * * *",
+        "consume": "juejin",
         "query": [],
         "group": {
             "alias": "items",
@@ -1245,6 +1276,7 @@
         "key": "modelscope-datasets",
         "url": "https://rsshub.app/modelscope/datasets",
         "expression": "*/30 * * * *",
+        "consume": "modelscopeDatasets",
         "query": [],
         "group": {
             "alias": "items",
@@ -1285,6 +1317,7 @@
         "key": "oschina",
         "url": "https://www.oschina.net/news/rss",
         "expression": "*/15 * * * *",
+        "consume": "oschina",
         "query": [],
         "group": {
             "alias": "items",
@@ -1325,6 +1358,7 @@
         "key": "packages",
         "url": "https://packagist.org/feeds/packages.rss",
         "expression": "*/5 * * * *",
+        "consume": "packages",
         "query": [],
         "group": {
             "alias": "items",
@@ -1365,6 +1399,7 @@
         "key": "segmentfault-channel-frontend",
         "url": "https://rsshub.app/segmentfault/channel/frontend",
         "expression": "*/10 * * * *",
+        "consume": "segmentfault",
         "query": [],
         "group": {
             "alias": "items",
@@ -1405,6 +1440,7 @@
         "key": "segmentfault-channel-backend",
         "url": "https://rsshub.app/segmentfault/channel/backend",
         "expression": "*/10 * * * *",
+        "consume": "segmentfault",
         "query": [],
         "group": {
             "alias": "items",
@@ -1445,6 +1481,7 @@
         "key": "segmentfault-channel-miniprogram",
         "url": "https://rsshub.app/segmentfault/channel/miniprogram",
         "expression": "*/10 * * * *",
+        "consume": "segmentfault",
         "query": [],
         "group": {
             "alias": "items",
@@ -1485,6 +1522,7 @@
         "key": "segmentfault-channel-toolkit",
         "url": "https://rsshub.app/segmentfault/channel/toolkit",
         "expression": "*/10 * * * *",
+        "consume": "segmentfault",
         "query": [],
         "group": {
             "alias": "items",
@@ -1525,6 +1563,7 @@
         "key": "sspai",
         "url": "https://sspai.com/feed",
         "expression": "0 0 * * *",
+        "consume": "sspai",
         "query": [],
         "group": {
             "alias": "items",
@@ -1565,6 +1604,7 @@
         "key": "studygolang-go-daily",
         "url": "https://rsshub.app/studygolang/go/daily",
         "expression": "0 0 * * *",
+        "consume": "studygolangGoDaily",
         "query": [],
         "group": {
             "alias": "items",
@@ -1605,6 +1645,7 @@
         "key": "testerhome-newest",
         "url": "https://rsshub.app/testerhome/newest",
         "expression": "*/30 * * * *",
+        "consume": "testerhomeNewest",
         "query": [],
         "group": {
             "alias": "items",
@@ -1645,6 +1686,7 @@
         "key": "williamlong",
         "url": "https://www.williamlong.info/rss.xml",
         "expression": "0 0 * * *",
+        "consume": "williamlong",
         "query": [],
         "group": {
             "alias": "items",
@@ -1685,6 +1727,7 @@
         "key": "zaozao-article-quality",
         "url": "https://rsshub.app/zaozao/article/quality",
         "expression": "0 0 * * *",
+        "consume": "zaozaoArticleQuality",
         "query": [],
         "group": {
             "alias": "items",
@@ -1725,6 +1768,7 @@
         "key": "zxx-blog",
         "url": "https://www.zhangxinxu.com/wordpress/feed/",
         "expression": "0 0 * * *",
+        "consume": "zxxBlog",
         "query": [],
         "group": {
             "alias": "items",
@@ -1765,6 +1809,7 @@
         "key": "zhihu",
         "url": "https://www.zhihu.com/rss",
         "expression": "*/10 * * * *",
+        "consume": "zhihu",
         "query": [],
         "group": {
             "alias": "items",
@@ -1797,6 +1842,114 @@
                 "pubDate": [
                     "pubDate",
                     "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "learnku-laravel",
+        "url": "https://learnku.com/laravel",
+        "expression": "*/10 * * * *",
+        "consume": "learnku",
+        "query": [],
+        "group": {
+            "selector": ".topic-list .simple-topic",
+            "rules": {
+                "avatar": [
+                    ".user-avatar img",
+                    "src"
+                ],
+                "category": [
+                    ".category-name",
+                    "text"
+                ],
+                "title": [
+                    ".topic-title",
+                    "text"
+                ],
+                "link": [
+                    ".user-avatar a",
+                    "href"
+                ],
+                "replies": [
+                    ".count_of_replies",
+                    "text"
+                ],
+                "updated_at": [
+                    ".timeago",
+                    "title"
+                ]
+            }
+        }
+    },
+    {
+        "key": "learnku-php",
+        "url": "https://learnku.com/php",
+        "expression": "*/10 * * * *",
+        "consume": "learnku",
+        "query": [],
+        "group": {
+            "selector": ".topic-list .simple-topic",
+            "rules": {
+                "avatar": [
+                    ".user-avatar img",
+                    "src"
+                ],
+                "category": [
+                    ".category-name",
+                    "text"
+                ],
+                "title": [
+                    ".topic-title",
+                    "text"
+                ],
+                "link": [
+                    ".user-avatar a",
+                    "href"
+                ],
+                "replies": [
+                    ".count_of_replies",
+                    "text"
+                ],
+                "updated_at": [
+                    ".timeago",
+                    "title"
+                ]
+            }
+        }
+    },
+    {
+        "key": "learnku-go",
+        "url": "https://learnku.com/go",
+        "expression": "*/10 * * * *",
+        "consume": "learnku",
+        "query": [],
+        "group": {
+            "selector": ".topic-list .simple-topic",
+            "rules": {
+                "avatar": [
+                    ".user-avatar img",
+                    "src"
+                ],
+                "category": [
+                    ".category-name",
+                    "text"
+                ],
+                "title": [
+                    ".topic-title",
+                    "text"
+                ],
+                "link": [
+                    ".user-avatar a",
+                    "href"
+                ],
+                "replies": [
+                    ".count_of_replies",
+                    "text"
+                ],
+                "updated_at": [
+                    ".timeago",
+                    "title"
                 ]
             }
         }
