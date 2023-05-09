@@ -11,6 +11,7 @@ use App\Services\CrawlerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Jiannei\LaravelCrawler\Support\Facades\Crawler;
 use Jiannei\Response\Laravel\Support\Facades\Response;
 use OpenAI\Laravel\Facades\OpenAI;
 
@@ -116,5 +117,16 @@ class JarvisController extends Controller
         };
 
         return Response::success($trending);
+    }
+
+    public function feeds(Request $request, string $source)
+    {
+        try {
+            $result = Crawler::json($source, $request->all());
+        } catch (\Throwable $e) {
+            abort(404,$e->getMessage());
+        }
+
+        return Response::success($result);
     }
 }
