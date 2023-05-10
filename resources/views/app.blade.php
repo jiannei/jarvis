@@ -10,19 +10,11 @@
 </head>
 <body class="antialiased">
 <div class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-    @auth
-        <p class="px-6 py-3 bg-white rounded-md shadow">
-            <code class="text-lg text-gray-500">{{ $token }}</code>
-        </p>
-    @endauth
-
-    @guest
-    <a class="hover:underline decoration-sky-500 decoration-1 decoration-wavy underline-offset-8 cursor-pointer" href="{{ route('login') }}">
+    <a class="hover:underline decoration-sky-500 decoration-1 decoration-wavy underline-offset-8 cursor-pointer">
         <span class="font-bold text-5xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-red-500">
              {{ config('app.name') }}
         </span>
     </a>
-    @endguest
 </div>
 </body>
 </html>
