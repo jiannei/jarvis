@@ -25,7 +25,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
-Route::get('/chat', [HomeController::class, 'chat']);
-Route::post('/ai', [HomeController::class, 'ai'])->name('ai');
 
 Route::permanentRedirect('/', '/home');

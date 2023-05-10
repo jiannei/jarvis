@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Console\Commands\Crawl\Github;
+namespace App\Console\Commands;
 
 use App\Jobs\CrawlGithubTrending;
 use Illuminate\Console\Command;
 
-class Trending extends Command
+class GithubTrending extends Command
 {
     /**
      * The name and signature of the console command.

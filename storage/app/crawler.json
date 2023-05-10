@@ -745,7 +745,7 @@
         "expression": "*/30 * * * *",
         "consume": "cnblogs",
         "query": [],
-        "group":{
+        "group": {
             "alias": "items",
             "selector": "channel item",
             "rules": {

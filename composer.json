@@ -17,10 +17,7 @@
         "laravel/sanctum": "^3.2.5",
         "laravel/socialite": "^5.6.1",
         "laravel/tinker": "^2.8.1",
-        "league/html-to-markdown": "^5.1",
-        "openai-php/laravel": "^0.3.4",
-        "spatie/laravel-activitylog": "^4.7.3",
-        "spatie/laravel-medialibrary": "^10.9.2"
+        "spatie/laravel-activitylog": "^4.7.3"
     },
     "require-dev": {
         "deployer/deployer": "^7.3.1",

@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Enums\QueueEnum;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
