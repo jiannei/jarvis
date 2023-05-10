@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('crawl/{source}', [JarvisController::class, 'crawl']);
+    Route::get('feeds/{source}', [JarvisController::class, 'feeds']);
 });
