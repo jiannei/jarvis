@@ -24,13 +24,13 @@ return [
         'default' => env('CRAWLER_SOURCE_CHANNEL', 'file'),
 
         'channels' => [
-            'file' => storage_path('app/crawler.json'),
+            'file' => resource_path('crawler.json'),
             'database' => \App\Models\CrawlTask::class,
         ],
     ],
 
     'consume' => [
-        'service' => \App\Services\CrawlerService::class, // Jiannei\LaravelCrawler\Contracts\ConsumeService
+        'service' => '', // Jiannei\LaravelCrawler\Contracts\ConsumeService
     ],
 
     'log' => [
