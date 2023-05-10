@@ -36,6 +36,562 @@
         }
     },
     {
+        "key": "github-trending-php-en",
+        "url": "https://github.com/trending/php",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {},
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-golang-en",
+        "url": "https://github.com/trending/golang",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {},
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-javascript-en",
+        "url": "https://github.com/trending/javascript",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {},
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-vue-en",
+        "url": "https://github.com/trending/vue",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {},
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-typescript-en",
+        "url": "https://github.com/trending/typescript",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {},
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-java-en",
+        "url": "https://github.com/trending/java",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {},
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-python-en",
+        "url": "https://github.com/trending/python",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {},
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-cn",
+        "url": "https://github.com/trending",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-php-cn",
+        "url": "https://github.com/trending/php",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-golang-cn",
+        "url": "https://github.com/trending/golang",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-javascript-cn",
+        "url": "https://github.com/trending/javascript",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-vue-cn",
+        "url": "https://github.com/trending/vue",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-typescript-cn",
+        "url": "https://github.com/trending/typescript",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-java-cn",
+        "url": "https://github.com/trending/java",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
+        "key": "github-trending-python-cn",
+        "url": "https://github.com/trending/python",
+        "expression": "*/30 * * * *",
+        "consume": "githubTrending",
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "group": {
+            "selector": "article",
+            "rules": {
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            }
+        }
+    },
+    {
         "key": "github-trending-language",
         "url": "https://github.com/trending",
         "expression": "0 10 * * 5",

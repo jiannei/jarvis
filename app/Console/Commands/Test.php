@@ -30,7 +30,9 @@ class Test extends Command
 
         //        dd(Crawler::source()->all());
 
-        Crawler::source('database', Crawler::source()->all());
+        $tmp = Crawler::json('github-trending-php-en');
+
+        dd($tmp);
 
         $this->info("[{$this->description}]:结束 ".now()->format('Y-m-d H:i:s'));
     }
