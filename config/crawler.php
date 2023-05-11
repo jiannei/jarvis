@@ -21,7 +21,12 @@ return [
     ],
 
     'source' => [
-        'storage' => storage_path('app/crawler.json'),
+        'default' => env('CRAWLER_SOURCE_CHANNEL', 'file'),
+
+        'channels' => [
+            'file' => resource_path('crawler.json'),
+            'database' => \Jiannei\LaravelCrawler\Models\CrawlTask::class,
+        ],
     ],
 
     'consume' => [

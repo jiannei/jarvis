@@ -28,7 +28,7 @@ class Test extends Command
     {
         $this->info("[{$this->description}]:开始 ".now()->format('Y-m-d H:i:s'));
 
-        $posts = Crawler::json('learnku-laravel');
+        $posts = Crawler::json('leetcode-cn');
 
         dd($posts);
 
