@@ -1,603 +1,982 @@
 [
     {
+        "key": "airing-weekly",
+        "url": "https://weekly.ursb.me/index.xml",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "airingWeekly",
+        "expression": "0 10 * * 5"
+    },
+    {
+        "key": "appinn",
+        "url": "https://feeds.appinn.com/appinns/",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "dc\\:creator",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "content\\:encoded",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "appinn",
+        "expression": "0 3 * * *"
+    },
+    {
+        "key": "blog-read",
+        "url": "https://rsshub.app/blogread/newest",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "blogRead",
+        "expression": "0 3 * * *"
+    },
+    {
+        "key": "cnblogs-aggsite-headline",
+        "url": "https://rsshub.app/cnblogs/aggsite/headline",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "cnblogs",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "cnblogs-aggsite-topdiggs",
+        "url": "https://rsshub.app/cnblogs/aggsite/topdiggs",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "cnblogs",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "cnblogs-aggsite-topviews",
+        "url": "https://rsshub.app/cnblogs/aggsite/topviews",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "cnblogs",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "cnblogs-cate-go",
+        "url": "https://rsshub.app/cnblogs/cate/go",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "cnblogs",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "cnblogs-cate-javascript",
+        "url": "https://rsshub.app/cnblogs/cate/javascript",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "cnblogs",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "cnblogs-cate-php",
+        "url": "https://rsshub.app/cnblogs/cate/php",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "cnblogs",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "cnblogs-cate-react",
+        "url": "https://rsshub.app/cnblogs/cate/react",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "cnblogs",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "cnblogs-cate-vue",
+        "url": "https://rsshub.app/cnblogs/cate/vue",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "cnblogs",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "cnblogs-pick",
+        "url": "https://rsshub.app/cnblogs/pick",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "cnblogs",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "git-book",
+        "url": "https://rsshub.app/gitchat/newest",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "gitBook",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "gitee",
+        "url": "https://gitee.com/{explore}",
+        "group": [
+            {
+                "alias": "categories",
+                "rules": {
+                    "link": [
+                        ".explore-categories__item a",
+                        "href"
+                    ],
+                    "label": [
+                        ".explore-categories__item a",
+                        "text"
+                    ]
+                },
+                "selector": ".explore-categories li"
+            },
+            {
+                "alias": "languages",
+                "rules": {
+                    "link": [
+                        "a",
+                        "href"
+                    ],
+                    "label": [
+                        "a",
+                        "text"
+                    ]
+                },
+                "selector": ".actions > div:nth-child(2) .menu .item"
+            },
+            {
+                "alias": "repos",
+                "rules": {
+                    "category": [
+                        ".project-item-bottom .project-class a",
+                        "text"
+                    ],
+                    "language": [
+                        ".project-item-bottom .project-language",
+                        "text"
+                    ],
+                    "repo.desc": [
+                        ".content .project-desc",
+                        "text"
+                    ],
+                    "repo.link": [
+                        ".content .project-title h3 a",
+                        "href"
+                    ],
+                    "repo.stars": [
+                        ".content .project-title .explore-project__meta-social",
+                        "text"
+                    ],
+                    "repo.title": [
+                        ".content .project-title h3",
+                        "text"
+                    ],
+                    "updated_at": [
+                        ".project-item-bottom div[title]",
+                        "title"
+                    ],
+                    "author.avatar": [
+                        "a img",
+                        "src"
+                    ],
+                    "author.homepage": [
+                        "a",
+                        "href"
+                    ]
+                },
+                "selector": ".explore-repo__list .item"
+            },
+            {
+                "alias": "daily",
+                "rules": {
+                    "desc": [
+                        ".description",
+                        "text"
+                    ],
+                    "repo": [
+                        ".title a",
+                        "href"
+                    ],
+                    "stars": [
+                        ".stars-count",
+                        "data-count"
+                    ],
+                    "title": [
+                        ".title a",
+                        "text"
+                    ]
+                },
+                "selector": "div[data-tab='daily-trending'] .explore-trending-projects__list-item"
+            },
+            {
+                "alias": "weekly",
+                "rules": {
+                    "desc": [
+                        ".description",
+                        "text"
+                    ],
+                    "repo": [
+                        ".title a",
+                        "href"
+                    ],
+                    "stars": [
+                        ".stars-count",
+                        "data-count"
+                    ],
+                    "title": [
+                        ".title a",
+                        "text"
+                    ]
+                },
+                "selector": "div[data-tab='weekly-trending'] .explore-trending-projects__list-item"
+            }
+        ],
+        "consume": "gitee",
+        "expression": "*/10 * * * *"
+    },
+    {
+        "key": "github-independentBlogs",
+        "url": "https://api.github.com/repos/timqian/chinese-independent-blogs/readme",
+        "group": {
+            "rules": {
+                "link": [
+                    "td:nth-child(3)",
+                    "text"
+                ],
+                "tags": [
+                    "td:nth-child(4)",
+                    "text"
+                ],
+                "intro": [
+                    "td:nth-child(2)",
+                    "text"
+                ]
+            },
+            "selector": "table tbody tr"
+        },
+        "consume": "laravelNewsBlog",
+        "expression": "0 3 * * *"
+    },
+    {
         "key": "github-trending",
         "url": "https://github.com/trending",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
         "query": [],
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
-                    "text"
-                ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "github-trending-php-en",
-        "url": "https://github.com/trending/php",
-        "expression": "*/30 * * * *",
         "consume": "githubTrending",
-        "query": {},
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
-                    "text"
-                ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "github-trending-golang-en",
-        "url": "https://github.com/trending/golang",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {},
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
-                    "text"
-                ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "github-trending-javascript-en",
-        "url": "https://github.com/trending/javascript",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {},
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
-                    "text"
-                ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "github-trending-vue-en",
-        "url": "https://github.com/trending/vue",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {},
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
-                    "text"
-                ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "github-trending-typescript-en",
-        "url": "https://github.com/trending/typescript",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {},
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
-                    "text"
-                ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "github-trending-java-en",
-        "url": "https://github.com/trending/java",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {},
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
-                    "text"
-                ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "github-trending-python-en",
-        "url": "https://github.com/trending/python",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {},
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
-                    "text"
-                ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
+        "expression": "*/30 * * * *"
     },
     {
         "key": "github-trending-cn",
         "url": "https://github.com/trending",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {
-            "spoken_language_code": "zh"
-        },
         "group": {
-            "selector": "article",
             "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
                 "desc": [
                     "p",
                     "text"
                 ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
                     "text"
                 ],
                 "stars": [
                     "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
                     "text"
                 ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                "language": [
+                    "span[itemprop='programmingLanguage']",
                     "text"
                 ],
                 "added_stars": [
                     "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
                     "text"
                 ]
-            }
-        }
+            },
+            "selector": "article"
+        },
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
     },
     {
-        "key": "github-trending-php-cn",
-        "url": "https://github.com/trending/php",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {
-            "spoken_language_code": "zh"
-        },
+        "key": "github-trending-golang",
+        "url": "https://github.com/trending/golang",
         "group": {
-            "selector": "article",
             "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
                 "desc": [
                     "p",
                     "text"
                 ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
                     "text"
                 ],
                 "stars": [
                     "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
                     "text"
                 ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                "language": [
+                    "span[itemprop='programmingLanguage']",
                     "text"
                 ],
                 "added_stars": [
                     "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
                     "text"
                 ]
-            }
-        }
+            },
+            "selector": "article"
+        },
+        "query": [],
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
     },
     {
         "key": "github-trending-golang-cn",
         "url": "https://github.com/trending/golang",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {
-            "spoken_language_code": "zh"
-        },
         "group": {
-            "selector": "article",
             "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
                 "desc": [
                     "p",
                     "text"
                 ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
                     "text"
                 ],
                 "stars": [
                     "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
                     "text"
                 ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                "language": [
+                    "span[itemprop='programmingLanguage']",
                     "text"
                 ],
                 "added_stars": [
                     "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
                     "text"
                 ]
-            }
-        }
+            },
+            "selector": "article"
+        },
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
     },
     {
-        "key": "github-trending-javascript-cn",
-        "url": "https://github.com/trending/javascript",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {
-            "spoken_language_code": "zh"
-        },
+        "key": "github-trending-java",
+        "url": "https://github.com/trending/java",
         "group": {
-            "selector": "article",
             "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
                 "desc": [
                     "p",
                     "text"
                 ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
                     "text"
                 ],
                 "stars": [
                     "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
                     "text"
                 ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "github-trending-vue-cn",
-        "url": "https://github.com/trending/vue",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {
-            "spoken_language_code": "zh"
-        },
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
                 "language": [
                     "span[itemprop='programmingLanguage']",
                     "text"
                 ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
                 "added_stars": [
                     "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
                     "text"
                 ]
-            }
-        }
-    },
-    {
-        "key": "github-trending-typescript-cn",
-        "url": "https://github.com/trending/typescript",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {
-            "spoken_language_code": "zh"
+            },
+            "selector": "article"
         },
-        "group": {
-            "selector": "article",
-            "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
-                "desc": [
-                    "p",
-                    "text"
-                ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
-                    "text"
-                ],
-                "stars": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
-                    "text"
-                ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
-                    "text"
-                ],
-                "added_stars": [
-                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
-                    "text"
-                ]
-            }
-        }
+        "query": [],
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
     },
     {
         "key": "github-trending-java-cn",
         "url": "https://github.com/trending/java",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {
-            "spoken_language_code": "zh"
-        },
         "group": {
-            "selector": "article",
             "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
                 "desc": [
                     "p",
                     "text"
                 ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
                     "text"
                 ],
                 "stars": [
                     "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
                     "text"
                 ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                "language": [
+                    "span[itemprop='programmingLanguage']",
                     "text"
                 ],
                 "added_stars": [
                     "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
                     "text"
                 ]
-            }
-        }
+            },
+            "selector": "article"
+        },
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
     },
     {
-        "key": "github-trending-python-cn",
-        "url": "https://github.com/trending/python",
-        "expression": "*/30 * * * *",
-        "consume": "githubTrending",
-        "query": {
-            "spoken_language_code": "zh"
-        },
+        "key": "github-trending-javascript",
+        "url": "https://github.com/trending/javascript",
         "group": {
-            "selector": "article",
             "rules": {
-                "repo": [
-                    "h2 a",
-                    "href"
-                ],
                 "desc": [
                     "p",
                     "text"
                 ],
-                "language": [
-                    "span[itemprop='programmingLanguage']",
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
                     "text"
                 ],
                 "stars": [
                     "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
                     "text"
                 ],
-                "forks": [
-                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                "language": [
+                    "span[itemprop='programmingLanguage']",
                     "text"
                 ],
                 "added_stars": [
                     "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
                     "text"
                 ]
-            }
-        }
+            },
+            "selector": "article"
+        },
+        "query": [],
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-javascript-cn",
+        "url": "https://github.com/trending/javascript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
     },
     {
         "key": "github-trending-language",
         "url": "https://github.com/trending",
-        "expression": "0 10 * * 5",
-        "consume": "githubTrendingLanguage",
         "group": {
-            "selector": "#languages-menuitems a[role='menuitemradio']",
             "rules": {
                 "code": [
                     "",
@@ -607,16 +986,866 @@
                     "span",
                     "text"
                 ]
-            }
-        }
+            },
+            "selector": "#languages-menuitems a[role='menuitemradio']"
+        },
+        "consume": "githubTrendingLanguage",
+        "expression": "0 10 * * 5"
+    },
+    {
+        "key": "github-trending-monthly",
+        "url": "https://github.com/trending",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-go",
+        "url": "https://github.com/trending/go",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-go-zh",
+        "url": "https://github.com/trending/go",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-golang",
+        "url": "https://github.com/trending/golang",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-golang-zh",
+        "url": "https://github.com/trending/golang",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-java",
+        "url": "https://github.com/trending/java",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-java-zh",
+        "url": "https://github.com/trending/java",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-javascript",
+        "url": "https://github.com/trending/javascript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-javascript-zh",
+        "url": "https://github.com/trending/javascript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-php",
+        "url": "https://github.com/trending/php",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-php-zh",
+        "url": "https://github.com/trending/php",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-python",
+        "url": "https://github.com/trending/python",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-python-zh",
+        "url": "https://github.com/trending/python",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-typescript",
+        "url": "https://github.com/trending/typescript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-typescript-zh",
+        "url": "https://github.com/trending/typescript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-vue",
+        "url": "https://github.com/trending/vue",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-vue-zh",
+        "url": "https://github.com/trending/vue",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-monthly-zh",
+        "url": "https://github.com/trending",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "monthly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-php",
+        "url": "https://github.com/trending/php",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": [],
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-php-cn",
+        "url": "https://github.com/trending/php",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-python",
+        "url": "https://github.com/trending/python",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": [],
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-python-cn",
+        "url": "https://github.com/trending/python",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
     },
     {
         "key": "github-trending-spokenLanguage",
         "url": "https://github.com/trending",
-        "consume": "githubTrendingSpokenLanguage",
-        "expression": "0 10 * * 5",
         "group": {
-            "selector": "div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']",
             "rules": {
                 "code": [
                     "",
@@ -626,16 +1855,1317 @@
                     "span",
                     "text"
                 ]
-            }
-        }
+            },
+            "selector": "div[data-filterable-for='text-filter-field-spoken-language'] a[role='menuitemradio']"
+        },
+        "consume": "githubTrendingSpokenLanguage",
+        "expression": "0 10 * * 5"
+    },
+    {
+        "key": "github-trending-typescript",
+        "url": "https://github.com/trending/typescript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": [],
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-typescript-cn",
+        "url": "https://github.com/trending/typescript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-vue",
+        "url": "https://github.com/trending/vue",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": [],
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-vue-cn",
+        "url": "https://github.com/trending/vue",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly",
+        "url": "https://github.com/trending",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-go",
+        "url": "https://github.com/trending/go",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-go-zh",
+        "url": "https://github.com/trending/go",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-golang",
+        "url": "https://github.com/trending/golang",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-golang-zh",
+        "url": "https://github.com/trending/golang",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-java",
+        "url": "https://github.com/trending/java",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-java-zh",
+        "url": "https://github.com/trending/java",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-javascript",
+        "url": "https://github.com/trending/javascript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-javascript-zh",
+        "url": "https://github.com/trending/javascript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-php",
+        "url": "https://github.com/trending/php",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-php-zh",
+        "url": "https://github.com/trending/php",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-python",
+        "url": "https://github.com/trending/python",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-python-zh",
+        "url": "https://github.com/trending/python",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-typescript",
+        "url": "https://github.com/trending/typescript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-typescript-zh",
+        "url": "https://github.com/trending/typescript",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-vue",
+        "url": "https://github.com/trending/vue",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": ""
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-vue-zh",
+        "url": "https://github.com/trending/vue",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "github-trending-weekly-zh",
+        "url": "https://github.com/trending",
+        "group": {
+            "rules": {
+                "desc": [
+                    "p",
+                    "text"
+                ],
+                "repo": [
+                    "h2 a",
+                    "href"
+                ],
+                "forks": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(2)",
+                    "text"
+                ],
+                "stars": [
+                    "div.f6.color-fg-muted.mt-2 > a:nth-of-type(1)",
+                    "text"
+                ],
+                "language": [
+                    "span[itemprop='programmingLanguage']",
+                    "text"
+                ],
+                "added_stars": [
+                    "div.f6.color-fg-muted.mt-2 > span.d-inline-block.float-sm-right",
+                    "text"
+                ]
+            },
+            "selector": "article"
+        },
+        "query": {
+            "since": "weekly",
+            "spoken_language_code": "zh"
+        },
+        "consume": "githubTrending",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "hello-github",
+        "url": "https://rsshub.app/hellogithub/hot",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "helloGithub",
+        "expression": "*/20 * * * *"
+    },
+    {
+        "key": "huxiu",
+        "url": "https://rss.huxiu.com/",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "huxiu",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "ifanr",
+        "url": "https://www.ifanr.com/feed",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "dc\\:creator",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "ifanr",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "info-q",
+        "url": "https://rsshub.app/infoq/recommend",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "infoQ",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "iplaysoft",
+        "url": "https://feed.iplaysoft.com/",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "iplaysoft",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "juejin-category-ai",
+        "url": "https://rsshub.app/juejin/category/ai",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "juejin",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "juejin-category-article",
+        "url": "https://rsshub.app/juejin/category/article",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "juejin",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "juejin-category-backend",
+        "url": "https://rsshub.app/juejin/category/backend",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "juejin",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "juejin-category-career",
+        "url": "https://rsshub.app/juejin/category/career",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "juejin",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "juejin-category-freebie",
+        "url": "https://rsshub.app/juejin/category/freebie",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "juejin",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "juejin-category-frontend",
+        "url": "https://rsshub.app/juejin/category/frontend",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "juejin",
+        "expression": "*/30 * * * *"
     },
     {
         "key": "laravelNews-blog",
         "url": "https://laravel-news.com/blog",
-        "expression": "0 3 * * *",
-        "consume": "laravelNewsBlog",
         "group": {
-            "selector": "main > div:last-child > ul > li:nth-of-type(n+2)",
             "rules": {
                 "link": [
                     "a",
@@ -653,59 +3183,542 @@
                     "p",
                     "text"
                 ]
-            }
-        }
+            },
+            "selector": "main > div:last-child > ul > li:nth-of-type(n+2)"
+        },
+        "consume": "laravelNewsBlog",
+        "expression": "0 3 * * *"
     },
     {
-        "key": "github-independentBlogs",
-        "url": "https://api.github.com/repos/timqian/chinese-independent-blogs/readme",
-        "expression": "0 3 * * *",
-        "consume": "laravelNewsBlog",
+        "key": "learnku-go",
+        "url": "https://learnku.com/go",
         "group": {
-            "selector": "table tbody tr",
             "rules": {
-                "intro": [
-                    "td:nth-child(2)",
+                "link": [
+                    ".user-avatar a",
+                    "href"
+                ],
+                "title": [
+                    ".topic-title",
+                    "text"
+                ],
+                "avatar": [
+                    ".user-avatar img",
+                    "src"
+                ],
+                "replies": [
+                    ".count_of_replies",
+                    "text"
+                ],
+                "category": [
+                    ".category-name",
+                    "text"
+                ],
+                "updated_at": [
+                    ".timeago",
+                    "title"
+                ]
+            },
+            "selector": ".topic-list .simple-topic"
+        },
+        "query": [],
+        "consume": "learnku",
+        "expression": "*/10 * * * *"
+    },
+    {
+        "key": "learnku-laravel",
+        "url": "https://learnku.com/laravel",
+        "group": {
+            "rules": {
+                "link": [
+                    ".user-avatar a",
+                    "href"
+                ],
+                "title": [
+                    ".topic-title",
+                    "text"
+                ],
+                "avatar": [
+                    ".user-avatar img",
+                    "src"
+                ],
+                "replies": [
+                    ".count_of_replies",
+                    "text"
+                ],
+                "category": [
+                    ".category-name",
+                    "text"
+                ],
+                "updated_at": [
+                    ".timeago",
+                    "title"
+                ]
+            },
+            "selector": ".topic-list .simple-topic"
+        },
+        "query": [],
+        "consume": "learnku",
+        "expression": "*/10 * * * *"
+    },
+    {
+        "key": "learnku-php",
+        "url": "https://learnku.com/php",
+        "group": {
+            "rules": {
+                "link": [
+                    ".user-avatar a",
+                    "href"
+                ],
+                "title": [
+                    ".topic-title",
+                    "text"
+                ],
+                "avatar": [
+                    ".user-avatar img",
+                    "src"
+                ],
+                "replies": [
+                    ".count_of_replies",
+                    "text"
+                ],
+                "category": [
+                    ".category-name",
+                    "text"
+                ],
+                "updated_at": [
+                    ".timeago",
+                    "title"
+                ]
+            },
+            "selector": ".topic-list .simple-topic"
+        },
+        "query": [],
+        "consume": "learnku",
+        "expression": "*/10 * * * *"
+    },
+    {
+        "key": "modelscope-datasets",
+        "url": "https://rsshub.app/modelscope/datasets",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
                     "text"
                 ],
                 "link": [
-                    "td:nth-child(3)",
+                    "link",
                     "text"
                 ],
-                "tags": [
-                    "td:nth-child(4)",
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
                     "text"
                 ]
-            }
-        }
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "modelscopeDatasets",
+        "expression": "*/30 * * * *"
+    },
+    {
+        "key": "oschina",
+        "url": "https://www.oschina.net/news/rss",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "oschina",
+        "expression": "*/15 * * * *"
+    },
+    {
+        "key": "packages",
+        "url": "https://packagist.org/feeds/packages.rss",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "packages",
+        "expression": "*/5 * * * *"
+    },
+    {
+        "key": "segmentfault-channel-backend",
+        "url": "https://rsshub.app/segmentfault/channel/backend",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "segmentfault",
+        "expression": "*/10 * * * *"
+    },
+    {
+        "key": "segmentfault-channel-frontend",
+        "url": "https://rsshub.app/segmentfault/channel/frontend",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "segmentfault",
+        "expression": "*/10 * * * *"
+    },
+    {
+        "key": "segmentfault-channel-miniprogram",
+        "url": "https://rsshub.app/segmentfault/channel/miniprogram",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "segmentfault",
+        "expression": "*/10 * * * *"
+    },
+    {
+        "key": "segmentfault-channel-toolkit",
+        "url": "https://rsshub.app/segmentfault/channel/toolkit",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "segmentfault",
+        "expression": "*/10 * * * *"
+    },
+    {
+        "key": "sspai",
+        "url": "https://sspai.com/feed",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "sspai",
+        "expression": "0 0 * * *"
+    },
+    {
+        "key": "studygolang-go-daily",
+        "url": "https://rsshub.app/studygolang/go/daily",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "studygolangGoDaily",
+        "expression": "0 0 * * *"
+    },
+    {
+        "key": "testerhome-newest",
+        "url": "https://rsshub.app/testerhome/newest",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "testerhomeNewest",
+        "expression": "*/30 * * * *"
     },
     {
         "key": "v2ex",
         "url": "https://www.v2ex.com/",
-        "expression": "*/10 * * * *",
-        "consume": "v2ex",
         "group": {
-            "selector": "div .item table",
             "rules": {
-                "member_avatar": [
-                    ".avatar",
-                    "src"
-                ],
-                "member_link": [
-                    "strong a",
+                "link": [
+                    ".topic-link",
                     "href"
-                ],
-                "member_name": [
-                    "strong a",
-                    "text"
                 ],
                 "title": [
                     ".topic-link",
                     "text"
-                ],
-                "link": [
-                    ".topic-link",
-                    "href"
                 ],
                 "node_label": [
                     ".node",
@@ -715,1799 +3728,190 @@
                     ".node",
                     "href"
                 ],
+                "member_link": [
+                    "strong a",
+                    "href"
+                ],
+                "member_name": [
+                    "strong a",
+                    "text"
+                ],
                 "reply_count": [
                     ".count_livid",
                     "text"
+                ],
+                "member_avatar": [
+                    ".avatar",
+                    "src"
                 ]
-            }
-        }
-    },
-    {
-        "key": "gitee",
-        "url": "https://gitee.com/{explore}",
-        "expression": "*/10 * * * *",
-        "consume": "gitee",
-        "group": [
-            {
-                "alias": "categories",
-                "selector": ".explore-categories li",
-                "rules": {
-                    "label": [
-                        ".explore-categories__item a",
-                        "text"
-                    ],
-                    "link": [
-                        ".explore-categories__item a",
-                        "href"
-                    ]
-                }
             },
-            {
-                "alias": "languages",
-                "selector": ".actions > div:nth-child(2) .menu .item",
-                "rules": {
-                    "label": [
-                        "a",
-                        "text"
-                    ],
-                    "link": [
-                        "a",
-                        "href"
-                    ]
-                }
-            },
-            {
-                "alias": "repos",
-                "selector": ".explore-repo__list .item",
-                "rules": {
-                    "author.homepage": [
-                        "a",
-                        "href"
-                    ],
-                    "author.avatar": [
-                        "a img",
-                        "src"
-                    ],
-                    "repo.title": [
-                        ".content .project-title h3",
-                        "text"
-                    ],
-                    "repo.link": [
-                        ".content .project-title h3 a",
-                        "href"
-                    ],
-                    "repo.stars": [
-                        ".content .project-title .explore-project__meta-social",
-                        "text"
-                    ],
-                    "repo.desc": [
-                        ".content .project-desc",
-                        "text"
-                    ],
-                    "language": [
-                        ".project-item-bottom .project-language",
-                        "text"
-                    ],
-                    "category": [
-                        ".project-item-bottom .project-class a",
-                        "text"
-                    ],
-                    "updated_at": [
-                        ".project-item-bottom div[title]",
-                        "title"
-                    ]
-                }
-            },
-            {
-                "alias": "daily",
-                "selector": "div[data-tab='daily-trending'] .explore-trending-projects__list-item",
-                "rules": {
-                    "title": [
-                        ".title a",
-                        "text"
-                    ],
-                    "repo": [
-                        ".title a",
-                        "href"
-                    ],
-                    "stars": [
-                        ".stars-count",
-                        "data-count"
-                    ],
-                    "desc": [
-                        ".description",
-                        "text"
-                    ]
-                }
-            },
-            {
-                "alias": "weekly",
-                "selector": "div[data-tab='weekly-trending'] .explore-trending-projects__list-item",
-                "rules": {
-                    "title": [
-                        ".title a",
-                        "text"
-                    ],
-                    "repo": [
-                        ".title a",
-                        "href"
-                    ],
-                    "stars": [
-                        ".stars-count",
-                        "data-count"
-                    ],
-                    "desc": [
-                        ".description",
-                        "text"
-                    ]
-                }
-            }
-        ]
-    },
-    {
-        "key": "airing-weekly",
-        "url": "https://weekly.ursb.me/index.xml",
-        "expression": "0 10 * * 5",
-        "consume": "airingWeekly",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "appinn",
-        "url": "https://feeds.appinn.com/appinns/",
-        "expression": "0 3 * * *",
-        "consume": "appinn",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "content\\:encoded",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "dc\\:creator",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "blog-read",
-        "url": "https://rsshub.app/blogread/newest",
-        "expression": "0 3 * * *",
-        "consume": "blogRead",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "cnblogs-aggsite-topdiggs",
-        "url": "https://rsshub.app/cnblogs/aggsite/topdiggs",
-        "expression": "*/30 * * * *",
-        "consume": "cnblogs",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "cnblogs-aggsite-topviews",
-        "url": "https://rsshub.app/cnblogs/aggsite/topviews",
-        "expression": "*/30 * * * *",
-        "consume": "cnblogs",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "cnblogs-aggsite-headline",
-        "url": "https://rsshub.app/cnblogs/aggsite/headline",
-        "expression": "*/30 * * * *",
-        "consume": "cnblogs",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "cnblogs-cate-go",
-        "url": "https://rsshub.app/cnblogs/cate/go",
-        "expression": "*/30 * * * *",
-        "consume": "cnblogs",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "cnblogs-cate-php",
-        "url": "https://rsshub.app/cnblogs/cate/php",
-        "expression": "*/30 * * * *",
-        "consume": "cnblogs",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "cnblogs-cate-vue",
-        "url": "https://rsshub.app/cnblogs/cate/vue",
-        "expression": "*/30 * * * *",
-        "consume": "cnblogs",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "cnblogs-cate-javascript",
-        "url": "https://rsshub.app/cnblogs/cate/javascript",
-        "expression": "*/30 * * * *",
-        "consume": "cnblogs",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "cnblogs-cate-react",
-        "url": "https://rsshub.app/cnblogs/cate/react",
-        "expression": "*/30 * * * *",
-        "consume": "cnblogs",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "cnblogs-pick",
-        "url": "https://rsshub.app/cnblogs/pick",
-        "expression": "*/30 * * * *",
-        "consume": "cnblogs",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "git-book",
-        "url": "https://rsshub.app/gitchat/newest",
-        "expression": "*/30 * * * *",
-        "consume": "gitBook",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "hello-github",
-        "url": "https://rsshub.app/hellogithub/hot",
-        "expression": "*/20 * * * *",
-        "consume": "helloGithub",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "huxiu",
-        "url": "https://rss.huxiu.com/",
-        "expression": "*/30 * * * *",
-        "consume": "huxiu",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "ifanr",
-        "url": "https://www.ifanr.com/feed",
-        "expression": "*/30 * * * *",
-        "consume": "ifanr",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "dc\\:creator",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "info-q",
-        "url": "https://rsshub.app/infoq/recommend",
-        "expression": "*/30 * * * *",
-        "consume": "infoQ",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "iplaysoft",
-        "url": "https://feed.iplaysoft.com/",
-        "expression": "*/30 * * * *",
-        "consume": "iplaysoft",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "juejin-category-frontend",
-        "url": "https://rsshub.app/juejin/category/frontend",
-        "expression": "*/30 * * * *",
-        "consume": "juejin",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "juejin-category-backend",
-        "url": "https://rsshub.app/juejin/category/backend",
-        "expression": "*/30 * * * *",
-        "consume": "juejin",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "juejin-category-ai",
-        "url": "https://rsshub.app/juejin/category/ai",
-        "expression": "*/30 * * * *",
-        "consume": "juejin",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "juejin-category-freebie",
-        "url": "https://rsshub.app/juejin/category/freebie",
-        "expression": "*/30 * * * *",
-        "consume": "juejin",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "juejin-category-career",
-        "url": "https://rsshub.app/juejin/category/career",
-        "expression": "*/30 * * * *",
-        "consume": "juejin",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "juejin-category-article",
-        "url": "https://rsshub.app/juejin/category/article",
-        "expression": "*/30 * * * *",
-        "consume": "juejin",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "modelscope-datasets",
-        "url": "https://rsshub.app/modelscope/datasets",
-        "expression": "*/30 * * * *",
-        "consume": "modelscopeDatasets",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "oschina",
-        "url": "https://www.oschina.net/news/rss",
-        "expression": "*/15 * * * *",
-        "consume": "oschina",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "packages",
-        "url": "https://packagist.org/feeds/packages.rss",
-        "expression": "*/5 * * * *",
-        "consume": "packages",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "segmentfault-channel-frontend",
-        "url": "https://rsshub.app/segmentfault/channel/frontend",
-        "expression": "*/10 * * * *",
-        "consume": "segmentfault",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "segmentfault-channel-backend",
-        "url": "https://rsshub.app/segmentfault/channel/backend",
-        "expression": "*/10 * * * *",
-        "consume": "segmentfault",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "segmentfault-channel-miniprogram",
-        "url": "https://rsshub.app/segmentfault/channel/miniprogram",
-        "expression": "*/10 * * * *",
-        "consume": "segmentfault",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "segmentfault-channel-toolkit",
-        "url": "https://rsshub.app/segmentfault/channel/toolkit",
-        "expression": "*/10 * * * *",
-        "consume": "segmentfault",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "sspai",
-        "url": "https://sspai.com/feed",
-        "expression": "0 0 * * *",
-        "consume": "sspai",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "studygolang-go-daily",
-        "url": "https://rsshub.app/studygolang/go/daily",
-        "expression": "0 0 * * *",
-        "consume": "studygolangGoDaily",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "testerhome-newest",
-        "url": "https://rsshub.app/testerhome/newest",
-        "expression": "*/30 * * * *",
-        "consume": "testerhomeNewest",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
+            "selector": "div .item table"
+        },
+        "consume": "v2ex",
+        "expression": "*/10 * * * *"
     },
     {
         "key": "williamlong",
         "url": "https://www.williamlong.info/rss.xml",
-        "expression": "0 0 * * *",
-        "consume": "williamlong",
-        "query": [],
         "group": {
             "alias": "items",
-            "selector": "channel item",
             "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
+                "guid": [
+                    "guid",
                     "text"
                 ],
                 "link": [
                     "link",
                     "text"
                 ],
-                "author": [
-                    "author",
+                "title": [
+                    "title",
                     "text"
                 ],
-                "guid": [
-                    "guid",
+                "author": [
+                    "author",
                     "text"
                 ],
                 "pubDate": [
                     "pubDate",
                     "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
                 ]
-            }
-        }
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "williamlong",
+        "expression": "0 0 * * *"
     },
     {
         "key": "zaozao-article-quality",
         "url": "https://rsshub.app/zaozao/article/quality",
-        "expression": "0 0 * * *",
-        "consume": "zaozaoArticleQuality",
-        "query": [],
         "group": {
             "alias": "items",
-            "selector": "channel item",
             "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
+                "guid": [
+                    "guid",
                     "text"
                 ],
                 "link": [
                     "link",
                     "text"
                 ],
-                "author": [
-                    "author",
+                "title": [
+                    "title",
                     "text"
                 ],
-                "guid": [
-                    "guid",
+                "author": [
+                    "author",
                     "text"
                 ],
                 "pubDate": [
                     "pubDate",
                     "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "zxx-blog",
-        "url": "https://www.zhangxinxu.com/wordpress/feed/",
-        "expression": "0 0 * * *",
-        "consume": "zxxBlog",
-        "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
+                ],
                 "category": [
                     "category",
                     "text"
                 ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "zaozaoArticleQuality",
+        "expression": "0 0 * * *"
+    },
+    {
+        "key": "zhihu",
+        "url": "https://www.zhihu.com/rss",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
                 "title": [
                     "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
+                    "text"
+                ],
+                "description": [
+                    "description",
+                    "text"
+                ]
+            },
+            "selector": "channel item"
+        },
+        "query": [],
+        "consume": "zhihu",
+        "expression": "*/10 * * * *"
+    },
+    {
+        "key": "zxx-blog",
+        "url": "https://www.zhangxinxu.com/wordpress/feed/",
+        "group": {
+            "alias": "items",
+            "rules": {
+                "guid": [
+                    "guid",
+                    "text"
+                ],
+                "link": [
+                    "link",
+                    "text"
+                ],
+                "title": [
+                    "title",
+                    "text"
+                ],
+                "author": [
+                    "author",
+                    "text"
+                ],
+                "pubDate": [
+                    "pubDate",
+                    "text"
+                ],
+                "category": [
+                    "category",
                     "text"
                 ],
                 "description": [
                     "content\\:encoded",
                     "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
                 ]
-            }
-        }
-    },
-    {
-        "key": "zhihu",
-        "url": "https://www.zhihu.com/rss",
-        "expression": "*/10 * * * *",
-        "consume": "zhihu",
+            },
+            "selector": "channel item"
+        },
         "query": [],
-        "group": {
-            "alias": "items",
-            "selector": "channel item",
-            "rules": {
-                "category": [
-                    "category",
-                    "text"
-                ],
-                "title": [
-                    "title",
-                    "text"
-                ],
-                "description": [
-                    "description",
-                    "text"
-                ],
-                "link": [
-                    "link",
-                    "text"
-                ],
-                "author": [
-                    "author",
-                    "text"
-                ],
-                "guid": [
-                    "guid",
-                    "text"
-                ],
-                "pubDate": [
-                    "pubDate",
-                    "text"
-                ]
-            }
-        }
-    },
-    {
-        "key": "learnku-laravel",
-        "url": "https://learnku.com/laravel",
-        "expression": "*/10 * * * *",
-        "consume": "learnku",
-        "query": [],
-        "group": {
-            "selector": ".topic-list .simple-topic",
-            "rules": {
-                "avatar": [
-                    ".user-avatar img",
-                    "src"
-                ],
-                "category": [
-                    ".category-name",
-                    "text"
-                ],
-                "title": [
-                    ".topic-title",
-                    "text"
-                ],
-                "link": [
-                    ".user-avatar a",
-                    "href"
-                ],
-                "replies": [
-                    ".count_of_replies",
-                    "text"
-                ],
-                "updated_at": [
-                    ".timeago",
-                    "title"
-                ]
-            }
-        }
-    },
-    {
-        "key": "learnku-php",
-        "url": "https://learnku.com/php",
-        "expression": "*/10 * * * *",
-        "consume": "learnku",
-        "query": [],
-        "group": {
-            "selector": ".topic-list .simple-topic",
-            "rules": {
-                "avatar": [
-                    ".user-avatar img",
-                    "src"
-                ],
-                "category": [
-                    ".category-name",
-                    "text"
-                ],
-                "title": [
-                    ".topic-title",
-                    "text"
-                ],
-                "link": [
-                    ".user-avatar a",
-                    "href"
-                ],
-                "replies": [
-                    ".count_of_replies",
-                    "text"
-                ],
-                "updated_at": [
-                    ".timeago",
-                    "title"
-                ]
-            }
-        }
-    },
-    {
-        "key": "learnku-go",
-        "url": "https://learnku.com/go",
-        "expression": "*/10 * * * *",
-        "consume": "learnku",
-        "query": [],
-        "group": {
-            "selector": ".topic-list .simple-topic",
-            "rules": {
-                "avatar": [
-                    ".user-avatar img",
-                    "src"
-                ],
-                "category": [
-                    ".category-name",
-                    "text"
-                ],
-                "title": [
-                    ".topic-title",
-                    "text"
-                ],
-                "link": [
-                    ".user-avatar a",
-                    "href"
-                ],
-                "replies": [
-                    ".count_of_replies",
-                    "text"
-                ],
-                "updated_at": [
-                    ".timeago",
-                    "title"
-                ]
-            }
-        }
+        "consume": "zxxBlog",
+        "expression": "0 0 * * *"
     }
 ]
